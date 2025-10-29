@@ -4,6 +4,7 @@
 \usepackage{geometry}
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref}
+\usepackage{xcolor}
 
 \geometry{a4paper, margin=1in}
 
@@ -92,7 +93,9 @@ The Vasicek model is an example of an Ornstein-Uhlenbeck process. We can find an
 
             \item \textbf{Simplify:} The terms involving $r(t)dt$ cancel out:
             \[
-            d(e^{\kappa t} r(t)) = \kappa \theta e^{\kappa t} dt + \sigma e^{\kappa t} dB(t)
+            \begin{aligned}
+            d(e^{\kappa t} r(t)) &= \textcolor{gray}{\kappa e^{\kappa t} r(t) dt} + e^{\kappa t} \Big( \kappa \theta dt \textcolor{gray}{- \kappa r(t) dt} + \sigma dB(t) \Big) 
+            \end{aligned}
             \]
 
             \item \textbf{Integrate:} We can now integrate both sides from time 0 to $t$:
