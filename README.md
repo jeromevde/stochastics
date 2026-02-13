@@ -9,7 +9,14 @@ Course materials, exercises, and notes from the Stochastic Processes in Finance 
 | 1 | Motivation | - |
 | 2 | Stochastic Calculus | ✅ Q1, Q3 |
 | 3 | Derivative Valuation | - |
-| 4 | Basic Models | GBM, Vasicek |
+| 4 | Basic Models | ✅ GBM |
+
+```
+questions/
+├── ch2_stochastic_calculus/    # Q1, Q2, Q3
+├── ch4_basic_models/
+│   └── 4.1_geometric_brownian_motion/  # GBM derivation + visualization
+├── ch5_interest_rates/
 | 5 | Interest Rate Models | - |
 | 6 | Heston's Model | - |
 | 7 | Lévy Processes | - |
