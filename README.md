@@ -9,7 +9,7 @@ Course materials, exercises, and notes from the Stochastic Processes in Finance 
 | 1 | Motivation | - |
 | 2 | Stochastic Calculus | ✅ Q1, Q3 |
 | 3 | Derivative Valuation | - |
-| 4 | Basic Models | ✅ GBM |
+| 4 | Basic Models | ✅ GBM, Vasicek |
 
 ```
 questions/
