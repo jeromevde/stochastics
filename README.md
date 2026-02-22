@@ -1,36 +1,33 @@
 # Stochastic Processes in Finance
 
-Course materials, exercises, and notes from the Stochastic Processes in Finance course.
+Interactive quiz website to test your understanding of stochastic processes in finance — 110 questions across 7 chapters.
 
-## Course Content
+**[Launch Quiz →](https://your-username.github.io/stochastics/)** *(update URL after deploy)*
 
-| Chapter | Topic | Status |
-|---------|-------|--------|
-| 1 | Motivation | - |
-| 2 | Stochastic Calculus | ✅ Q1, Q3 |
-| 3 | Derivative Valuation | - |
-| 4 | Basic Models | ✅ GBM, Vasicek |
-| 5 | Interest Rate Models | - |
-| 6 | Heston's Model | - |
-| 7 | Lévy Processes | - |
+## Chapters & Question Count
 
-## Structure
+| Chapter | Topic | Questions |
+|---------|-------|-----------|
+| 1 | Motivation | 5 |
+| 2 | Stochastic Calculus | 35 |
+| 3 | Derivative Valuation | 18 |
+| 4 | Basic Models (GBM, Vasicek, Hull-White, CIR) | 20 |
+| 5 | Interest Rate Market Models | 10 |
+| 6 | Heston's Model | 8 |
+| 7 | Lévy Processes | 14 |
 
-```
-questions/
-├── ch1_motivation/             # Risk measures, hedging
-├── ch2_stochastic_calculus/    # Measure theory, σ-algebras, measurability
-├── ch3_derivative_valuation/  # Fundamental theorems, PDEs
-├── ch4_basic_models/           # GBM, Vasicek, Hull-White, CIR
-├── ch5_interest_rates/         # Caplets, LIBOR, Swap models
-├── ch6_heston/                 # Stochastic volatility
-└── ch7_levy/                   # Poisson, Gamma, VG processes
-```
+## Features
 
-## Visualizations
+- Multiple choice and numeric answer questions
+- Instant feedback with detailed explanations
+- Score tracking per chapter (saved in browser)
+- Retry wrong answers
+- KaTeX math rendering
+- Dark theme, mobile-friendly
 
-- Questions with figures have matching `.py` scripts in their folder
-- Run: `python tools/generate_image.py <function_name>`
+## Deploy
+
+The site lives in `docs/` and is configured for GitHub Pages (deploy from `docs/` folder on `main` branch).
 
 ## References
 
