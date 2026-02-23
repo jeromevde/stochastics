@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.20" data-type="numeric" data-answer="14.39" data-tolerance="0.05">
+    <div class="q-text">In the Black-Scholes model, if $\sigma$ = 0 and r is constant, what is the call price C for $S_0$ = 100, K = 90, r = 5%, T = 1? (Round to 2 decimal places)</div>
+    <div class="q-numeric">
+      <label>Your answer:</label>
+      <input type="number" step="any" class="q-input">
+      <button class="q-submit">Submit</button>
+    </div>
+    <div class="q-explanation">With $\sigma$ = 0: S(T) = $S_0$e^{rT} = 100e^{0.05} $\approx$ 105.13. C = e^{−rT}max(S(T)−K, 0) = e^{−0.05}$\cdot$15.13 $\approx$ 14.39.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.9" data-type="mc" data-answer="1">
+    <div class="q-text">A key drawback of Vasicek's model is:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>It cannot be simulated exactly</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Short rates can become negative</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>It has no analytic bond price formula</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It requires too many parameters</span></button>
+    </div>
+    <div class="q-explanation">The Gaussian distribution of r(t) means rates can go negative, which was historically considered unrealistic (though negative rates have occurred in practice).</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

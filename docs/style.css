@@ -187,3 +187,33 @@ body {
   .question-card { padding: 1.25rem; }
   .q-text { font-size: 1rem; }
 }
+
+/* ───── Iframe Quiz Layout ───── */
+.frame-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.question-iframe {
+  width: 100%;
+  min-height: 300px;
+  border: none;
+  display: block;
+  transition: height .2s ease;
+}
+
+.quiz-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: .75rem 0;
+}
+
+/* ───── Chapter cards as links ───── */
+a.chapter-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

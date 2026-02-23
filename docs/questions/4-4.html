@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.4" data-type="mc" data-answer="1">
+    <div class="q-text">The Black-Scholes call price formula C = $S_0$N($d_+$) − Ke^{−rT}N($d_-$) uses N($\cdot$) which is:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>The normal density function</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>The standard normal CDF</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The lognormal CDF</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The Poisson CDF</span></button>
+    </div>
+    <div class="q-explanation">N($\cdot$) is the standard normal cumulative distribution function (CDF). The formula integrates the lognormal payoff analytically.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

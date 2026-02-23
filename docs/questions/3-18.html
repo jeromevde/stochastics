@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="3.18" data-type="mc" data-answer="1">
+    <div class="q-text">If [X]$_t$ = $\int_0^t \alpha$(s$)^2$ ds when $X_t$ = $\int_0^t \alpha$(s) dB(s), the Doléans-Dade exponential $\mathcal{E}(X)_t$ equals:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>exp($\int_0^t \alpha$(s) dB(s))</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>exp($\int_0^t \alpha$(s) dB(s) − $\tfrac{1}{2}\int_0^t \alpha$(s$)^2$ ds)</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>exp($\tfrac{1}{2}\int_0^t \alpha$(s$)^2$ ds)</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>exp($\int_0^t \alpha$(s$)^2$ dB(s))</span></button>
+    </div>
+    <div class="q-explanation">$\mathcal{E}(X)_t$ = exp($X_t$ − $\tfrac{1}{2}[X]_t$) = exp($\int_0^t \alpha$(s) dB(s) − $\tfrac{1}{2}\int_0^t \alpha$(s$)^2$ ds). This is the exponential martingale used in Girsanov's theorem.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

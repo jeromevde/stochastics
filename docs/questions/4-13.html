@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.13" data-type="mc" data-answer="1">
+    <div class="q-text">The CIR model SDE is dr = $\kappa(\theta$−r)dt + $\sigma$√r dB. Rates remain positive if:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>$\kappa$ &gt; $\sigma$</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>2$\kappa\theta$ &gt; $\sigma^2$</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\theta$ &gt; $\sigma^2$</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\kappa\theta$ &gt; $\sigma$</span></button>
+    </div>
+    <div class="q-explanation">The Feller condition 2$\kappa\theta$ &gt; $\sigma^2$ ensures the CIR process stays strictly positive. The √r term shrinks volatility near zero, preventing negative values.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="1.3" data-type="mc" data-answer="1">
+    <div class="q-text">Why do we need a stochastic *process* rather than just a random variable to price certain derivatives?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>Because all derivatives have multiple payment dates</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Because some derivatives (e.g. lookback options) depend on the asset value at multiple future times</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Because random variables cannot model stock prices</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Because regulators require stochastic processes</span></button>
+    </div>
+    <div class="q-explanation">Path-dependent derivatives like lookback options depend on the asset's value at many different future times, requiring a full stochastic process.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

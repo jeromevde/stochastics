@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.8" data-type="mc" data-answer="2">
+    <div class="q-text">In the Vasicek model, r(t)|r(s) has distribution:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>Lognormal</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Chi-squared</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Normal</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Exponential</span></button>
+    </div>
+    <div class="q-explanation">r(t)|r(s) ~ N($\theta$ + (r(s)−$\theta$)e^{−$\kappa$(t−s)}, $\sigma^2/(2\kappa$)(1−e^{−2$\kappa$(t−s)})). The Vasicek short rate is Gaussian, which is both a feature and a drawback (rates can go negative).</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

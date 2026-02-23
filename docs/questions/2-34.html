@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="2.34" data-type="numeric" data-answer="0" data-tolerance="0">
+    <div class="q-text">If B(t) is standard Brownian motion, what is E[$\int_0^t$ B(s) dB(s)]?</div>
+    <div class="q-numeric">
+      <label>Your answer:</label>
+      <input type="number" step="any" class="q-input">
+      <button class="q-submit">Submit</button>
+    </div>
+    <div class="q-explanation">The Itô integral of an adapted process is a martingale (starting at 0), so its expectation is 0. Alternatively: E[$\tfrac{1}{2}$(B(t$)^2$−t)] = $\tfrac{1}{2}$(t−t) = 0.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

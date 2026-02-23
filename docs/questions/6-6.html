@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="6.6" data-type="mc" data-answer="2">
+    <div class="q-text">E[(1/T)$\int_0$ᵀ $\sigma^2$(t) dt] in the Heston model equals:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>$\theta$</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>$\sigma^2$(0)</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\theta$ + ($\sigma^2$(0)−$\theta$)(1−e^{−$\kappa$T})/($\kappa$T)</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\theta$(1 − e^{−$\kappa$T})</span></button>
+    </div>
+    <div class="q-explanation">The expected average variance = $\theta$ + ($\sigma^2$(0)−$\theta$)(1−e^{−$\kappa$T})/($\kappa$T). As T $\to \infty$ this converges to $\theta$, the long-run variance level.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

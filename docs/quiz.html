@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz — Stochastic Processes in Finance</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Quiz view -->
+  <div id="quizView" class="view active">
+    <div class="quiz-header">
+      <a href="index.html" class="btn btn-ghost">← Chapters</a>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <span class="progress-text" id="progressText">1 / 10</span>
+      <span class="score-text" id="scoreText">Score: 0</span>
+    </div>
+
+    <div class="frame-wrap">
+      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+
+    <div class="quiz-footer">
+      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
+    </div>
+  </div>
+
+  <!-- Results view -->
+  <div id="resultsView" class="view">
+    <div class="results-card">
+      <h2>Quiz Complete</h2>
+      <div class="results-score" id="resultsScore"></div>
+      <div class="results-breakdown" id="resultsBreakdown"></div>
+      <div class="results-actions">
+        <button class="btn btn-primary" id="retryWrong">Retry Wrong Answers</button>
+        <button class="btn btn-ghost" id="backToChapters" onclick="location.href='index.html'">Back to Chapters</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="registry.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

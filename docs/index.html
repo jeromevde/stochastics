@@ -6,73 +6,41 @@
   <title>Stochastic Processes in Finance — Quiz</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=KaTeX_Main&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Landing / chapter select -->
-  <div id="landing" class="view active">
+  <div class="view active">
     <header class="hero">
       <h1>Stochastic Processes in Finance</h1>
-      <p class="subtitle">100 questions to test your understanding — chapter by chapter</p>
+      <p class="subtitle">110 questions to sharpen your understanding — chapter by chapter</p>
     </header>
+
     <div class="chapter-grid" id="chapterGrid"></div>
+
     <div class="cta-row">
-      <button class="btn btn-primary btn-lg" id="startAll">Start All Chapters (100 questions)</button>
+      <a class="btn btn-primary btn-lg" href="quiz.html?chapter=all">Start All Chapters (10 random)</a>
     </div>
   </div>
 
-  <!-- Quiz view -->
-  <div id="quiz" class="view">
-    <div class="quiz-header">
-      <button class="btn btn-ghost" id="backBtn">← Back</button>
-      <div class="progress-wrap">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-      <span class="progress-text" id="progressText">1 / 10</span>
-      <span class="score-text" id="scoreText">Score: 0</span>
-    </div>
+  <script src="registry.js"></script>
+  <script>
+    const grid = document.getElementById('chapterGrid');
+    chapters.forEach(ch => {
+      const card = document.createElement('a');
+      card.className = 'chapter-card';
+      card.href = 'quiz.html?chapter=' + ch.id;
 
-    <div class="question-card" id="questionCard">
-      <span class="q-badge" id="qBadge">Q 2.1</span>
-      <h2 class="q-text" id="qText"></h2>
+      const best = (() => {
+        try { return JSON.parse(localStorage.getItem('stoch_best_' + ch.id) || '{}'); } catch(_) { return {}; }
+      })();
+      const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
 
-      <!-- Multiple choice options -->
-      <div class="options" id="optionsWrap"></div>
-
-      <!-- Numeric input -->
-      <div class="numeric-wrap hidden" id="numericWrap">
-        <label for="numericInput">Your answer:</label>
-        <input type="number" step="any" id="numericInput" autocomplete="off">
-        <button class="btn btn-primary" id="numericSubmit">Submit</button>
-      </div>
-
-      <!-- Explanation (shown after answer) -->
-      <div class="explanation hidden" id="explanationWrap">
-        <div class="explanation-header" id="explanationHeader"></div>
-        <p id="explanationText"></p>
-      </div>
-
-      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
-    </div>
-  </div>
-
-  <!-- Results view -->
-  <div id="results" class="view">
-    <div class="results-card">
-      <h2>Results</h2>
-      <div class="results-score" id="resultsScore"></div>
-      <div class="results-breakdown" id="resultsBreakdown"></div>
-      <div class="results-actions">
-        <button class="btn btn-primary" id="retryWrong">Retry Wrong Answers</button>
-        <button class="btn btn-ghost" id="backToChapters">Back to Chapters</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="questions.js"></script>
-  <script src="app.js"></script>
+      card.innerHTML =
+        '<h3>' + ch.title + '</h3>' +
+        '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
+        '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+      grid.appendChild(card);
+    });
+  </script>
 </body>
 </html>

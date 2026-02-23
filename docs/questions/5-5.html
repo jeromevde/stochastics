@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="5.5" data-type="mc" data-answer="1">
+    <div class="q-text">When expressing all forward rates under a single $T_i$-forward measure, what appears?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>No change — all rates remain driftless</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Drift corrections involving correlation and other forward rates</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The forward rates become deterministic</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The volatilities change but drifts stay zero</span></button>
+    </div>
+    <div class="q-explanation">Under a common measure, non-martingale forward rates acquire drift corrections $\Sigma_j \rho_k,_j \sigma_j \tau_j$ $F_j$/(1 + $\tau_j\,F_j$). These corrections require time discretization for simulation.</div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>
