@@ -96,19 +96,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── Report content height to parent ── */
+  let lastReportedHeight = 0;
+  let heightTimer = null;
+
   function reportHeight() {
+    const h = document.documentElement.scrollHeight;
+    if (h === lastReportedHeight) return;   // no change — skip
+    lastReportedHeight = h;
     try {
-      window.parent.postMessage({
-        type: 'resize',
-        height: document.documentElement.scrollHeight
-      }, '*');
+      window.parent.postMessage({ type: 'resize', height: h }, '*');
     } catch (_) {}
+  }
+
+  function debouncedReportHeight() {
+    if (heightTimer) clearTimeout(heightTimer);
+    heightTimer = setTimeout(reportHeight, 100);
   }
 
   // Report height on load and on resize
   window.addEventListener('load', () => setTimeout(reportHeight, 200));
-  window.addEventListener('resize', reportHeight);
-  // Also after KaTeX renders (it changes height)
-  const observer = new MutationObserver(reportHeight);
+  window.addEventListener('resize', debouncedReportHeight);
+
+  // Observe DOM changes (KaTeX rendering) but debounce + auto-disconnect
+  const observer = new MutationObserver(debouncedReportHeight);
   observer.observe(document.body, { childList: true, subtree: true });
+  // Stop observing after 5 seconds — KaTeX will have finished by then
+  setTimeout(() => { observer.disconnect(); reportHeight(); }, 5000);
 });

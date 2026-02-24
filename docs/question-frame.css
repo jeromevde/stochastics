@@ -130,6 +130,21 @@ html, body {
 .katex .mopen, .katex .mclose, .katex .mpunct,
 .katex .minner, .katex .mop { color: var(--text); }
 
+/* ── Report issue button ── */
+.q-issue-btn {
+  display: block;
+  text-align: right;
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.q-issue-btn:hover {
+  color: #aaa;
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   html, body { padding: 1rem; }
   .q-text { font-size: 1rem; }

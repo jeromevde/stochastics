@@ -182,6 +182,8 @@ function questionHTML(q) {
   }
 
   const explText = texify(q.explanation);
+  const issueTitle = encodeURIComponent(('Question ' + id + ': ' + q.question).slice(0, 120));
+  const issueUrl = 'https://github.com/jeromevde/stochastics/issues/new?title=' + issueTitle;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -196,6 +198,7 @@ function questionHTML(q) {
     <div class="q-text">${questionText}</div>
 ${bodyContent}
     <div class="q-explanation">${explText}</div>
+    <a class="q-issue-btn" href="${issueUrl}" target="_blank" rel="noopener">&#9872; Report issue</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
