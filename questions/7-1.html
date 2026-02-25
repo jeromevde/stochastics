@@ -24,6 +24,10 @@
       The mean and variance both equal $\lambda(t-s)$, and the distribution depends only on the interval length $(t-s)$, not the specific times.
       <strong>Answer:</strong>
       Poisson distribution with parameter $\lambda t$.
+    
+      <strong>Practical Use Case:</strong>
+      Poisson processes model discrete jump events in finance, essential for credit default models and jump-diffusion pricing. In credit risk, corporate defaults arrive as Poisson events with intensity lambda (hazard rate), enabling CDS pricing and portfolio credit models. For equity derivatives, jump-diffusion models (Merton, Kou) add Poisson jumps to geometric Brownian motion, capturing sudden price moves from earnings announcements or market crashes. Option pricing under jump-diffusion requires solving PIDEs (partial integro-differential equations) or using Fourier methods. Traders see Poisson jumps in short-dated options' implied volatility spikes before news events. High-frequency trading systems model order flow arrivals as Poisson processes. Risk managers stress-test portfolios against jump scenarios, computing jump-to-default risk for credit derivatives.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
