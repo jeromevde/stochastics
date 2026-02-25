@@ -4,12 +4,233 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stochastic Processes in Finance — Quiz</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ───── Reset & Base ───── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #232733;
+  --border: #2e3345;
+  --text: #e2e4ea;
+  --text-dim: #8b8fa3;
+  --primary: #6c8cff;
+  --primary-hover: #8aa4ff;
+  --correct: #34d399;
+  --correct-bg: rgba(52, 211, 153, .12);
+  --wrong: #f87171;
+  --wrong-bg: rgba(248, 113, 113, .12);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+/* ───── Views ───── */
+.view { display: none; max-width: 800px; margin: 0 auto; }
+.view.active { display: block; }
+
+/* ───── Landing ───── */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2rem; font-weight: 700; letter-spacing: -.02em; }
+.hero .subtitle { color: var(--text-dim); margin-top: .5rem; font-size: 1.05rem; }
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.chapter-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: border-color .15s, transform .15s;
+}
+.chapter-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.chapter-card h3 { font-size: .95rem; font-weight: 600; }
+.chapter-card .meta { color: var(--text-dim); font-size: .82rem; margin-top: .35rem; }
+.chapter-card .bar-bg {
+  height: 4px; background: var(--surface2); border-radius: 2px; margin-top: .75rem; overflow: hidden;
+}
+.chapter-card .bar-fill {
+  height: 100%; background: var(--primary); border-radius: 2px; transition: width .3s;
+}
+
+.cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
+
+/* ───── Buttons ───── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: inherit; font-weight: 600; font-size: .9rem;
+  border: none; border-radius: var(--radius); cursor: pointer;
+  padding: .6rem 1.3rem; transition: background .15s, color .15s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); border-color: var(--text-dim); }
+.btn-lg { font-size: 1rem; padding: .75rem 2rem; }
+
+/* ───── Quiz Header ───── */
+.quiz-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .75rem 0; margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.progress-wrap {
+  flex: 1; height: 6px; background: var(--surface2);
+  border-radius: 3px; overflow: hidden; min-width: 100px;
+}
+.progress-bar { height: 100%; background: var(--primary); border-radius: 3px; transition: width .3s; }
+.progress-text { font-size: .85rem; color: var(--text-dim); white-space: nowrap; }
+.score-text { font-size: .85rem; color: var(--primary); font-weight: 600; white-space: nowrap; }
+
+/* ───── Question Card ───── */
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.q-badge {
+  display: inline-block; font-size: .75rem; font-weight: 600;
+  color: var(--primary); background: rgba(108,140,255,.12);
+  padding: .2rem .6rem; border-radius: 6px; margin-bottom: .75rem;
+}
+.q-text { font-size: 1.1rem; font-weight: 500; line-height: 1.55; margin-bottom: 1.5rem; }
+
+/* ───── Options (MC) ───── */
+.options { display: flex; flex-direction: column; gap: .6rem; }
+
+.option-btn {
+  display: flex; align-items: flex-start; gap: .75rem;
+  width: 100%; text-align: left;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: .8rem 1rem;
+  font-family: inherit; font-size: .95rem; color: var(--text);
+  cursor: pointer; transition: border-color .15s, background .15s;
+  line-height: 1.5;
+}
+.option-btn:hover:not(.disabled) { border-color: var(--primary); }
+.option-btn .letter {
+  flex-shrink: 0; width: 26px; height: 26px; line-height: 26px;
+  text-align: center; border-radius: 50%;
+  font-weight: 600; font-size: .8rem;
+  background: var(--border); color: var(--text);
+}
+.option-btn.selected { border-color: var(--primary); background: rgba(108,140,255,.08); }
+.option-btn.correct { border-color: var(--correct); background: var(--correct-bg); }
+.option-btn.correct .letter { background: var(--correct); color: #fff; }
+.option-btn.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+.option-btn.wrong .letter { background: var(--wrong); color: #fff; }
+.option-btn.disabled { pointer-events: none; opacity: .85; }
+.option-btn.dimmed { opacity: .5; }
+
+/* ───── Numeric ───── */
+.numeric-wrap { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.numeric-wrap label { font-size: .95rem; color: var(--text-dim); }
+.numeric-wrap input {
+  font-family: inherit; font-size: 1rem; padding: .5rem .75rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); width: 140px;
+}
+.numeric-wrap input:focus { outline: none; border-color: var(--primary); }
+
+/* ───── Explanation ───── */
+.explanation {
+  margin-top: 1.25rem; padding: 1rem 1.25rem;
+  border-radius: var(--radius); font-size: .93rem; line-height: 1.6;
+}
+.explanation.correct-expl { background: var(--correct-bg); border-left: 3px solid var(--correct); }
+.explanation.wrong-expl { background: var(--wrong-bg); border-left: 3px solid var(--wrong); }
+.explanation-header { font-weight: 700; margin-bottom: .35rem; }
+.explanation-header.correct-hdr { color: var(--correct); }
+.explanation-header.wrong-hdr { color: var(--wrong); }
+
+#nextBtn { margin-top: 1.25rem; }
+
+.hidden { display: none !important; }
+
+/* ───── Results ───── */
+.results-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem; text-align: center;
+  margin-top: 2rem;
+}
+.results-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+.results-score {
+  font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: .5rem;
+}
+.results-breakdown {
+  margin: 1.5rem auto; max-width: 400px; text-align: left;
+}
+.results-breakdown .row {
+  display: flex; justify-content: space-between;
+  padding: .4rem 0; border-bottom: 1px solid var(--border);
+  font-size: .9rem;
+}
+.results-breakdown .row:last-child { border: none; }
+.results-actions { margin-top: 1.5rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+/* ───── Responsive ───── */
+@media (max-width: 600px) {
+  body { padding: 1rem; }
+  .hero h1 { font-size: 1.5rem; }
+  .question-card { padding: 1.25rem; }
+  .q-text { font-size: 1rem; }
+}
+
+/* ───── Iframe Quiz Layout ───── */
+.frame-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.question-iframe {
+  width: 100%;
+  min-height: 300px;
+  border: none;
+  display: block;
+  transition: height .2s ease;
+}
+
+.quiz-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: .75rem 0;
+}
+
+/* ───── Chapter cards as links ───── */
+a.chapter-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+  </style>
 </head>
 <body>
-  <div class="view active">
+  <!-- Landing view -->
+  <div id="landingView" class="view active">
     <header class="hero">
       <h1>Stochastic Processes in Finance</h1>
       <p class="subtitle">110 questions to sharpen your understanding — chapter by chapter</p>
@@ -18,29 +239,285 @@
     <div class="chapter-grid" id="chapterGrid"></div>
 
     <div class="cta-row">
-      <a class="btn btn-primary btn-lg" href="quiz.html?chapter=all">Start All Chapters (10 random)</a>
+      <a class="btn btn-primary btn-lg" href="?chapter=all">Start All Chapters (10 random)</a>
+    </div>
+  </div>
+
+  <!-- Quiz view -->
+  <div id="quizView" class="view">
+    <div class="quiz-header">
+      <a href="?" class="btn btn-ghost">← Chapters</a>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <span class="progress-text" id="progressText">1 / 10</span>
+      <span class="score-text" id="scoreText">Score: 0</span>
+    </div>
+
+    <div class="frame-wrap">
+      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+
+    <div class="quiz-footer">
+      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
+    </div>
+  </div>
+
+  <!-- Results view -->
+  <div id="resultsView" class="view">
+    <div class="results-card">
+      <h2>Quiz Complete</h2>
+      <div class="results-score" id="resultsScore"></div>
+      <div class="results-breakdown" id="resultsBreakdown"></div>
+      <div class="results-actions">
+        <button class="btn btn-primary" id="retryWrong">Retry Wrong Answers</button>
+        <button class="btn btn-ghost" id="backToChapters">Back to Chapters</button>
+      </div>
     </div>
   </div>
 
   <script src="registry.js"></script>
   <script>
-    const grid = document.getElementById('chapterGrid');
-    chapters.forEach(ch => {
-      const card = document.createElement('a');
-      card.className = 'chapter-card';
-      card.href = 'quiz.html?chapter=' + ch.id;
+/* ── Landing Page ── */
+(function initLanding() {
+  const grid = document.getElementById('chapterGrid');
+  chapters.forEach(ch => {
+    const card = document.createElement('a');
+    card.className = 'chapter-card';
+    card.href = '?chapter=' + ch.id;
 
-      const best = (() => {
-        try { return JSON.parse(localStorage.getItem('stoch_best_' + ch.id) || '{}'); } catch(_) { return {}; }
-      })();
-      const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
+    const best = (() => {
+      try { return JSON.parse(localStorage.getItem('stoch_best_' + ch.id) || '{}'); } catch(_) { return {}; }
+    })();
+    const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
 
-      card.innerHTML =
-        '<h3>' + ch.title + '</h3>' +
-        '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
-        '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
-      grid.appendChild(card);
+    card.innerHTML =
+      '<h3>' + ch.title + '</h3>' +
+      '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
+      '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+    grid.appendChild(card);
+  });
+})();
+
+/* ── Quiz Runner ── */
+(function initQuiz() {
+  const QUIZ_SIZE = 10;
+  const SEEN_PREFIX = 'stoch_seen_';
+
+  /* ── State ── */
+  let questionIds = [];
+  let currentIndex = 0;
+  let score = 0;
+  let answers = [];   // { id, correct }
+  let chapterId = null;
+
+  /* ── DOM ── */
+  const $ = id => document.getElementById(id);
+  const landingView = $('landingView');
+  const quizView    = $('quizView');
+  const resultsView = $('resultsView');
+  const iframe      = $('questionFrame');
+  const progressBar = $('progressBar');
+  const progressTxt = $('progressText');
+  const scoreTxt    = $('scoreText');
+  const nextBtn     = $('nextBtn');
+  const retryBtn    = $('retryWrong');
+  const backBtn     = $('backToChapters');
+
+  /* ── Init ── */
+  function init() {
+    const params = new URLSearchParams(location.search);
+    chapterId = params.get('chapter');
+
+    // If no chapter param, show landing page
+    if (!chapterId) {
+      landingView.classList.add('active');
+      quizView.classList.remove('active');
+      resultsView.classList.remove('active');
+      return;
+    }
+
+    // Show quiz view
+    landingView.classList.remove('active');
+    quizView.classList.add('active');
+    resultsView.classList.remove('active');
+
+    // Determine pool of question IDs
+    let pool;
+    if (chapterId !== 'all') {
+      const ch = chapters.find(c => c.id === parseInt(chapterId));
+      pool = ch ? ch.questions : [];
+      document.title = `${ch ? ch.title : 'Quiz'} — Stochastic Processes`;
+    } else {
+      pool = chapters.flatMap(c => c.questions);
+      chapterId = 'all';
+    }
+
+    questionIds = pickQuestions(pool, chapterId);
+    currentIndex = 0;
+    score = 0;
+    answers = [];
+
+    nextBtn.addEventListener('click', nextQuestion);
+    retryBtn.addEventListener('click', retryWrong);
+    backBtn.addEventListener('click', () => location.href = '?');
+    window.addEventListener('message', onMessage);
+
+    loadQuestion();
+  }
+
+  /* ── Pick questions, prioritising unseen ── */
+  function pickQuestions(pool, chId) {
+    const seenKey = SEEN_PREFIX + chId;
+    let seen = [];
+    try { seen = JSON.parse(localStorage.getItem(seenKey) || '[]'); } catch (_) {}
+
+    const unseen = pool.filter(id => !seen.includes(id));
+    const seenPool = pool.filter(id => seen.includes(id));
+
+    // If everything has been seen, reset
+    if (unseen.length === 0) {
+      localStorage.removeItem(seenKey);
+      return shuffle([...pool]).slice(0, Math.min(QUIZ_SIZE, pool.length));
+    }
+
+    let selected = shuffle([...unseen]).slice(0, QUIZ_SIZE);
+    if (selected.length < QUIZ_SIZE) {
+      const extra = shuffle([...seenPool]).slice(0, QUIZ_SIZE - selected.length);
+      selected = [...selected, ...extra];
+    }
+    return shuffle(selected);
+  }
+
+  /* ── Load current question in iframe ── */
+  function loadQuestion() {
+    nextBtn.classList.add('hidden');
+    const id = questionIds[currentIndex];
+    const filename = id.replace('.', '-') + '.html';
+    iframe.src = 'questions/' + filename;
+    updateProgress();
+  }
+
+  /* ── Listen for postMessage from question iframe ── */
+  function onMessage(e) {
+    if (!e.data || typeof e.data !== 'object') return;
+
+    if (e.data.type === 'answered') {
+      const { id, correct } = e.data;
+      if (correct) score++;
+      answers.push({ id, correct });
+
+      // Mark as seen
+      markSeen(id);
+
+      scoreTxt.textContent = `Score: ${score}`;
+      nextBtn.textContent = currentIndex < questionIds.length - 1 ? 'Next →' : 'See Results';
+      nextBtn.classList.remove('hidden');
+    }
+
+    if (e.data.type === 'resize') {
+      iframe.style.height = e.data.height + 'px';
+    }
+  }
+
+  /* ── Mark question as seen in localStorage ── */
+  function markSeen(id) {
+    const seenKey = SEEN_PREFIX + (chapterId || 'all');
+    let seen = [];
+    try { seen = JSON.parse(localStorage.getItem(seenKey) || '[]'); } catch (_) {}
+    if (!seen.includes(id)) {
+      seen.push(id);
+      localStorage.setItem(seenKey, JSON.stringify(seen));
+    }
+  }
+
+  /* ── Next question ── */
+  function nextQuestion() {
+    currentIndex++;
+    if (currentIndex >= questionIds.length) {
+      showResults();
+    } else {
+      loadQuestion();
+    }
+  }
+
+  /* ── Progress bar ── */
+  function updateProgress() {
+    const total = questionIds.length;
+    progressBar.style.width = `${(currentIndex / total) * 100}%`;
+    progressTxt.textContent = `${currentIndex + 1} / ${total}`;
+    scoreTxt.textContent = `Score: ${score}`;
+  }
+
+  /* ── Results ── */
+  function showResults() {
+    quizView.classList.remove('active');
+    resultsView.classList.add('active');
+
+    const total = questionIds.length;
+    const pct = Math.round((score / total) * 100);
+    $('resultsScore').textContent = `${score} / ${total}  (${pct}%)`;
+
+    // Save best score
+    saveBest(chapterId, score, total);
+
+    // Breakdown by chapter
+    const bd = $('resultsBreakdown');
+    bd.innerHTML = '';
+    const byChapter = {};
+    answers.forEach(a => {
+      const chNum = a.id.split('.')[0];
+      if (!byChapter[chNum]) byChapter[chNum] = { correct: 0, total: 0 };
+      byChapter[chNum].total++;
+      if (a.correct) byChapter[chNum].correct++;
     });
+    Object.keys(byChapter).sort((a, b) => +a - +b).forEach(chNum => {
+      const ch = chapters.find(c => c.id === +chNum);
+      const { correct, total } = byChapter[chNum];
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `<span>${ch ? ch.title : 'Ch ' + chNum}</span><span>${correct}/${total}</span>`;
+      bd.appendChild(row);
+    });
+
+    // Show/hide retry
+    const wrongCount = answers.filter(a => !a.correct).length;
+    retryBtn.classList.toggle('hidden', wrongCount === 0);
+  }
+
+  function saveBest(chId, score, total) {
+    const key = 'stoch_best_' + chId;
+    try {
+      const prev = JSON.parse(localStorage.getItem(key) || '{}');
+      const best = Math.max(prev.best || 0, score);
+      localStorage.setItem(key, JSON.stringify({ best, total }));
+    } catch (_) {}
+  }
+
+  /* ── Retry wrong answers ── */
+  function retryWrong() {
+    const wrongIds = answers.filter(a => !a.correct).map(a => a.id);
+    questionIds = shuffle(wrongIds);
+    currentIndex = 0;
+    score = 0;
+    answers = [];
+    resultsView.classList.remove('active');
+    quizView.classList.add('active');
+    loadQuestion();
+  }
+
+  /* ── Helpers ── */
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  init();
+})();
   </script>
 </body>
 </html>
