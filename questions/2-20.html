@@ -19,9 +19,15 @@
       <strong>Definitions:</strong>
       Different evaluation points in the stochastic integral lead to different integral conventions. The parameter $a \in [0,1]$ determines where in each interval $[t_{i-1}, t_i]$ we evaluate: $a=0$ is left endpoint (Itô), $a=1/2$ is midpoint (Stratonovich), $a=1$ is right endpoint.
       <strong>Reasoning:</strong>
-      The general formula for the integral with parameter $a$ is $\frac{1}{2}(B(t)^2 - t) + a \cdot t$. For $a = 1/2$ (Stratonovich integral), this becomes $\frac{1}{2}B(t)^2 - \frac{t}{2} + \frac{t}{2} = \frac{1}{2}B(t)^2$, which matches the ordinary calculus result. This is why Stratonovich integrals follow classical chain rules.
+      The general formula for the integral with parameter $a$ is:
+      $$\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t) + a \cdot t$$
+      For $a = 1/2$ (Stratonovich integral), this becomes:
+      $$\frac{1}{2}B(t)^2 - \frac{t}{2} + \frac{t}{2} = \frac{1}{2}B(t)^2$$
+      which matches the ordinary calculus result. This is why Stratonovich integrals follow classical chain rules.
       <strong>Answer:</strong>
       Using the midpoint rule gives $\frac{1}{2}B(t)^2$.
+      <strong>Practical Use Case:</strong>
+      While finance predominantly uses Itô calculus, Stratonovich calculus appears in physics and engineering applications. Some financial models involving change of numeraire (switching between domestic and foreign currency pricing) are more naturally expressed in Stratonovich form because of its compatibility with classical chain rules. However, when implementing numerical schemes for SDEs, practitioners must carefully convert between Itô and Stratonovich forms. Most financial software libraries (QuantLib, etc.) default to Itô convention because it ensures adapted integrands and martingale properties needed for arbitrage-free pricing.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -22,6 +22,10 @@
       If we set the jump size distribution to be degenerate at 1, i.e., $J = \delta_1$ (the Dirac measure at 1), then every jump has size exactly 1: $J_i = 1$ for all $i$. Therefore $X(t) = \sum_{i=1}^{N(t)} 1 = N(t)$, which is exactly the standard Poisson counting process. This shows that Poisson processes are a special case of compound Poisson processes.
       <strong>Answer:</strong>
       The jump measure $J$ is the Dirac measure at 1: $J(\{1\}) = 1$.
+    
+      <strong>Practical Use Case:</strong>
+      Understanding the relationship between Poisson and compound Poisson processes helps quants generalize models efficiently. Starting with a simple Poisson counting process (all jumps size 1) for modeling trade arrivals or quote updates, practitioners can extend to compound Poisson with distributed jump sizes to capture heterogeneous order sizes or price impacts. In credit risk, a homogeneous Poisson default process (all defaults identical) extends to compound Poisson with random loss-given-default (LGD) drawn from empirical distributions, improving portfolio credit risk accuracy.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

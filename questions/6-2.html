@@ -22,6 +22,10 @@
       In equity markets, we typically observe a volatility skew: implied volatility is higher for out-of-the-money (OTM) puts (low strikes) and lower for OTM calls (high strikes). This reflects market fears of crashes (fat left tail) and asymmetric return distributions. The pattern creates a downward-sloping curve rather than a symmetric smile. This post-1987 phenomenon is sometimes called the "smirk" or "skew."
       <strong>Answer:</strong>
       Higher implied vol for low strikes, lower for high strikes (skew).
+    
+      <strong>Practical Use Case:</strong>
+      Options traders continuously monitor the volatility skew to assess market sentiment and tail risk pricing. Equity market makers quote options using implied volatilities that vary by moneyness - OTM puts command higher implied vols (and thus higher premiums) to compensate for crash risk. Proprietary trading desks look for skew mispricings: if the skew flattens (low-strike puts become relatively cheap), it may signal buying opportunities for downside protection before market stress events.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

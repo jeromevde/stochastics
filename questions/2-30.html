@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       A semi-ring is a collection of sets closed under finite intersections, where set differences decompose into finite disjoint unions. A pre-measure on a semi-ring satisfies countable additivity on disjoint unions. Carathéodory's extension theorem extends this to a full measure on a $\sigma$-algebra.
       <strong>Reasoning:</strong>
-      Starting with a pre-measure $\mu_0$ on a semi-ring $\mathcal{S}$, the theorem constructs a unique measure $\mu$ on the generated $\sigma$-algebra $\sigma(\mathcal{S})$ that agrees with $\mu_0$ on $\mathcal{S}$. This is how Lebesgue measure is constructed from the "length" of intervals. The $\sigma$-finiteness condition ensures uniqueness.
+      Starting with a pre-measure $\mu_0$ on a semi-ring $\mathcal{S}$, the theorem constructs a unique measure $\mu$ on the generated $\sigma$-algebra $\sigma(\mathcal{S})$ that agrees with $\mu_0$ on $\mathcal{S}$:
+      $$\mu|_{\mathcal{S}} = \mu_0$$
+      This is how Lebesgue measure is constructed from the "length" of intervals. The $\sigma$-finiteness condition ensures uniqueness.
       <strong>Answer:</strong>
       The theorem guarantees unique extension to the generated $\sigma$-algebra.
+      <strong>Practical Use Case:</strong>
+      This theorem underlies the construction of probability distributions in finance. When defining a stochastic model, we often start with simple building blocks (like transition probabilities for a Markov chain or distributions of increments) and need to extend them to a full probability measure on an infinite-dimensional path space. For example, in interest rate modeling, we might specify instantaneous forward rates on a finite set of maturities and use extension theorems to construct the full yield curve dynamics. The theorem guarantees our model is well-defined and unique, preventing arbitrage opportunities that could arise from inconsistent probability assignments.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

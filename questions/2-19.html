@@ -19,9 +19,15 @@
       <strong>Definitions:</strong>
       In ordinary calculus, $\int x \, dx = \frac{x^2}{2}$. The analogous stochastic integral $\int_0^t B(s) \, dB(s)$ requires stochastic calculus due to the non-differentiability of Brownian paths.
       <strong>Reasoning:</strong>
-      Using Itô's lemma on $f(B) = \frac{B^2}{2}$, we have $df = B \, dB + \frac{1}{2}(dB)^2 = B \, dB + \frac{1}{2} dt$ (using $(dB)^2 = dt$). Rearranging: $B \, dB = df - \frac{1}{2} dt$. Integrating from 0 to $t$: $\int_0^t B(s) \, dB(s) = \frac{1}{2}B(t)^2 - \frac{1}{2}t$. The correction term $-\frac{t}{2}$ distinguishes this from ordinary calculus.
+      Using Itô's lemma on $f(B) = \frac{B^2}{2}$, we have:
+      $$df = B \, dB + \frac{1}{2}(dB)^2 = B \, dB + \frac{1}{2} dt$$
+      using $(dB)^2 = dt$. Rearranging: $B \, dB = df - \frac{1}{2} dt$. Integrating from 0 to $t$:
+      $$\int_0^t B(s) \, dB(s) = \frac{1}{2}B(t)^2 - \frac{1}{2}t$$
+      The correction term $-\frac{t}{2}$ distinguishes this from ordinary calculus.
       <strong>Answer:</strong>
       $\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t)$.
+      <strong>Practical Use Case:</strong>
+      This integral appears in many derivative pricing formulas. For example, consider a portfolio that dynamically holds $B_t$ units of a stock whose price follows geometric Brownian motion. The cumulative gain from this strategy involves $\int_0^T B_t dS_t$, which has a similar structure. The correction term $-t/2$ is why Itô's lemma includes the second-order term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$ in the Black-Scholes PDE. Without this term, we'd get incorrect option prices. This is also why variance swaps (which pay realized variance) require a convexity adjustment when priced using log returns.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

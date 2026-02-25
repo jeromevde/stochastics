@@ -22,6 +22,10 @@
       From the CIR dynamics, we know $E[v(t) | v(0)] = \theta + (v(0) - \theta)e^{-\kappa t}$. Integrating and dividing by $T$: $E\left[\frac{1}{T}\int_0^T v(t) \, dt\right] = \frac{1}{T}\int_0^T [\theta + (v(0) - \theta)e^{-\kappa t}] dt = \theta + (v(0) - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}$. As $T \to \infty$, the term $(1-e^{-\kappa T})/(\kappa T) \to 0$, so the expected average converges to $\theta$.
       <strong>Answer:</strong>
       $\theta + (v(0) - \theta)(1 - e^{-\kappa T})/(\kappa T)$.
+    
+      <strong>Practical Use Case:</strong>
+      Variance swap pricing depends critically on the expected integrated variance over the swap's lifetime. Market makers use this formula to compute fair strikes for variance swaps: the strike should equal the expected average variance $E[\frac{1}{T}\int_0^T v(t)dt]$. For short maturities, current volatility $v(0)$ dominates; for long maturities, the strike converges to $\theta$ (long-run variance). This maturity structure helps traders arbitrage discrepancies between short-term VIX futures and long-term variance swap quotes.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

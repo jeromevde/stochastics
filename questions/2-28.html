@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      "Càdlàg" is French: "continue à droite, limite à gauche" meaning right-continuous with left limits. For a càdlàg process $X$, at each time $t$: (1) $\lim_{s \downarrow t} X(s) = X(t)$ (right-continuity), and (2) $\lim_{s \uparrow t} X(s)$ exists (left limit exists).
+      "Càdlàg" is French: "continue à droite, limite à gauche" meaning right-continuous with left limits. For a càdlàg process $X$, at each time $t$:
+      $$\lim_{s \downarrow t} X(s) = X(t) \quad \text{(right-continuity)}$$
+      $$\lim_{s \uparrow t} X(s) \text{ exists} \quad \text{(left limit exists)}$$
       <strong>Reasoning:</strong>
       Right-continuity is the natural convention for stochastic processes because it ensures measurability with respect to the natural filtration. It means the process "jumps to its new value immediately" rather than having a gap. Càdlàg processes can have jumps but are well-behaved enough for integration and other operations.
       <strong>Answer:</strong>
       A càdlàg process is right continuous with left limits.
+      <strong>Practical Use Case:</strong>
+      Stock prices are naturally modeled as càdlàg processes because markets jump to new prices immediately when news arrives (right-continuous), while the pre-jump price is well-defined (left limit exists). For example, when a company announces earnings after market close, the stock price gaps up at market open—this is a càdlàg path. High-frequency trading algorithms must handle this property: they can observe the current price but must account for possible jumps. Options pricing with jump models (Merton, Kou) explicitly uses càdlàg price processes to capture sudden moves from earnings, takeover bids, or macroeconomic announcements.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

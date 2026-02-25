@@ -17,11 +17,14 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A stopping time $\tau$ is a random time that represents when to stop observing a process, where the decision to stop at time $t$ can only depend on information available up to that time. Formally, the event $\{\tau \leq t\}$ must be $\mathcal{F}_t$-measurable.
+      A stopping time $\tau$ is a random time that represents when to stop observing a process, where the decision to stop at time $t$ can only depend on information available up to that time. Formally:
+      $$\{\tau \leq t\} \in \mathcal{F}_t \quad \text{for all } t$$
       <strong>Reasoning:</strong>
       The condition $\{\tau \leq t\} \in \mathcal{F}_t$ (equivalently $\{\tau < t\} \in \mathcal{F}_t$ for continuous time) ensures that at any time $t$, we can determine whether the stopping event has already occurred using only past and present information. This prevents "peeking into the future" to decide when to stop—a crucial property for modeling realistic decision-making.
       <strong>Answer:</strong>
       A stopping time satisfies $\{\tau \leq t\} \in \mathcal{F}_t$ for all $t$.
+      <strong>Practical Use Case:</strong>
+      Stopping times model early exercise decisions for American options. The optimal exercise time $\tau^*$ is a stopping time: at each moment, the holder decides whether to exercise based on current and past prices, not future ones. For example, $\tau = \inf\{t : S_t \ge B\}$ (first time stock hits barrier $B$) is a stopping time used in barrier options. The optional stopping theorem states that if $M_t$ is a martingale and $\tau$ is a stopping time, then $E[M_\tau] = E[M_0]$ under certain conditions. This theorem is used to price American options and to verify that proposed exercise strategies are indeed optimal.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

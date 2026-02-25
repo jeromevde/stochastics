@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      In FX modeling, we have domestic and foreign risk-neutral measures $\mathbb{P}_\alpha$ and $\mathbb{P}_f$, corresponding to domestic and foreign bank accounts as numeraires. The FX rate $X(t)$ is the domestic currency price of one unit of foreign currency.
+      In FX modeling, we have domestic and foreign risk-neutral measures $\mathbb{P}_\alpha$ and $\mathbb{P}_f$, corresponding to domestic and foreign bank accounts as numeraires. The FX rate $X(t)$ is the domestic currency price of one unit of foreign currency. The domestic bank account grows as $B_\alpha(t) = e^{r_\alpha t}$ and the foreign bank account as $B_f(t) = e^{r_f t}$.
       <strong>Reasoning:</strong>
-      The Radon-Nikodym derivative relating the foreign and domestic measures is $\frac{d\mathbb{P}_f}{d\mathbb{P}_\alpha}\Big|_{\mathcal{F}_t} = Y(t) = \frac{X(t) B_f(t)}{B_\alpha(t)}$, where $B_f$ and $B_\alpha$ are foreign and domestic bank accounts. This ratio represents the value in domestic currency of the foreign numeraire relative to the domestic numeraire. It's the key ingredient for switching between domestic and foreign risk-neutral measures.
+      The Radon-Nikodym derivative relating the foreign and domestic measures is
+      $$\frac{d\mathbb{P}_f}{d\mathbb{P}_\alpha}\Big|_{\mathcal{F}_t} = Y(t) = \frac{X(t) B_f(t)}{B_\alpha(t)}$$
+      where $B_f$ and $B_\alpha$ are foreign and domestic bank accounts. This ratio represents the value in domestic currency of the foreign numeraire relative to the domestic numeraire. Under the domestic measure, $X$ has drift $r_\alpha - r_f$ (covered interest rate parity). When we switch to the foreign measure, we're changing the numeraire from $B_\alpha$ to $X \cdot B_f$, and this Radon-Nikodym derivative accomplishes that measure change via Girsanov's theorem.
       <strong>Answer:</strong>
       The Radon-Nikodym derivative is $Y(t) = X(t)B_f(t)/B_\alpha(t)$.
+      <strong>Practical Use Case:</strong>
+      FX measure changes are critical for pricing quanto derivatives and cross-currency products. When pricing a USD-denominated option on a EUR/USD exchange rate with payoff in EUR (a quanto), traders must switch between three measures: USD risk-neutral (domestic), EUR risk-neutral (foreign), and the quanto measure. The Radon-Nikodym derivative $Y(t)$ enables these switches. Similarly, for cross-currency swaps where cashflows occur in different currencies, dealers price each leg in its native currency measure, then convert using this measure change. Investment banks' FX desks use this daily when quoting prices for currency options, ensuring no arbitrage between spot FX, interest rate differentials, and option implied volatilities (checking the drift condition $r_\alpha - r_f$ is satisfied).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

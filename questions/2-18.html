@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Itô integral $\int_0^t f(s, B(s)) \, dB(s)$ is defined as the limit of Riemann-type sums. The choice of where to evaluate the integrand within each partition interval affects the integral's value and properties.
+      The Itô integral $\int_0^t f(s, B(s)) \, dB(s)$ is defined as the limit:
+      $$\int_0^t f(s, B(s)) \, dB(s) = \lim_{\|\Pi\| \to 0} \sum_{i} f(t_{i-1}, B(t_{i-1}))(B(t_i) - B(t_{i-1}))$$
+      The choice of evaluation point affects the integral's value and properties.
       <strong>Reasoning:</strong>
       The Itô integral uses left-endpoint evaluation: $\sum f(t_{i-1}, B(t_{i-1}))(B(t_i) - B(t_{i-1}))$. This ensures the integrand at each step is independent of the subsequent Brownian increment, which is crucial for the integral to be a martingale. Other evaluation points (midpoint, right endpoint) lead to different integrals with different properties.
       <strong>Answer:</strong>
       The Itô integral evaluates the integrand at the left endpoint of each partition interval.
+      <strong>Practical Use Case:</strong>
+      Left-endpoint evaluation ensures that hedging strategies are implementable in practice. When computing $\int_0^T \Delta_t dS_t$ (cumulative gains from delta hedging), we use $\Delta_t$ based on time-$t$ information, not future information. This makes $\int_0^T \Delta_t dB_t$ a martingale under $\mathbb{Q}$, which is essential for the replication argument underlying Black-Scholes. If we used right-endpoint evaluation (Stratonovich integral), we'd have $dB \cdot dB = dt$ instead of Itô's $(dB)^2 = dt$, changing option pricing formulas. The left-endpoint convention is why the drift term appears in Itô's lemma with the factor $\frac{1}{2}\sigma^2 \frac{\partial^2 f}{\partial x^2}$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

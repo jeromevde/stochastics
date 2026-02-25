@@ -22,6 +22,10 @@
       In a payer swaption, if you exercise, you pay fixed at rate $K$ and receive floating. This is valuable when market swap rates rise above $K$ - you lock in paying the lower rate $K$ while receiving the higher floating rate. The payoff at exercise time $T_\alpha$ is $\max(0, S_{\alpha,\beta}(T_\alpha) - K) \cdot \sum_j \tau_j P(T_\alpha, T_j)$.
       <strong>Answer:</strong>
       A payer swaption gives the right to enter the swap as fixed-leg payer at a specified rate.
+    
+      <strong>Practical Use Case:</strong>
+      Corporations planning to issue fixed-rate debt in the future use payer swaptions to hedge against rising swap rates, locking in today's rates for future issuance. Investment banks structure these for clients and then delta-hedge using swaps and caplets. The exercise decision depends on comparing the strike $K$ with the prevailing swap rate at expiry: if rates have risen substantially, exercising locks in borrowing at the lower strike rate, protecting against higher funding costs.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

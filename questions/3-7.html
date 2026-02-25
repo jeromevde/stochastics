@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       Market completeness requires that the number of linearly independent traded assets equals the number of states. In a complete market, every contingent claim can be replicated.
       <strong>Reasoning:</strong>
-      With 3 possible outcomes and 2 assets (stock and risk-free bond), we have more states than assets (3 > 2), making the market incomplete. There exist infinitely many probability measures $(q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, satisfying $1 = 2q_1 + 1 \cdot q_2 + \frac{1}{2}q_3$. Each such measure is an equivalent martingale measure, so by the 2nd FTAP, the market is incomplete.
+      With 3 possible outcomes and 2 assets (stock and risk-free bond), we have more states than assets (3 > 2), making the market incomplete. There exist infinitely many probability measures $(q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, satisfying:
+      $$1 = 2q_1 + 1 \cdot q_2 + \frac{1}{2}q_3$$
+      Each such measure is an equivalent martingale measure, so by the 2nd FTAP, the market is incomplete.
       <strong>Answer:</strong>
       The model is incomplete with multiple risk-neutral measures.
+      <strong>Practical Use Case:</strong>
+      Incomplete markets are the norm in practice. Real markets have infinitely many states but finite traded assets, creating incompleteness. For example, with stochastic volatility, traders cannot perfectly hedge volatility risk with just the stock and bonds—they need volatility derivatives (VIX futures, variance swaps). This creates trading opportunities: volatility sellers earn a risk premium for bearing unhedgeable risk. When pricing exotic options in incomplete markets, traders must choose an EMM. Common approaches: (1) minimal entropy measure, (2) measure matching liquid option prices, (3) utility-based pricing. Different choices lead to different prices, reflected in bid-ask spreads wider than in complete markets.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

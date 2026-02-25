@@ -17,11 +17,21 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      In the Vasicek model, bond pricing requires computing the distribution of the integrated short rate $\int_0^T r(u) \, du$. Since $r$ is Gaussian, this integral is also Gaussian, and we need its variance conditional on $r(0)$.
+      In the Vasicek model, bond pricing requires computing the distribution of the integrated short rate $I_T = \int_0^T r(u) \, du$. Since $r$ is Gaussian, this integral is also Gaussian, characterized by its mean and variance conditional on $r(0)$.
       <strong>Reasoning:</strong>
-      The variance formula is $V(0,T) = \frac{\sigma^2}{\kappa^2}\left(T - B(0,T) - \frac{\kappa B(0,T)^2}{2}\right)$, where $B(0,T) = \frac{1}{\kappa}(1 - e^{-\kappa T})$ depends on $\kappa$ and $T$. Notably, the variance depends on the volatility $\sigma$, mean-reversion speed $\kappa$, and maturity $T$, but not on the long-term mean $\theta$ or initial rate $r(0)$.
+      The variance formula for the integrated rate is:
+      $$\text{Var}\left[\int_0^T r(u) \, du \Big| r(0)\right] = \frac{\sigma^2}{\kappa^2}\left(T - B(0,T) - \frac{\kappa B(0,T)^2}{2}\right)$$
+      where $B(0,T) = \frac{1}{\kappa}(1 - e^{-\kappa T})$ is the bond duration function depending on $\kappa$ and $T$. Key observations:
+      - Depends on volatility $\sigma$ (obviously—more volatility increases variance)
+      - Depends on mean-reversion speed $\kappa$ (affects how quickly rates decorrelate)
+      - Depends on maturity $T$ (longer maturities accumulate more variance)
+      - Does NOT depend on long-term mean $\theta$ (affects mean but not variance)
+      - Does NOT depend on initial rate $r(0)$ (variance is independent of starting point)
+
       <strong>Answer:</strong>
       The variance depends on $\sigma$, $\kappa$, and $T$.
+      <strong>Practical Use Case:</strong>
+      Understanding variance of integrated rates is critical for bond option pricing and yield curve uncertainty. The formula shows that mean reversion ($\kappa$) reduces long-term variance compared to random walks: as $\kappa \to 0$ (no reversion), variance grows like $T^3$, but with reversion, growth is slower. Traders use this when pricing bond options (caps, floors): the variance determines option implied volatility. For risk management, portfolio managers assess "convexity" (sensitivity to yield volatility) using this variance formula. When calibrating Vasicek to swaption volatilities, quants fit $\kappa$ and $\sigma$ jointly to match market-implied variances across maturities. The independence from $\theta$ and $r(0)$ simplifies calibration: these parameters only affect mean levels, not uncertainty measures.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

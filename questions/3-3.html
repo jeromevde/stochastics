@@ -17,11 +17,14 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Two probability measures $P$ and $Q$ on a measurable space $(\Omega, \mathcal{F})$ are equivalent (written $P \sim Q$) if they have the same null sets: $P(A) = 0 \iff Q(A) = 0$ for all $A \in \mathcal{F}$.
+      Two probability measures $P$ and $Q$ on a measurable space $(\Omega, \mathcal{F})$ are equivalent (written $P \sim Q$) if they have the same null sets:
+      $$P(A) = 0 \iff Q(A) = 0 \quad \text{for all } A \in \mathcal{F}$$
       <strong>Reasoning:</strong>
       Equivalence means that $P$ and $Q$ agree on which events are possible and which are impossible, though they may assign different positive probabilities to possible events. This is crucial in finance: the risk-neutral measure must be equivalent to the real-world measure so that scenarios considered impossible in the real world remain impossible under risk-neutral pricing, ensuring consistency.
       <strong>Answer:</strong>
       Two measures are equivalent if events with probability 0 under one also have probability 0 under the other (and vice versa).
+      <strong>Practical Use Case:</strong>
+      The equivalence requirement prevents pricing anomalies. If the risk-neutral measure $\mathbb{Q}$ were not equivalent to $\mathbb{P}$, scenarios considered impossible in reality might have positive probability under $\mathbb{Q}$, leading to absurd prices. For example, if $\mathbb{P}(\text{stock bankruptcy}) = 0$ but $\mathbb{Q}(\text{stock bankruptcy}) > 0$, deep out-of-the-money puts would be overpriced relative to market reality. In practice, when changing numeraire or measure (e.g., from domestic to foreign risk-neutral measure for quanto derivatives), traders ensure equivalence by using Radon-Nikodym derivatives with strictly positive densities, preserving the set of possible outcomes across all pricing measures.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

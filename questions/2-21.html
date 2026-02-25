@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Itô isometry is a fundamental identity relating the $L^2$ norm of a stochastic integral to an ordinary integral. For an adapted process $f(s)$, it connects the expected square of the integral to the integral of the square.
+      The Itô isometry is a fundamental identity:
+      $$E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = E\left[\int_0^t f(s)^2 \, ds\right]$$
+      relating the $L^2$ norm of a stochastic integral to an ordinary integral.
       <strong>Reasoning:</strong>
       The isometry states: $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = E\left[\int_0^t f(s)^2 \, ds\right]$. For deterministic $f$, this simplifies to $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = \int_0^t f(s)^2 \, ds$. This is analogous to converting a stochastic $L^2$ norm into a deterministic one, and is essential for proving convergence of stochastic integrals.
       <strong>Answer:</strong>
       The Itô isometry gives $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = \int_0^t f(s)^2 \, ds$.
+      <strong>Practical Use Case:</strong>
+      The Itô isometry is crucial for computing the variance of hedging errors in delta hedging. When hedging an option with discrete rebalancing at times $0, \Delta t, 2\Delta t, \ldots$, the hedging error accumulates as $\int_0^T (\Delta_{\lfloor t/\Delta t \rfloor \cdot \Delta t} - \Delta_t) dS_t$. The isometry allows us to compute the expected squared hedging error, showing that it scales like $\sqrt{\Delta t}$ as rebalancing frequency increases. This helps traders determine optimal rebalancing frequency by balancing transaction costs against hedge accuracy. It's also used in Monte Carlo variance reduction to estimate confidence intervals for option prices.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -16,11 +16,21 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      In the Black-Scholes model with zero volatility ($\sigma = 0$), the stock price becomes deterministic: $S(T) = S_0 e^{rT}$. The call option payoff is $(S(T) - K)^+ = \max(S(T) - K, 0)$, discounted at rate $r$.
+      In the Black-Scholes model with zero volatility ($\sigma = 0$), the stock price evolution becomes deterministic (no randomness). The stock grows at the risk-free rate:
+      $$S(T) = S_0 e^{rT}$$
+      The call option payoff is $(S(T) - K)^+ = \max(S(T) - K, 0)$, discounted to present value.
       <strong>Reasoning:</strong>
-      With $\sigma = 0$: $S(T) = 100 e^{0.05 \cdot 1} = 100 e^{0.05} \approx 105.127$. The payoff is $\max(105.127 - 90, 0) = 15.127$. Discounting to present value: $C = e^{-0.05} \cdot 15.127 = 0.95123 \cdot 15.127 \approx 14.39$. With zero volatility, the option price is simply the discounted deterministic payoff.
+      Step-by-step calculation with given parameters $S_0 = 100$, $K = 90$, $r = 0.05$, $T = 1$, $\sigma = 0$:
+
+      1. Future stock price: $S(1) = 100 \cdot e^{0.05 \cdot 1} = 100 \cdot e^{0.05} \approx 105.127$
+      2. Payoff at maturity: $\max(105.127 - 90, 0) = 15.127$
+      3. Present value (discount at $r$): $C = e^{-0.05} \cdot 15.127 = 0.95123 \cdot 15.127 \approx 14.39$
+
+      With zero volatility, there's no uncertainty—the option price is simply the discounted deterministic payoff. Alternatively, note that $C = (S_0 - Ke^{-rT})^+ = (100 - 90e^{-0.05})^+ = (100 - 85.61)^+ = 14.39$.
       <strong>Answer:</strong>
       The call price is approximately 14.39.
+      <strong>Practical Use Case:</strong>
+      The zero-volatility limit serves as a sanity check for option pricing implementations and understanding intrinsic value. When $\sigma = 0$, the call price reduces to $\max(S_0 - Ke^{-rT}, 0)$—the forward intrinsic value. Traders use this as a lower bound: actual options with $\sigma > 0$ must be worth at least this value due to time value. For testing option pricing libraries, quants verify that setting $\sigma \to 0$ produces this formula. In deep in-the-money options where vega is negligible, the price approximates the zero-vol limit. For corporate finance, when valuing employee stock options with restricted selling, reduced volatility scenarios approach this limit. Understanding this limit also helps explain put-call parity: $C - P = S_0 - Ke^{-rT}$ exactly when $\sigma = 0$, with time value disappearing.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -22,6 +22,10 @@
       The defining feature is stationary independent increments: for disjoint intervals of equal length, increments have the same distribution and are independent. Brownian motion and Poisson processes are both Lévy processes. Lévy processes need not have continuous paths (they can jump) nor normal distributions (e.g., Gamma process). The characterization allows for rich jump behavior while maintaining tractability.
       <strong>Answer:</strong>
       Independent and identically distributed increments over disjoint same-length intervals.
+    
+      <strong>Practical Use Case:</strong>
+      Levy processes are the foundation for flexible return modeling in quantitative finance. The stationary independent increments property means log-returns over any fixed horizon (daily, weekly) have the same distribution and are independent - matching the i.i.d. assumption often used in risk models. Examples include Brownian motion (Black-Scholes), variance gamma (heavy tails + skew), and NIG processes. Understanding which processes are Levy helps quants choose appropriate models: Levy processes enable tractable pricing via characteristic functions, while non-Levy processes (like stochastic volatility models) require different techniques.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A martingale is a stochastic process $(M_t)$ adapted to a filtration $(\mathcal{F}_t)$ with integrable values, satisfying a specific conditional expectation property. It models a "fair game" where expected future values equal the current value.
+      A martingale is a stochastic process $(M_t)$ adapted to a filtration $(\mathcal{F}_t)$ with integrable values, satisfying:
+      $$E[M_t | \mathcal{F}_s] = M_s \quad \text{for all } s < t$$
+      It models a "fair game" where expected future values equal the current value.
       <strong>Reasoning:</strong>
       The defining property is $E[M_t | \mathcal{F}_s] = M_s$ for $s < t$. Given all information up to time $s$, the best prediction of the future value $M_t$ is simply the current value $M_s$—no drift up or down on average. This means martingales have no systematic trend; they fluctuate randomly around their current level.
       <strong>Answer:</strong>
       A martingale satisfies $E[M_t | \mathcal{F}_s] = M_s$ for $s < t$.
+      <strong>Practical Use Case:</strong>
+      Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price $e^{-rt}S_t$ is a martingale. This fundamental property underpins no-arbitrage pricing: $S_0 = E^{\mathbb{Q}}[e^{-rT}S_T]$. For derivatives pricing, we use $V_t = E^{\mathbb{Q}}[e^{-r(T-t)}V_T | \mathcal{F}_t]$, and the martingale property implies $e^{-rt}V_t$ is a martingale. This allows traders to replicate option payoffs with dynamic hedging strategies. When we compute delta $\Delta = \frac{\partial V}{\partial S}$, we're finding the hedge ratio that makes the hedged portfolio's value a martingale, eliminating directional risk.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

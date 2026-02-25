@@ -22,6 +22,10 @@
       If $\tau(t)$ is itself a Lévy process independent of $X$ (e.g., VG uses a Gamma subordinator), then $Y$ is still a Lévy process with independent increments. However, if $\tau(t)$ has dependent increments (e.g., $\tau(t) = \int_0^t v(s) ds$ where $v$ is a stochastic volatility process like Vasicek), then $Y(t)$ no longer has independent increments. This creates volatility clustering: periods of fast clock time ($\tau$ increasing rapidly) correspond to high volatility.
       <strong>Answer:</strong>
       A process that can exhibit volatility clustering.
+    
+      <strong>Practical Use Case:</strong>
+      Time-changed processes bridge pure jump models (like VG) and stochastic volatility models. By subordinating a Levy process with a stochastic clock driven by volatility (e.g., CIR or Heston variance), practitioners create models with both realistic tails (from jumps) and volatility clustering (from time change dependence). This is used in commodity markets where price dynamics exhibit both sudden spikes and persistent volatility regimes. Understanding when time-changing preserves vs. destroys the Levy property helps quants choose appropriate calibration and simulation techniques for each model class.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

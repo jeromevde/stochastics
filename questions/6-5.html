@@ -22,6 +22,10 @@
       The Heston model captures this through its stochastic, mean-reverting variance process. Since $v(t)$ evolves continuously with mean reversion, if $v(t)$ is high today, it's likely to remain relatively high tomorrow (though decaying toward $\theta$). This creates positive autocorrelation in the variance process and in the squared returns, matching empirical observations. In contrast, Black-Scholes with constant volatility cannot generate clustering.
       <strong>Answer:</strong>
       High-volatility periods tend to be followed by high-volatility periods.
+    
+      <strong>Practical Use Case:</strong>
+      Volatility clustering is critical for pricing and hedging path-dependent options like variance swaps and volatility swaps. Unlike Black-Scholes, Heston captures that after a high-volatility day, tomorrow is likely also high-volatility, affecting forward variance expectations. Risk managers use this property to model realistic VaR scenarios: clustered volatility means extreme events persist, requiring larger risk buffers. High-frequency trading strategies also exploit clustering by increasing activity during volatile periods when bid-ask spreads widen and profit opportunities expand.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

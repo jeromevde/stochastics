@@ -17,14 +17,21 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The simply-compounded forward rate $F(t,T_1,T_2)$ is the fixed rate agreed at time $t$ for borrowing/lending over the future period $[T_1, T_2]$. It can be derived from current zero-coupon bond prices $P(t,T)$.
+      The simply-compounded forward rate $F(t,T_1,T_2)$ is the fixed rate agreed at time $t$ for borrowing/lending over the future period $[T_1, T_2]$. It can be derived from current zero-coupon bond prices $P(t,T)$, where $P(t,T)$ is the price at time $t$ of a bond paying 1 dollar at time $T$.
       <strong>Reasoning:</strong>
-      Consider investing in a $T_1$-bond and shorting $(P(t,T_1)/P(t,T_2))$ units of a $T_2$-bond. At $T_1$, you receive 1 unit. At $T_2$, you owe $P(t,T_1)/P(t,T_2)$ units. The implied simply-compounded rate over $[T_1,T_2]$ is:
+      Consider an arbitrage strategy:
+      - At time $t$: Buy one $T_1$-bond costing $P(t,T_1)$ and short $\frac{P(t,T_1)}{P(t,T_2)}$ units of the $T_2$-bond
+      - At time $T_1$: Receive 1 dollar from the $T_1$-bond
+      - At time $T_2$: Pay $\frac{P(t,T_1)}{P(t,T_2)}$ dollars on the short position
+
+      The implied simply-compounded rate over $[T_1,T_2]$ satisfies:
       $$1 + F(t,T_1,T_2)(T_2-T_1) = \frac{P(t,T_1)}{P(t,T_2)}$$
-      which gives
-      $$F(t,T_1,T_2) = \frac{P(t,T_1)/P(t,T_2) - 1}{T_2 - T_1}$$
+      Solving for $F(t,T_1,T_2)$:
+      $$F(t,T_1,T_2) = \frac{P(t,T_1)/P(t,T_2) - 1}{T_2 - T_1} = \frac{1}{T_2-T_1}\left(\frac{P(t,T_1)}{P(t,T_2)} - 1\right)$$
       <strong>Answer:</strong>
       $$F(t,T_1,T_2) = \frac{P(t,T_1)/P(t,T_2) - 1}{T_2 - T_1}$$
+      <strong>Practical Use Case:</strong>
+      Forward rates are fundamental to interest rate derivatives pricing and yield curve construction. Traders extract forward rates from liquid swap and bond markets to build the forward curve, which determines pricing for FRAs (Forward Rate Agreements), interest rate swaps, and caps/floors. When a corporation hedges future borrowing costs, they lock in forward rates via FRAs. Market makers quote "2x5" forward rates (borrowing starting in 2 years for 3 years) using this formula from observable zero-coupon bond prices. The forward curve also reveals market expectations of future rate movements and central bank policy. Quants use bootstrapping: start with short-term rates, then recursively solve for longer forward rates to build the entire zero-curve from market instruments. Model-independent arbitrage bounds on exotic derivatives often rely on forward rate constraints derived from this formula.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -18,9 +18,14 @@
       <strong>Definitions:</strong>
       The Itô integral $\int_0^t B(s) \, dB(s)$ is a stochastic integral of an adapted process against Brownian motion. A key property of Itô integrals is that they are martingales (when the integrand satisfies integrability conditions).
       <strong>Reasoning:</strong>
-      Since the Itô integral is a martingale starting at 0, its expectation at any time is $E[\int_0^t B(s) \, dB(s)] = 0$. Alternatively, we know from earlier that $\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t)$, so $E[\int_0^t B(s) \, dB(s)] = \frac{1}{2}(E[B(t)^2] - t) = \frac{1}{2}(t - t) = 0$.
+      Since the Itô integral is a martingale starting at 0, its expectation at any time is:
+      $$E\left[\int_0^t B(s) \, dB(s)\right] = 0$$
+      Alternatively, we know from earlier that $\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t)$, so:
+      $$E\left[\int_0^t B(s) \, dB(s)\right] = \frac{1}{2}(E[B(t)^2] - t) = \frac{1}{2}(t - t) = 0$$
       <strong>Answer:</strong>
       The expectation is 0.
+      <strong>Practical Use Case:</strong>
+      The zero-expectation property of Itô integrals guarantees that dynamic trading strategies with no initial cost have zero expected profit under the risk-neutral measure, preventing arbitrage. When a trader implements a delta-hedging strategy for an option, the cumulative profit/loss from hedging is $\int_0^T \Delta_t dS_t$, an Itô integral. Under the risk-neutral measure, this has zero expectation, consistent with the option being fairly priced. In practice, P&L from hedging deviates from zero due to gamma exposure, transaction costs, and discrete rebalancing—but the theoretical zero expectation provides the benchmark for evaluating hedge performance.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

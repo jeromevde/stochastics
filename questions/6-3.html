@@ -22,6 +22,10 @@
       Setting $\rho < 0$ (negative correlation) captures the "leverage effect": when stock prices fall, volatility tends to increase, and vice versa. This creates asymmetry in the return distribution - negative shocks come with increased uncertainty. The result is a volatility skew where OTM puts (low strikes) have higher implied volatility than OTM calls, matching the observed equity market pattern. Positive $\rho$ would create the opposite effect.
       <strong>Answer:</strong>
       $\rho < 0$ produces a volatility skew (lower strikes have higher implied vol).
+    
+      <strong>Practical Use Case:</strong>
+      Equity derivatives desks calibrate Heston models to market data by choosing parameters that reproduce observed volatility skews. Setting $\rho < 0$ is essential to match the equity skew where OTM puts trade at higher implied volatilities than OTM calls. This leverage effect parameter directly impacts the pricing of skew-sensitive products like variance swaps and volatility targeting strategies. Portfolio managers use models with correctly calibrated $\rho$ to assess whether protective put strategies are over- or underpriced relative to fundamentals.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

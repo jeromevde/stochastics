@@ -22,6 +22,10 @@
       Since put-call parity is model-independent and depends only on no-arbitrage, the market prices $C$ and $P$ must satisfy it exactly. When we extract implied volatilities by inverting the Black-Scholes formula for both the call and put, we must obtain the same volatility. If they differed, the put-call parity relationship would be violated for Black-Scholes prices. Therefore, calls and puts with the same strike and maturity have identical implied volatilities.
       <strong>Answer:</strong>
       The implied volatility of a put with same strike and maturity.
+    
+      <strong>Practical Use Case:</strong>
+      Put-call parity is used daily by options traders and market makers to enforce arbitrage-free pricing and to check data quality. If quoted call and put implied volatilities differ for the same strike and maturity, it signals either a data error or a fleeting arbitrage opportunity (e.g., bid-ask spread crossing). Conversion and reversal strategies exploit any violations: buy the underpriced side, sell the overpriced side, and hedge with stock to lock in risk-free profit. Automated trading systems continuously monitor for such violations across thousands of option contracts.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      In the Black-Scholes model, stock prices follow GBM under both the real-world and risk-neutral measures, but with different drift parameters. Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price must be a martingale.
+      In the Black-Scholes model, stock prices follow GBM under both the real-world measure $\mathbb{P}$ and risk-neutral measure $\mathbb{Q}$, but with different drift parameters. Under the risk-neutral measure, the discounted stock price $S(t)/B(t)$ must be a martingale, where $B(t) = e^{rt}$ is the bank account growing at risk-free rate $r$.
       <strong>Reasoning:</strong>
-      The risk-neutral condition requires $E^\mathbb{Q}[S(t)/B(t)] = S(0)/B(0)$, where $B(t) = e^{rt}$ is the bank account. For $S(t)/B(t)$ to be a martingale, the drift of $S$ under $\mathbb{Q}$ must equal the growth rate of the numeraire, which is $r$. This means we must have $\mu = r$ in the risk-neutral SDE $dS = rS \, dt + \sigma S \, dB^\mathbb{Q}$.
+      The risk-neutral condition requires that the discounted stock price is a martingale:
+      $$\mathbb{E}^\mathbb{Q}\left[\frac{S(t)}{B(t)} \Big| \mathcal{F}_s\right] = \frac{S(s)}{B(s)} \text{ for all } s \leq t$$
+      If $S$ follows $dS = \mu S \, dt + \sigma S \, dB^\mathbb{Q}$, then by Itô's lemma applied to $S/B$:
+      $$d\left(\frac{S}{B}\right) = \frac{S}{B}\left[(\mu - r)dt + \sigma \, dB^\mathbb{Q}\right]$$
+      For this to be a martingale (zero drift term), we need $\mu - r = 0$, hence $\mu = r$. This is the fundamental requirement of risk-neutral pricing.
       <strong>Answer:</strong>
       Under the risk-neutral measure, the drift must equal $\mu(t) = r(t)$, the risk-free rate.
+      <strong>Practical Use Case:</strong>
+      This principle eliminates the need to estimate expected returns when pricing options, a major advantage for traders. Under the real-world measure, estimating $\mu$ (the true expected return of a stock) is notoriously difficult and controversial. But under $\mathbb{Q}$, every asset grows at the known rate $r$, so option pricing only requires observable inputs: current price $S_0$, strike $K$, volatility $\sigma$, time $T$, and rate $r$. This is why the Black-Scholes formula doesn't contain $\mu$. In practice, traders input market quotes for $r$ (from LIBOR or OIS rates) and implied volatility from option prices, compute the theoretical value using $dS = rS \, dt + \sigma S \, dB^\mathbb{Q}$, and hedge the position delta-neutral. Model validation checks verify that discounted portfolios are indeed martingales under $\mathbb{Q}$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

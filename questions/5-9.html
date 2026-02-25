@@ -22,6 +22,10 @@
       Consider a strategy: at time $t$, invest $P(t,T_\alpha)$ dollars in a $T_\alpha$-bond. At $T_\alpha$, you receive 1 dollar. At each reset date, reinvest the principal plus LIBOR interest in the next-period bond. At $T_\beta$, you receive 1 dollar back. This replicating strategy shows that the floating leg is equivalent to buying a $T_\alpha$-bond and selling a $T_\beta$-bond, giving value $P(t,T_\alpha) - P(t,T_\beta)$.
       <strong>Answer:</strong>
       The floating leg value equals $P(t,T_\alpha) - P(t,T_\beta)$.
+    
+      <strong>Practical Use Case:</strong>
+      Swap traders use this bond replication result to instantly value existing swaps from market bond prices without forecasting future LIBOR rates. For a receiver swap (receiving floating, paying fixed at rate $K$), the mark-to-market value is simply $P(t,T_\alpha) - P(t,T_\beta) - K \sum_j \tau_j P(t,T_j)$. This also reveals how to hedge a swap: the floating leg has the same risk as a long-short bond position, so duration-neutral hedging requires offsetting positions in the appropriate maturity bonds.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

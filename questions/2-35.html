@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       The indicator function $1_A$ (also written $\mathbb{1}_A$ or $\chi_A$) equals 1 on the set $A$ and 0 elsewhere. The Lebesgue integral with respect to a measure $\mu$ generalizes the notion of "summing up" values weighted by the measure.
       <strong>Reasoning:</strong>
-      By definition of the Lebesgue integral for simple functions, $\int_\Omega 1_A \, d\mu = 1 \cdot \mu(A) + 0 \cdot \mu(A^c) = \mu(A)$. This fundamental property shows that integration generalizes the measure: integrating an indicator gives the measure of the set. This is the building block for defining integrals of more complex functions.
+      By definition of the Lebesgue integral for simple functions:
+      $$\int_\Omega 1_A \, d\mu = 1 \cdot \mu(A) + 0 \cdot \mu(A^c) = \mu(A)$$
+      This fundamental property shows that integration generalizes the measure: integrating an indicator gives the measure of the set. This is the building block for defining integrals of more complex functions.
       <strong>Answer:</strong>
       The integral equals $\mu(A)$.
+      <strong>Practical Use Case:</strong>
+      Indicator functions are fundamental to computing probabilities and pricing digital options. A digital (binary) call option pays $1 if $S_T > K$ and $0$ otherwise, with payoff $1_{\{S_T > K\}}$. Its price is $e^{-rT} E^{\mathbb{Q}}[1_{\{S_T > K\}}] = e^{-rT} \mathbb{Q}(S_T > K) = e^{-rT} N(d_2)$ in Black-Scholes. More generally, any contingent claim can be approximated by a linear combination of digital options, making them building blocks for pricing complex derivatives. In credit risk, the indicator $1_{\{\tau \le T\}}$ (where $\tau$ is default time) determines default probability, central to pricing credit default swaps and corporate bonds.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The quadratic variation $[B]_t$ of a process $B(t)$ is the limit of sums of squared increments: $\lim_{\|\Pi\| \to 0} \sum_{t_i \in \Pi} (B(t_{i+1}) - B(t_i))^2$, where $\Pi$ is a partition of $[0,t]$. For smooth functions, this would be zero, but Brownian motion is rougher.
+      The quadratic variation $[B]_t$ of a process $B(t)$ is the limit:
+      $$[B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B(t_{i+1}) - B(t_i))^2$$
+      where $\Pi$ is a partition of $[0,t]$ and $\|\Pi\| = \max_i(t_{i+1} - t_i)$. For smooth functions, this would be zero, but Brownian motion is rougher.
       <strong>Reasoning:</strong>
       For standard Brownian motion, each increment $B(t_{i+1}) - B(t_i)$ has variance $t_{i+1} - t_i$. When we sum the squared increments, the contributions add up to $t$ in the limit. This is captured by the formal notation $(dB)^2 = dt$. The quadratic variation being non-zero reflects the fractal nature of Brownian paths.
       <strong>Answer:</strong>
       The quadratic variation is $[B]_t = t$.
+      <strong>Practical Use Case:</strong>
+      Quadratic variation is fundamental to Ito calculus and the Black-Scholes formula. The rule $(dB)^2 = dt$ leads to Ito's lemma, which tells us how to compute $d(f(S_t))$ when $dS_t = \mu S_t dt + \sigma S_t dB_t$. This gives us the drift term in the Black-Scholes PDE. In realized volatility estimation, traders approximate $[B]_t = t$ using high-frequency data: $\hat{\sigma}^2 = \frac{1}{T}\sum_{i=1}^n (\log S_{t_i} - \log S_{t_{i-1}})^2$. This estimator converges to the integrated variance as sampling frequency increases, providing a model-free estimate of volatility used in variance swaps and VIX index calculations.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -22,6 +22,10 @@
       Short-maturity options (days to weeks) exhibit steep smiles that are best explained by jump risk - discrete, sudden price movements. The Heston model, with only continuous diffusion dynamics, cannot generate the steep wings observed in short-dated options. For longer maturities, stochastic volatility alone adequately explains the smile shape. This limitation motivates jump-diffusion extensions like Bates or Merton models that combine jumps with stochastic volatility.
       <strong>Answer:</strong>
       Short-maturity options (because it lacks jumps).
+    
+      <strong>Practical Use Case:</strong>
+      Weekly and monthly equity options exhibit steep volatility smiles that pure stochastic volatility models cannot replicate - these require jump-diffusion models. Practitioners therefore use Heston for longer-dated exotics (e.g., autocallables, cliquet options) where stochastic vol dominates, but switch to Bates or SVJJ (stochastic volatility with jumps) for short-dated structures sensitive to gap risk. Understanding this limitation is crucial when choosing models for specific payoffs: mispricing short-dated digitals or barrier options due to inadequate jump modeling can lead to significant P&L losses.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

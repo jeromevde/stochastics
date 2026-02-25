@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       Brownian motion $B(t)$ has independent, stationary increments: increments over disjoint time intervals are independent, and the distribution of $B(t) - B(s)$ depends only on the length $t - s$, not on the specific times $s$ and $t$.
       <strong>Reasoning:</strong>
-      By the stationary increments property, $B(t) - B(s) \sim B(t-s) - B(0) = B(t-s)$. Since $B(t-s)$ is normally distributed with mean 0 and variance $t-s$, we have $B(t) - B(s) \sim N(0, t-s)$. The variance scales linearly with time, which is characteristic of diffusive processes.
+      By the stationary increments property, $B(t) - B(s) \sim B(t-s) - B(0) = B(t-s)$. Since $B(t-s)$ is normally distributed with mean 0 and variance $t-s$:
+      $$B(t) - B(s) \sim N(0, t-s)$$
+      The variance scales linearly with time, which is characteristic of diffusive processes.
       <strong>Answer:</strong>
       The increment $B(t) - B(s)$ has distribution $N(0, t-s)$.
+      <strong>Practical Use Case:</strong>
+      This property is fundamental to option pricing. In the Black-Scholes model, $\log(S_t/S_0) = (r - \sigma^2/2)t + \sigma B_t$, so the log-return over period $[s,t]$ is $\log(S_t/S_s) = (r - \sigma^2/2)(t-s) + \sigma(B_t - B_s) \sim N((r - \sigma^2/2)(t-s), \sigma^2(t-s))$. This allows us to compute probabilities like $P(S_T > K)$ analytically, leading to the Black-Scholes formula. The square-root scaling ($\text{Std}(B_t - B_s) = \sqrt{t-s}$) explains why volatility is quoted in annualized terms: daily vol $\approx$ annual vol $/\sqrt{252}$ for 252 trading days per year.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

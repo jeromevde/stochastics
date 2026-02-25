@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       An arbitrage is a trading strategy with zero initial cost that has a non-negative payoff and a positive probability of a strictly positive payoff. An equivalent martingale measure (EMM) is a probability measure under which discounted asset prices are martingales and which assigns positive probability to exactly the same events as the real-world measure.
       <strong>Reasoning:</strong>
-      The First Fundamental Theorem of Asset Pricing (1st FTAP) establishes the equivalence: no arbitrage exists if and only if there exists an EMM. The martingale property under the EMM reflects that expected discounted returns are zero, preventing arbitrage opportunities. This theorem provides the theoretical foundation for risk-neutral pricing.
+      The First Fundamental Theorem of Asset Pricing (1st FTAP) establishes the equivalence:
+      $$\text{No arbitrage} \iff \exists \text{ EMM } \mathbb{Q} \sim \mathbb{P}$$
+      The martingale property under the EMM reflects that expected discounted returns are zero, preventing arbitrage opportunities. This theorem provides the theoretical foundation for risk-neutral pricing.
       <strong>Answer:</strong>
       A market is arbitrage-free if and only if there exists an equivalent martingale measure.
+      <strong>Practical Use Case:</strong>
+      This theorem is the cornerstone of modern derivatives pricing. When traders price exotic options, they first verify that their market model admits a risk-neutral measure (no arbitrage). For example, when building a local volatility model from observed option prices, traders check that the model is arbitrage-free by verifying calendar spread and butterfly spread constraints, which ensure an EMM exists. If the model violates these, it admits arbitrage and cannot be used for reliable pricing. Regulators also use this principle to detect manipulation: if a trader quotes prices inconsistent with an EMM, it signals potential market abuse.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

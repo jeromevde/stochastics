@@ -17,11 +17,14 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Random variables $X$ and $Y$ are independent if the $\sigma$-algebras they generate, $\sigma(X)$ and $\sigma(Y)$, are independent. Two $\sigma$-algebras are independent when $P(A \cap B) = P(A) \cdot P(B)$ for all events $A$ from one and $B$ from the other.
+      Random variables $X$ and $Y$ are independent if the $\sigma$-algebras they generate, $\sigma(X)$ and $\sigma(Y)$, are independent. Two $\sigma$-algebras are independent when:
+      $$P(A \cap B) = P(A) \cdot P(B) \quad \text{for all } A \in \sigma(X), B \in \sigma(Y)$$
       <strong>Reasoning:</strong>
       Independence is defined through the multiplicative property of probabilities: joint events factorize. Option A describes disjoint events (not independence). Options C and D describe uncorrelatedness, which is weaker than independence—uncorrelated variables may still be dependent through higher-order moments.
       <strong>Answer:</strong>
       The correct characterization is $P(A \cap B) = P(A) \cdot P(B)$ for all $A \in \sigma(X)$ and $B \in \sigma(Y)$.
+      <strong>Practical Use Case:</strong>
+      Independence is a key assumption in many financial models. In the Black-Scholes model, increments of Brownian motion $B_{t_2} - B_{t_1}$ and $B_{t_4} - B_{t_3}$ for non-overlapping intervals are independent. This allows us to compute multi-period option prices by multiplying probabilities. For example, when pricing a double-barrier option, we need the joint distribution of $(S_{t_1}, S_{t_2})$. If the underlying Brownian increments are independent, we can factor the joint density. However, in practice, asset returns often exhibit dependence (momentum, mean reversion), requiring more sophisticated models than simple independent increments.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

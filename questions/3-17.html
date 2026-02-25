@@ -17,11 +17,20 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A numeraire is a reference asset used as the unit of account in which other assets are measured. It must be a positive, adapted stochastic process representing a tradable asset (e.g., you can buy and sell it in the market).
+      A numeraire is a reference asset used as the unit of account in which other assets are measured. It must be a positive, adapted stochastic process $N(t) > 0$ representing a tradable asset (e.g., you can buy and sell it in the market at price $N(t)$).
       <strong>Reasoning:</strong>
-      Common numeraires include the risk-free bank account $B(t) = e^{rt}$, zero-coupon bonds $P(t,T)$, or even a stock. When we express all prices relative to a numeraire $N(t)$ and use the associated measure, the ratios $S(t)/N(t)$ become martingales. Different numeraires lead to different but equivalent probability measures, each useful for different pricing problems.
+      Common numeraires include:
+      - Risk-free bank account: $N(t) = B(t) = e^{rt}$ (risk-neutral measure)
+      - Zero-coupon bond: $N(t) = P(t,T)$ (forward measure)
+      - Stock price: $N(t) = S(t)$ (stock measure)
+
+      When we choose numeraire $N(t)$ and define the associated measure $\mathbb{Q}^N$, all price ratios become martingales:
+      $$\mathbb{E}^{\mathbb{Q}^N}\left[\frac{S(t)}{N(t)} \Big| \mathcal{F}_s\right] = \frac{S(s)}{N(s)} \text{ for } s \leq t$$
+      Different numeraires lead to different but equivalent probability measures, each simplifying different pricing problems. The choice of numeraire is essentially choosing which asset's price we want to hold constant in expectation.
       <strong>Answer:</strong>
       A numeraire is a positive adapted stochastic process (tradable asset) used to compare values.
+      <strong>Practical Use Case:</strong>
+      Choosing the right numeraire dramatically simplifies complex derivative pricing. For European options, traders use the bank account numeraire and get Black-Scholes. For interest rate caps/floors, switching to the forward measure (using a zero-coupon bond $P(t,T)$ as numeraire) makes the forward rate martingale, yielding Black's formula—no need to model the entire yield curve evolution. For swaptions, the swap measure (using an annuity as numeraire) makes the swap rate martingale, again enabling Black's formula. For LIBOR market models, each LIBOR rate is modeled as a martingale under its own forward measure. Equity derivatives desks use stock numeraire for pricing exchange options (outperformance options), where the ratio of two stocks becomes the key variable. The numeraire choice is the first step in any complex derivative pricing workflow.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      An arbitrage is a self-financing trading strategy starting with zero capital that yields a non-negative payoff with positive probability of a strictly positive payoff—essentially a "free lunch." A self-financing strategy means no external cash is added or removed after the initial investment.
+      An arbitrage is a self-financing trading strategy starting with zero capital that yields a non-negative payoff with positive probability of a strictly positive payoff—essentially a "free lunch." A self-financing strategy means no external cash is added or removed after the initial investment: all gains/losses come purely from trading.
       <strong>Reasoning:</strong>
-      A model is arbitrage-free if no such strategy exists. The formal definition: there is no self-financing strategy $(\phi_t)$ with zero initial cost such that the terminal value $V_T \geq 0$ almost surely and $P(V_T > 0) > 0$. By the First Fundamental Theorem of Asset Pricing, this is equivalent to the existence of an equivalent martingale measure.
+      A model is arbitrage-free if no such strategy exists. Formally, there is no self-financing strategy $(\phi_t)$ with initial cost $V_0 = 0$ such that
+      $$V_T \geq 0 \text{ almost surely and } \mathbb{P}(V_T > 0) > 0$$
+      By the First Fundamental Theorem of Asset Pricing (FTAP), a model is arbitrage-free if and only if there exists an equivalent martingale measure (EMM) $\mathbb{Q} \sim \mathbb{P}$ under which all discounted asset prices are martingales. The equivalence means $\mathbb{Q}$ and $\mathbb{P}$ agree on zero-probability events. This deep connection between no-arbitrage and measure theory is the foundation of modern quantitative finance.
       <strong>Answer:</strong>
       A model is arbitrage-free if no self-financing strategy yields a certain positive profit from zero initial investment.
+      <strong>Practical Use Case:</strong>
+      Arbitrage-free pricing is the foundation of derivatives valuation and model validation. Before deploying any pricing model (local volatility, stochastic volatility, jump-diffusion), quants verify it satisfies no-arbitrage conditions by checking for an EMM. For example, when calibrating a local volatility surface to market option prices, the surface must satisfy arbitrage bounds: call prices must be decreasing in strike and convex, and calendar spreads must be non-negative. Violations indicate arbitrage opportunities that traders would immediately exploit. Trading desks run daily checks on their volatility surfaces, term structures, and correlation matrices to ensure no-arbitrage is maintained. When arbitrage is detected (like negative butterfly spreads), it signals either a profitable trading opportunity or data/model errors requiring immediate attention.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

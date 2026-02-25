@@ -22,6 +22,10 @@
       As $k \to -\infty$ (deep in-the-money), $C(k) \to S_0$, so $\int |C(k)|^2 dk = \infty$ (not in $L^2$). To enable Fourier inversion, we multiply by a damping factor $e^{\alpha k}$ with $\alpha > 0$. The modified function $c(k) = e^{\alpha k} C(k)$ decays as $k \to -\infty$ and becomes square-integrable: $\int |c(k)|^2 dk < \infty$. This allows us to compute the Fourier transform and then invert it to recover option prices efficiently.
       <strong>Answer:</strong>
       To make the modified call price square-integrable for Fourier transform.
+    
+      <strong>Practical Use Case:</strong>
+      The Carr-Madan FFT method revolutionized option pricing by enabling simultaneous valuation of thousands of strikes in a single FFT operation. The damping factor $e^{\alpha k}$ is essential for numerical stability: without it, the Fourier integral diverges. Practitioners must choose $\alpha$ carefully (typically $\alpha \in [0.5, 2.5]$ for equity calls) based on the model's moment-generating function to ensure integrability. This technique is now standard in derivatives trading systems for pricing under Levy processes (VG, NIG, Merton) and even stochastic volatility models with semi-analytical characteristic functions, providing speed advantages over Monte Carlo for vanilla and first-generation exotic options.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

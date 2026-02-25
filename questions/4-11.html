@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The half-life (or halvation time) $\tau$ is the time it takes for a deviation from the long-term mean $\theta$ to reduce to half its initial value on average. It characterizes the speed of mean reversion.
+      The half-life (or halvation time) $\tau$ is the time it takes for a deviation from the long-term mean $\theta$ to reduce to half its initial value on average. It characterizes the speed of mean reversion and is defined by $e^{-\kappa\tau} = \frac{1}{2}$.
       <strong>Reasoning:</strong>
-      From the Vasicek solution, the conditional expectation is $E[r(t) | r(s)] = \theta + (r(s) - \theta)e^{-\kappa(t-s)}$. The deviation from $\theta$ is $(r(s) - \theta)e^{-\kappa(t-s)}$. For this to equal half the initial deviation $(r(s) - \theta)/2$, we need $e^{-\kappa \tau} = 1/2$, giving $\tau = \ln(2)/\kappa \approx 0.693/\kappa$. Larger $\kappa$ means faster mean reversion and shorter half-life.
+      From the Vasicek solution, the conditional expectation is
+      $$\mathbb{E}[r(t) \mid r(s)] = \theta + (r(s) - \theta)e^{-\kappa(t-s)}$$
+      The deviation from $\theta$ at time $t$ is $(r(s) - \theta)e^{-\kappa(t-s)}$. For this deviation to equal half the initial deviation $(r(s) - \theta)/2$, we need:
+      $$(r(s) - \theta)e^{-\kappa \tau} = \frac{1}{2}(r(s) - \theta)$$
+      Canceling $(r(s) - \theta)$ and solving: $e^{-\kappa \tau} = \frac{1}{2}$, which gives
+      $$\tau = \frac{\ln(2)}{\kappa} \approx \frac{0.693}{\kappa}$$
+      Larger $\kappa$ means faster mean reversion and shorter half-life. For example, if $\kappa = 0.2$, then $\tau \approx 3.5$ years.
       <strong>Answer:</strong>
       It represents the time for the deviation from $\theta$ to halve (on average).
+      <strong>Practical Use Case:</strong>
+      The half-life $\tau = \ln(2)/\kappa$ is crucial for calibrating interest rate models and assessing reversion speeds. When fitting Vasicek to historical data, quants estimate $\kappa$ from rate time series, then compute $\tau$ to verify realism. Typical values: short rates like Fed Funds have $\kappa \approx 0.3$ (half-life ~2-3 years), while long-term rates have slower reversion ($\kappa \approx 0.1$, half-life ~7 years). Portfolio managers use half-life to time bond trades: if rates are far from $\theta$, expect reversion within $\tau$ to $2\tau$. For liability hedging, pension funds match asset durations to liability durations by considering mean reversion—longer half-lives reduce duration compared to random walk models. Traders also use $\tau$ for relative value: if two correlated rates have different half-lives, the faster-reverting one offers better mean-reversion trading opportunities.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       The Feynman-Kac theorem links stochastic processes to partial differential equations. For a derivative with value $f(x,t)$ where the underlying follows $dx = \mu(x,t) dt + \sigma(x,t) dB$, the theorem provides a PDE that $f$ must satisfy.
       <strong>Reasoning:</strong>
-      Under the risk-neutral measure, the derivative price satisfies the PDE: $f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx} = rf$, with terminal condition $f(x,T) = g(x)$ (the payoff). For a stock with drift $\mu = rx$ in the risk-neutral world, this becomes the Black-Scholes PDE. The terms come from applying Itô's lemma to the discounted price process.
+      Under the risk-neutral measure, the derivative price satisfies the PDE:
+      $$f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx} = rf$$
+      with terminal condition $f(x,T) = g(x)$ (the payoff). For a stock with drift $\mu = rx$ in the risk-neutral world, this becomes the Black-Scholes PDE. The terms come from applying Itô's lemma to the discounted price process.
       <strong>Answer:</strong>
       The Feynman-Kac PDE is $f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx} = rf$.
+      <strong>Practical Use Case:</strong>
+      The Feynman-Kac theorem allows traders to price derivatives using either Monte Carlo (expectation) or PDE methods (finite differences). For vanilla European options, the Black-Scholes PDE derived from Feynman-Kac can be solved analytically. For exotics without closed forms, traders discretize the PDE using finite difference methods (explicit, implicit, Crank-Nicolson schemes). PDE methods excel for low-dimensional problems and when computing Greeks—the derivatives $f_x, f_{xx}$ are directly available from the grid. This is why traders use PDE pricers for American options and early exercise features, where backward induction on a grid naturally handles optimal exercise boundaries.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

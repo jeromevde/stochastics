@@ -22,6 +22,10 @@
       When we change from each rate's natural measure to a common measure (say $\mathbb{Q}^{T_i}$), Girsanov's theorem tells us that drift corrections appear. For forward rate $F_k$ under measure $\mathbb{Q}^{T_i}$, the drift is proportional to $\sum_j \rho_{k,j} \sigma_j \frac{\tau_j F_j}{1 + \tau_j F_j}$, involving correlations, other forward rates, and their volatilities. These drift terms make the system complex and require numerical discretization for Monte Carlo simulation.
       <strong>Answer:</strong>
       Drift corrections involving correlation and other forward rates appear.
+    
+      <strong>Practical Use Case:</strong>
+      When pricing complex derivatives like callable swaps or ratchet caps via Monte Carlo simulation, all forward rates must evolve under a single measure. Implementing these drift corrections correctly is critical - errors lead to arbitrage in the simulated term structure. Quants must discretize the coupled system of SDEs $dF_k = \mu_k dt + \sigma_k F_k dW_k$, where the drift $\mu_k$ depends on correlations $\rho_{k,j}$ and the current values of other rates $F_j$. This interdependence makes numerical schemes like predictor-corrector or log-Euler essential for stable simulations.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

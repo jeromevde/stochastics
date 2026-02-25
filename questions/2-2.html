@@ -22,6 +22,8 @@
       Check the axioms for {$\emptyset, \Omega$}: (1) $\Omega \in \{\emptyset, \Omega\}$ ✓, (2) $\Omega^c = \emptyset \in \{\emptyset, \Omega\}$ and $\emptyset^c = \Omega \in \{\emptyset, \Omega\}$ ✓, (3) any countable union of $\emptyset$ and $\Omega$ yields either $\emptyset$ or $\Omega$ ✓. No smaller collection satisfies all axioms.
       <strong>Answer:</strong>
       {$\emptyset, \Omega$} is the smallest $\sigma$-algebra on any set, called the trivial $\sigma$-algebra.
+      <strong>Practical Use Case:</strong>
+      The trivial $\sigma$-algebra represents complete ignorance about the state of the world. In derivatives pricing, at time $t=0$ before any market information is revealed, we might model a trader's initial information as the trivial $\sigma$-algebra $\mathcal{F}_0 = \{\emptyset, \Omega\}$. Any random variable measurable with respect to $\mathcal{F}_0$ must be constant (deterministic), reflecting that the trader has no information to distinguish different states. As time progresses, the filtration $\mathcal{F}_t$ grows to include more information sets, allowing the trader to condition strategies on observed market data.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

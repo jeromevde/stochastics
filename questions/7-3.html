@@ -22,6 +22,10 @@
       In a standard Poisson process $N(t)$, each jump has size 1, so $N(t)$ counts discrete events. In a compound Poisson process, each event $i$ has a random size $J_i$ that can vary. For example, $J_i$ could be normally distributed (for stock price log-returns) or deterministic. The process still has finite jump activity (finitely many jumps in any finite interval) but allows heterogeneous jump sizes.
       <strong>Answer:</strong>
       Jump sizes can vary (according to a jump size distribution $J$).
+    
+      <strong>Practical Use Case:</strong>
+      The Merton jump-diffusion model for stock prices uses a compound Poisson process to add random-sized jumps to geometric Brownian motion: $dS = \mu S dt + \sigma S dW + S dJ$, where $J$ is a compound Poisson process with normally distributed jump sizes. This captures sudden large moves (earnings announcements, geopolitical shocks) that pure diffusion cannot model. Option pricing under Merton's model requires integrating over all possible jump counts, leading to semi-analytical formulas that sum Black-Scholes terms weighted by Poisson probabilities.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

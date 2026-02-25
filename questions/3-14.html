@@ -22,6 +22,8 @@
       When switching numeraires from $S$ to $U$, the drift of a process $X_i$ changes according to: $d\mu_i^U = d\mu_i^S - d\langle \ln X_i, \ln(S/U) \rangle$. This formula comes from Girsanov's theorem applied to the Radon-Nikodym derivative relating the two measures. The quadratic covariation term captures how the log-process co-varies with the log-ratio of numeraires, determining the drift correction needed.
       <strong>Answer:</strong>
       The drift change involves subtracting $d\langle \ln X_i, \ln(S/U) \rangle$.
+      <strong>Practical Use Case:</strong>
+      Change of numeraire is essential for pricing complex derivatives. When pricing options on bonds (like swaptions), traders change from the bank account numeraire to the zero-coupon bond numeraire, making forward rates martingales and enabling Black's formula. For quanto options (e.g., a Japanese stock option paying in USD), traders use three measures: domestic risk-neutral, foreign risk-neutral, and quanto measure. The drift corrections from numeraire changes account for FX correlation effects. In equity derivatives, switching to stock numeraire simplifies pricing of exchange options and outperformance options. Each measure change uses this drift adjustment formula, and traders verify consistency by checking that round-trip measure changes return to original dynamics.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

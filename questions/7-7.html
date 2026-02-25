@@ -22,6 +22,10 @@
       For a Gamma process with parameter $\nu$, we have $\Gamma_\nu(t) \sim \text{Gamma}(\text{shape} = t/\nu, \text{scale} = \nu)$, giving $E[\Gamma_\nu(t)] = t$ and $\text{Var}[\Gamma_\nu(t)] = \nu t$. The mean grows linearly with time at rate 1, while the variance grows linearly with rate $\nu$. Larger $\nu$ means more variability. The process has infinite jump activity but finite variation.
       <strong>Answer:</strong>
       Mean $t$ and variance $\nu t$.
+    
+      <strong>Practical Use Case:</strong>
+      The Gamma process is fundamental in credit risk modeling for cumulative default losses in loan portfolios. Each small jump represents an individual default, and the aggregate process $\Gamma_\nu(t)$ tracks total losses over time. The parameter $\nu$ controls loss variance, which affects pricing of senior vs. junior tranches in collateralized debt obligations (CDOs). Gamma processes also appear in operational risk models where losses accumulate continuously from many small incidents, helping banks compute regulatory capital requirements under Basel frameworks.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

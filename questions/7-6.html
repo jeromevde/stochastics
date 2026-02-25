@@ -22,6 +22,10 @@
       When $\Pi(\mathbb{R} \setminus \{0\}) = \infty$, the process experiences infinitely many jumps in any interval $[0,t]$ with $t > 0$. However, these are predominantly very small jumps (since $\int \min(1, x^2) \Pi(dx) < \infty$ still holds). Examples include the Gamma process and Variance Gamma process. In contrast, compound Poisson processes have $\Pi(\mathbb{R} \setminus \{0\}) < \infty$ (finite activity).
       <strong>Answer:</strong>
       Infinitely many jumps in any time interval of positive length.
+    
+      <strong>Practical Use Case:</strong>
+      Infinite activity Levy processes like variance gamma and NIG (normal inverse Gaussian) are used to model high-frequency price dynamics where markets exhibit many small price changes interspersed with occasional large moves. Unlike finite-activity models (Merton jump-diffusion), infinite activity processes generate realistic tick-by-tick behavior without requiring discrete jump thresholds. When pricing short-dated options or modeling intraday risk, infinite activity captures the continuous stream of micro-jumps from order flow, improving hedging accuracy for high-gamma positions.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

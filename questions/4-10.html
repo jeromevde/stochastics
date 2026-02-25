@@ -17,11 +17,25 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      An affine term structure model is one where bond prices have the form $P(t,T) = A(t,T) e^{-B(t,T) r(t)}$, equivalently $\ln P(t,T) = \ln A(t,T) - B(t,T) r(t)$. "Affine" means "linear plus constant."
+      An affine term structure model is one where bond prices have the exponential-affine form:
+      $$P(t,T) = A(t,T) e^{-B(t,T) r(t)}$$
+      equivalently, taking logarithms:
+      $$\ln P(t,T) = \ln A(t,T) - B(t,T) r(t)$$
+      "Affine" means "linear plus constant"—a function of the form $f(x) = a + bx$.
       <strong>Reasoning:</strong>
-      Taking the natural log: $\ln P(t,T) = \ln A(t,T) - B(t,T) \cdot r(t)$, which is an affine (linear) function of the short rate $r$. This structure is extremely useful because: (1) bond prices are explicit functions of the current short rate, (2) the entire yield curve can be determined from $r(t)$, and (3) derivatives can be priced using PDEs or expectations. The functions $A$ and $B$ satisfy ODEs that can be solved analytically.
+      The log bond price is
+      $$\ln P(t,T) = \ln A(t,T) - B(t,T) \cdot r(t) = \text{constant} + \text{coefficient} \times r(t)$$
+      which is an affine (linear) function of the short rate $r(t)$. This structure is extremely powerful because:
+      1. Bond prices are explicit functions of the current short rate $r(t)$
+      2. The entire yield curve is determined by $r(t)$ and time-dependent functions $A(t,T)$ and $B(t,T)$
+      3. The functions $A$ and $B$ satisfy Riccati ODEs that can be solved analytically in Vasicek
+      4. Option pricing uses expectations involving exponentials of affine functions, which remain tractable
+
+      The affine class includes Vasicek, CIR, Hull-White, and many multi-factor extensions.
       <strong>Answer:</strong>
       It's affine because $\ln P$ is an affine (linear) function of $r$.
+      <strong>Practical Use Case:</strong>
+      Affine models dominate interest rate derivatives pricing due to computational efficiency. For vanilla bond options and interest rate caps/floors, traders use closed-form pricing formulas that arise from the affine structure—no Monte Carlo needed. The affine property also enables fast calibration: given market bond prices $P^{\text{market}}(t,T_i)$, quants extract the current short rate $r(t)$ by inverting the affine formula. For large portfolios with thousands of positions, affine models allow real-time risk calculations (computing Greeks) that would be infeasible with non-affine models requiring numerical PDE or Monte Carlo. Investment banks' fixed income trading systems rely heavily on affine models: Vasicek and Hull-White for EUR/USD swaps, CIR for credit spreads, multi-factor affine models for mortgages. The ability to write $\ln P = a - br$ means all interest rate sensitivities (duration, convexity) follow from simple derivatives of affine functions.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

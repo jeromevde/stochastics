@@ -19,9 +19,15 @@
       <strong>Definitions:</strong>
       Standard Brownian motion $B(t)$ starting at 0 has the property that $B(t) \sim N(0, t)$, meaning it's normally distributed with mean 0 and variance $t$.
       <strong>Reasoning:</strong>
-      For a random variable $X \sim N(0, \sigma^2)$ with mean 0, we have $E[X^2] = \text{Var}(X) + (E[X])^2 = \sigma^2 + 0 = \sigma^2$. Applying this to $B(t)$ with $\sigma^2 = t$, we get $E[B(t)^2] = t$. This also equals the quadratic variation $[B]_t$.
+      For a random variable $X \sim N(0, \sigma^2)$ with mean 0, we have:
+      $$E[X^2] = \text{Var}(X) + (E[X])^2 = \sigma^2 + 0 = \sigma^2$$
+      Applying this to $B(t)$ with $\sigma^2 = t$:
+      $$E[B(t)^2] = t$$
+      This also equals the quadratic variation $[B]_t$.
       <strong>Answer:</strong>
       $E[B(t)^2] = t$.
+      <strong>Practical Use Case:</strong>
+      This simple relationship is used to compute option vega (sensitivity to volatility) in Monte Carlo simulations. When estimating vega, traders use the fact that $E[B_T^2] = T$ and $E[B_T^4] = 3T^2$ (from normal moment formulas) to compute sensitivities via finite differences or likelihood ratio methods. It's also fundamental to variance reduction: since $B_T^2 - T$ has mean zero, we can use it as a control variate when pricing options. For example, when pricing an Asian option via Monte Carlo, adding a multiple of $(B_T^2 - T)$ as a control variate reduces estimation variance without biasing the price estimate.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

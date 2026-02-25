@@ -22,6 +22,10 @@
       The first jump occurs after time $t$ if and only if no events occur in $[0,t]$: $P(\tau > t) = P(N_\lambda(t) = 0) = e^{-\lambda t}$. This is the survival function of an exponential distribution with rate $\lambda$. Therefore $\tau \sim \text{Exp}(\lambda)$, with density $f(t) = \lambda e^{-\lambda t}$ for $t \geq 0$ and mean $1/\lambda$. This memoryless property is unique to the exponential distribution.
       <strong>Answer:</strong>
       Exponential distribution with rate $\lambda$ (Exp($\lambda$)).
+    
+      <strong>Practical Use Case:</strong>
+      Credit risk modelers use Poisson processes to model default arrivals in portfolios. The exponential distribution of the first jump time means default times have the memoryless property: the conditional probability of default in the next year is constant, regardless of how long the firm has survived. This simplifies credit derivative pricing (e.g., CDS contracts) where default intensity $\lambda$ can be calibrated from market spreads, and the time-to-default distribution follows immediately from the Poisson framework.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

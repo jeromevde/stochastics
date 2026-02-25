@@ -22,6 +22,8 @@
       Despite being continuous everywhere, Brownian motion paths are almost surely nowhere differentiable—they have "corners" everywhere. This extreme roughness also implies unbounded variation on any non-trivial interval. The quadratic variation being $t$ (not zero) is another manifestation of this roughness. These properties make standard calculus inapplicable, necessitating stochastic calculus.
       <strong>Answer:</strong>
       Brownian motion has almost surely nowhere differentiable paths.
+      <strong>Practical Use Case:</strong>
+      The nowhere-differentiable property of Brownian motion explains why instantaneous returns $dS_t/dt$ are undefined in continuous-time models. Instead, we work with stochastic differentials $dS_t = \mu S_t dt + \sigma S_t dB_t$, where the second term dominates at small time scales. This mathematical property has practical implications: high-frequency trading algorithms must account for the fact that price changes over microseconds behave more like random walks than smooth trends. The unbounded variation also explains why delta-hedging requires continuous rebalancing in theory—though in practice, discrete rebalancing at regular intervals approximates the continuous hedge.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Implied volatility is the volatility parameter $\sigma$ that, when input into the Black-Scholes formula, produces a theoretical price equal to the observed market price of an option. It's extracted by inverting the Black-Scholes formula.
+      Implied volatility is the volatility parameter $\sigma$ that, when input into the Black-Scholes formula, produces a theoretical price equal to the observed market price of an option. It's extracted by inverting the Black-Scholes formula, converting a price into a volatility measure.
       <strong>Reasoning:</strong>
-      Given market price $C_{\text{market}}$ for a call with strike $K$ and maturity $T$, the implied volatility $\Sigma(T, K)$ solves: $C_{BS}(S_0, K, T, r, \Sigma(T, K)) = C_{\text{market}}$. This inversion is typically done numerically (e.g., Newton-Raphson). Implied volatility represents the market's expectation of future volatility and allows comparison of options across different strikes and maturities.
+      Given market price $C_{\text{market}}$ for a call with strike $K$ and maturity $T$, the implied volatility $\Sigma(T, K)$ solves:
+      $$C_{BS}(S_0, K, T, r, \Sigma(T, K)) = C_{\text{market}}$$
+      This inversion is typically done numerically using Newton-Raphson method with vega (the derivative of option price with respect to volatility) as the Jacobian:
+      $$\Sigma_{n+1} = \Sigma_n - \frac{C_{BS}(\Sigma_n) - C_{\text{market}}}{\nu(\Sigma_n)}$$
+      where $\nu = \frac{\partial C_{BS}}{\partial \sigma}$ is vega. Implied volatility represents the market's expectation of future realized volatility and allows comparison of options across different strikes and maturities. The collection $\Sigma(T,K)$ for various strikes and maturities forms the volatility surface.
       <strong>Answer:</strong>
       Implied volatility makes the Black-Scholes formula match the observed market call price.
+      <strong>Practical Use Case:</strong>
+      Implied volatility is the universal language of options trading. Instead of quoting prices directly, traders quote implied volatility, making options comparable across strikes and maturities. When a trader says "SPX 1-month at-the-money vol is 15%", they're communicating more information than a dollar price. Volatility surfaces are the primary tools for trading: dealers monitor the "smile" (volatility varying by strike) and "term structure" (volatility varying by maturity). For risk management, traders compute sensitivities in "vol space"—vega exposure measures P&L changes per 1% volatility move. Market makers arbitrage implied volatility against realized volatility, betting that options are over/underpriced relative to actual future stock movements. Volatility indices like VIX are computed from implied volatilities of multiple strikes, serving as market fear gauges.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

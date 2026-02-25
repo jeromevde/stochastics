@@ -22,6 +22,10 @@
       Under the forward measure $\mathbb{Q}^{T_{k+1}}$ corresponding to forward rate $F_k$, we have $dF_k/F_k = \sigma_k(t) \, dB_k$, where $B_k$ is a Brownian motion under that measure and there is no drift term. This driftless lognormal specification ensures: (1) $F_k$ is a martingale under its own measure, (2) $F_k$ stays positive, and (3) caplets can be priced using the Black formula, consistent with market practice.
       <strong>Answer:</strong>
       Under its own forward measure, $dF_k = \sigma_k F_k \, dB_k$ (driftless lognormal).
+    
+      <strong>Practical Use Case:</strong>
+      The LIBOR Market Model is the industry standard for pricing exotic interest rate derivatives like Bermudan swaptions, callable range accruals, and structured notes. By modeling each forward rate $F_k$ as driftless lognormal under its own measure, practitioners can calibrate directly to market caplet prices (quoted as Black volatilities $\sigma_k$) without numerical inversion. This lognormal specification ensures rates stay positive and allows for closed-form caplet pricing, making the model both theoretically sound and practically implementable.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

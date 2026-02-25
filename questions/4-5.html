@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      For GBM with $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$, the log return is $\ln(S(t)/S(0))$. Since $B(t) \sim N(0, t)$, this is a linear transformation of a normal random variable.
+      For GBM with $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$, the log return is $\ln(S(t)/S(0))$. Since $B(t) \sim N(0, t)$ (Brownian motion has mean zero and variance $t$), the log return is a linear transformation of a normal random variable, hence also normal.
       <strong>Reasoning:</strong>
-      From the GBM solution: $\ln(S(t)/S(0)) = (\mu - \frac{\sigma^2}{2})t + \sigma B(t)$. Since $B(t) \sim N(0, t)$, we have $\sigma B(t) \sim N(0, \sigma^2 t)$. Adding the deterministic drift term: $\ln(S(t)/S(0)) \sim N\left((\mu - \frac{\sigma^2}{2})t, \sigma^2 t\right)$. Note that the price $S(t)$ itself has a lognormal distribution, but the log return is normal.
+      From the GBM solution:
+      $$\ln(S(t)/S(0)) = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B(t)$$
+      Since $B(t) \sim N(0, t)$, we have $\sigma B(t) \sim N(0, \sigma^2 t)$. Adding the deterministic drift term gives:
+      $$\ln(S(t)/S(0)) \sim N\left(\left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)$$
+      The mean is $(\mu - \frac{\sigma^2}{2})t$ (with Itô correction) and variance is $\sigma^2 t$ (proportional to time). Note that while the price $S(t)$ itself has a lognormal distribution, the log return is normal—this is why we call it "geometric" Brownian motion.
       <strong>Answer:</strong>
-      The log return has distribution $N\left((\mu - \frac{\sigma^2}{2})t, \sigma^2 t\right)$.
+      The log return has distribution $N\left(\left(\mu - \frac{\sigma^2}{2}\right)t, \sigma^2 t\right)$.
+      <strong>Practical Use Case:</strong>
+      The normality of log returns is central to volatility estimation and option pricing. Traders estimate volatility $\sigma$ from historical log returns: compute daily log returns $r_i = \ln(S_{t_i}/S_{t_{i-1}})$, then $\hat{\sigma} = \sqrt{\frac{1}{n}\sum r_i^2} \cdot \sqrt{252}$ (annualized). The normal distribution assumption justifies using sample variance as the volatility estimator. For risk management, VaR calculations assume log returns are normal to compute percentile-based risk measures. Quants also use this to simulate future price distributions: generate $Z \sim N(0,1)$, then $S(t) = S_0 \exp((\mu - \sigma^2/2)t + \sigma\sqrt{t} Z)$. When log returns deviate from normality (fat tails, skewness), traders adjust models by using stochastic volatility or jump-diffusion extensions, but GBM with normal log returns remains the baseline.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

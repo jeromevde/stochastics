@@ -17,11 +17,20 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Vasicek model is a one-factor short rate model: $dr = \kappa(\theta - r) dt + \sigma dB$, where $r$ is the instantaneous short rate, $\theta$ is the long-term mean level, $\kappa$ is the speed of mean reversion, and $\sigma$ is volatility.
+      The Vasicek model is a one-factor short rate model where the instantaneous interest rate $r(t)$ evolves according to:
+      $$dr(t) = \kappa(\theta - r(t)) \, dt + \sigma \, dB(t)$$
+      where $\theta$ is the long-term mean level, $\kappa > 0$ is the speed of mean reversion, and $\sigma > 0$ is volatility.
       <strong>Reasoning:</strong>
-      The drift term $\kappa(\theta - r)$ creates mean reversion: when $r > \theta$, the drift is negative (pulls $r$ downward toward $\theta$), and when $r < \theta$, the drift is positive (pulls $r$ upward toward $\theta$). The parameter $\kappa$ controls how quickly this reversion occurs - higher $\kappa$ means faster reversion. This captures the empirical observation that interest rates tend to fluctuate around a long-term average level.
+      The drift term $\kappa(\theta - r)$ creates mean reversion—a pull toward the long-term mean:
+      - When $r(t) > \theta$: the term $(\theta - r) < 0$, so drift is negative, pulling $r$ downward toward $\theta$
+      - When $r(t) < \theta$: the term $(\theta - r) > 0$, so drift is positive, pulling $r$ upward toward $\theta$
+      - When $r(t) = \theta$: the drift is zero (at equilibrium)
+
+      The parameter $\kappa$ controls the speed: larger $\kappa$ means faster reversion. This captures the empirical observation that interest rates tend to fluctuate around a long-term average level rather than wandering off indefinitely. The half-life of deviations is $\ln(2)/\kappa$.
       <strong>Answer:</strong>
       The term represents mean reversion toward $\theta$ at speed $\kappa$.
+      <strong>Practical Use Case:</strong>
+      Mean reversion is fundamental to interest rate modeling and bond trading. Empirically, interest rates exhibit mean reversion—when rates spike due to inflation fears or central bank actions, they tend to eventually return toward historical averages. Fixed income traders exploit this by taking positions based on rate deviations from long-term means. When calibrating Vasicek to market data, quants estimate $\kappa$ from historical rate dynamics (typically $\kappa \approx 0.1$ to $0.5$ for short rates, implying reversion half-lives of 1-7 years). The parameter $\theta$ is often set to match long-term forward rates. Mean reversion also affects bond convexity and hedging strategies: longer-dated bonds have less interest rate sensitivity in mean-reverting models than in random walk models, impacting duration-based hedges.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

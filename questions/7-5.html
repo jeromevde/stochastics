@@ -22,6 +22,10 @@
       The triplet decomposes a Lévy process into three components: (1) deterministic drift $a$, (2) Brownian motion with variance $\sigma^2$, and (3) pure jump part governed by $\Pi$. The Lévy measure must satisfy $\int_{\mathbb{R}} \min(1, x^2) \, \Pi(dx) < \infty$ to ensure finite variation near zero and finite second moment for large jumps. This characterization is complete - the triplet uniquely determines the process.
       <strong>Answer:</strong>
       $(a, \sigma, \Pi)$ - drift, diffusion, jump intensity measure.
+    
+      <strong>Practical Use Case:</strong>
+      The Levy-Khintchine triplet provides a complete specification for calibrating Levy models to market data. Practitioners estimate the drift $a$ from mean returns, diffusion $\sigma$ from continuous price movements, and Levy measure $\Pi$ from the jump structure inferred from option prices. For example, when calibrating a variance gamma model, the triplet parameters map directly to the model's characteristic function, enabling fast Fourier transform (FFT) methods for pricing entire volatility surfaces simultaneously rather than option-by-option.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -22,6 +22,10 @@
       For $N_\lambda(1) \sim \text{Poisson}(\lambda)$: $\Phi_{N_\lambda(1)}(\theta) = E[e^{i\theta N_\lambda(1)}] = \sum_{n=0}^{\infty} e^{i\theta n} P(N_\lambda(1) = n) = \sum_{n=0}^{\infty} e^{i\theta n} \frac{\lambda^n e^{-\lambda}}{n!} = e^{-\lambda} \sum_{n=0}^{\infty} \frac{(\lambda e^{i\theta})^n}{n!} = e^{-\lambda} e^{\lambda e^{i\theta}} = e^{\lambda(e^{i\theta} - 1)}$. This function uniquely characterizes the Poisson distribution.
       <strong>Answer:</strong>
       $e^{\lambda(e^{i\theta} - 1)}$.
+    
+      <strong>Practical Use Case:</strong>
+      Characteristic functions are the backbone of Fourier-based option pricing methods used across the industry. For any Levy process (including Poisson, VG, NIG), the characteristic function of log-returns is available in closed form, enabling fast pricing via the Carr-Madan FFT algorithm. Market makers use this to compute entire option surfaces (hundreds of strikes simultaneously) in milliseconds rather than seconds, critical for high-frequency trading and real-time risk management. The Poisson characteristic function $e^{\lambda(e^{i\theta}-1)}$ specifically appears when pricing options under jump-diffusion models like Merton's.
+    
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

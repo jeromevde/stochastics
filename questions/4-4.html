@@ -17,11 +17,16 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Black-Scholes formula prices European call options analytically. The function $N(\cdot)$ appearing in the formula represents the cumulative distribution function (CDF) of the standard normal distribution: $N(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz$.
+      The Black-Scholes formula prices European call options analytically. The function $N(\cdot)$ appearing in the formula represents the cumulative distribution function (CDF) of the standard normal distribution:
+      $$N(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz = \mathbb{P}(Z \leq x) \text{ where } Z \sim N(0,1)$$
       <strong>Reasoning:</strong>
-      The formula $C = S_0 N(d_+) - K e^{-rT} N(d_-)$ arises from computing $E^\mathbb{Q}[e^{-rT}(S(T) - K)^+]$. Since $\ln(S(T))$ is normally distributed, the expectation involves integrals over the normal distribution. The $N(d_+)$ and $N(d_-)$ terms represent probabilities of exercise and discounted payoffs, computed using the standard normal CDF.
+      The Black-Scholes call formula is
+      $$C = S_0 N(d_+) - K e^{-rT} N(d_-)$$
+      where $d_\pm = \frac{\ln(S_0/K) + (r \pm \frac{\sigma^2}{2})T}{\sigma\sqrt{T}}$. This arises from computing $\mathbb{E}^\mathbb{Q}[e^{-rT}(S(T) - K)^+]$. Since $\ln(S(T))$ is normally distributed under GBM, the expectation splits into two terms involving integrals over the normal distribution. Specifically, $N(d_+)$ gives the delta (hedge ratio), and $N(d_-)$ gives the risk-neutral probability of finishing in-the-money. Both require the standard normal CDF.
       <strong>Answer:</strong>
       $N(\cdot)$ is the standard normal cumulative distribution function (CDF).
+      <strong>Practical Use Case:</strong>
+      The standard normal CDF $N(\cdot)$ is evaluated millions of times daily on trading floors worldwide. Modern implementations use fast polynomial approximations or lookup tables for speed. The term $N(d_+)$ is particularly important as it equals delta, the hedge ratio—for every option contract, traders hedge by holding $N(d_+)$ shares of stock. Market makers continuously recompute $N(d_+)$ and $N(d_-)$ as prices move to update their delta hedges. For large option portfolios, computing $N(\cdot)$ efficiently is critical: using Taylor approximations near zero and asymptotic expansions in the tails. Option pricing libraries always include highly optimized $N(\cdot)$ implementations, and quants verify accuracy to at least 10 decimal places to prevent accumulation errors in large portfolios.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

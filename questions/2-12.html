@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A filtration $(\mathcal{F}_t)_{t \geq 0}$ is a family of $\sigma$-algebras indexed by time, where each $\mathcal{F}_t \subseteq \mathcal{F}$ represents the information available up to time $t$. The key property is that information accumulates over time—once something is known, it remains known.
+      A filtration $(\mathcal{F}_t)_{t \geq 0}$ is a family of $\sigma$-algebras indexed by time, where each $\mathcal{F}_t \subseteq \mathcal{F}$ represents the information available up to time $t$. The key property is:
+      $$t \le s \implies \mathcal{F}_t \subseteq \mathcal{F}_s$$
+      This means information accumulates over time—once something is known, it remains known.
       <strong>Reasoning:</strong>
       For times $t \leq s$, we must have $\mathcal{F}_t \subseteq \mathcal{F}_s$ because information at time $s$ includes all the information that was available at the earlier time $t$. This increasing property models the natural flow of information: you can't forget what you've learned, only gain more knowledge.
       <strong>Answer:</strong>
       A filtration satisfies $\mathcal{F}_t \subseteq \mathcal{F}_s$ for all $t \leq s$ (increasing in time).
+      <strong>Practical Use Case:</strong>
+      In derivatives pricing, the natural filtration $\mathcal{F}_t = \sigma(S_u : 0 \le u \le t)$ captures the market information from observing stock prices up to time $t$. As time progresses, traders observe more price data, so $\mathcal{F}_t$ grows. This framework allows us to price path-dependent derivatives correctly. For example, an Asian option's payoff depends on $\text{Avg}(S_0, \ldots, S_T)$. At time $t$, we know the average-so-far from $\mathcal{F}_t$, and we condition the remaining expectation on this information. The increasing property ensures that all previously observed prices remain in our information set when computing conditional expectations.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
