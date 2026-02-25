@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A measurable function $f: (\Omega_1, \mathcal{F}_1) \to (\Omega_2, \mathcal{F}_2)$ is a function such that for every $B \in \mathcal{F}_2$, the preimage $f^{-1}(B) = \{\omega \in \Omega_1 : f(\omega) \in B\} \in \mathcal{F}_1$. A random variable is a measurable function from a probability space to the reals.
+      A measurable function $f: (\Omega_1, \mathcal{F}_1) \to (\Omega_2, \mathcal{F}_2)$ satisfies:
+      $$\text{For all } B \in \mathcal{F}_2: \quad f^{-1}(B) = \{\omega \in \Omega_1 : f(\omega) \in B\} \in \mathcal{F}_1$$
+      A random variable is a measurable function $X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R}))$ from a probability space to the reals.
       <strong>Reasoning:</strong>
       A random variable $X$ assigns a real number to each outcome $\omega \in \Omega$. Mathematically, $X: \Omega \to \mathbb{R}$. For measurability, we need $X^{-1}(B) \in \mathcal{F}$ for all Borel sets $B \in \mathcal{B}(\mathbb{R})$. This makes $X$ a function from $(\Omega, \mathcal{F})$ to $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
       <strong>Answer:</strong>
       A random variable is a measurable function from $(\Omega, \mathcal{F})$ to $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+      <strong>Practical Use Case:</strong>
+      The measurability requirement ensures that events involving the random variable have well-defined probabilities. When modeling a stock price $S_T$ as a random variable, measurability guarantees that the call option payoff $(S_T - K)^+$ is also a random variable, and events like $\{S_T > K\}$ (option finishes in-the-money) are in $\mathcal{F}$, so we can compute $P(S_T > K)$. In more complex derivatives, like barrier options, we need the maximum $M_T = \max_{0 \le t \le T} S_t$ to be a random variable. This measurability follows from the measurability of the process $S_t$ and properties of the Borel $\sigma$-algebra.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

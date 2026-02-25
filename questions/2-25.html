@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      For two stochastic processes $X$ and $Y$, the quadratic covariation $[X, Y]_t$ is defined as $\lim_{\|\Pi\| \to 0} \sum_i (X(t_i) - X(t_{i-1}))(Y(t_i) - Y(t_{i-1}))$. For Brownian motions $(B_1, B_2)$ with correlation $\rho$, we have $E[B_1(t)B_2(t)] = \rho t$.
+      For two stochastic processes $X$ and $Y$, the quadratic covariation $[X, Y]_t$ is defined as:
+      $$[X, Y]_t = \lim_{\|\Pi\| \to 0} \sum_{i=1}^{n} (X(t_i) - X(t_{i-1}))(Y(t_i) - Y(t_{i-1}))$$
+      where $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = t\}$ is a partition of $[0,t]$ and $\|\Pi\| = \max_i(t_i - t_{i-1})$ is the mesh size. For correlated Brownian motions $(B_1, B_2)$ with correlation $\rho$, we have $\text{Cov}(B_1(t), B_2(t)) = \rho t$.
       <strong>Reasoning:</strong>
-      The increments $\Delta B_1 = B_1(t_i) - B_1(t_{i-1})$ and $\Delta B_2 = B_2(t_i) - B_2(t_{i-1})$ have covariance $\rho(t_i - t_{i-1})$. When we sum the products and take the limit, we get $[B_1, B_2]_t = \rho t$. This is often written informally as $dB_1 \cdot dB_2 = \rho \, dt$.
+      Consider a partition $\Pi$ of $[0,t]$. The increments $\Delta B_1^i = B_1(t_i) - B_1(t_{i-1})$ and $\Delta B_2^i = B_2(t_i) - B_2(t_{i-1})$ are jointly normal with:
+      $$E[\Delta B_1^i \cdot \Delta B_2^i] = \text{Cov}(\Delta B_1^i, \Delta B_2^i) = \rho(t_i - t_{i-1})$$
+      Summing over the partition and taking the limit as $\|\Pi\| \to 0$:
+      $$[B_1, B_2]_t = \lim_{\|\Pi\| \to 0} \sum_{i=1}^{n} \Delta B_1^i \cdot \Delta B_2^i = \lim_{\|\Pi\| \to 0} \sum_{i=1}^{n} \rho(t_i - t_{i-1}) = \rho t$$
+      This is often written informally as $dB_1 \cdot dB_2 = \rho \, dt$.
       <strong>Answer:</strong>
       The quadratic covariation is $[B_1, B_2]_t = \rho t$.
+      <strong>Practical Use Case:</strong>
+      In multi-asset derivatives pricing (e.g., basket options, spread options), the correlation $\rho$ between asset returns directly affects option values through this covariation. For example, in pricing a spread option on two correlated stocks, the payoff depends on $(S_1 - S_2)^+$, and the variance of the spread involves $[B_1, B_2]_t = \rho t$, which determines how the two assets move together.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

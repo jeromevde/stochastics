@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      A probability measure $P$ on $(\Omega, \mathcal{F})$ is a function $P: \mathcal{F} \to [0,1]$ satisfying: (1) $P(\Omega) = 1$ (normalization), (2) $P(\emptyset) = 0$, and (3) $\sigma$-additivity: for disjoint sets $A_1, A_2, \ldots \in \mathcal{F}$, we have $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$.
+      A probability measure $P$ on $(\Omega, \mathcal{F})$ is a function $P: \mathcal{F} \to [0,1]$ satisfying:
+      $$\begin{align}
+      &\text{(1) Normalization: } P(\Omega) = 1 \\
+      &\text{(2) Non-negativity: } P(A) \ge 0 \text{ for all } A \in \mathcal{F} \\
+      &\text{(3) } \sigma\text{-additivity: For disjoint } A_1, A_2, \ldots \in \mathcal{F}, \\
+      &\quad P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+      \end{align}$$
       <strong>Reasoning:</strong>
       Option B correctly states both normalization ($P(\Omega) = 1$) and $\sigma$-additivity (countable additivity). Option A is wrong ($P(\Omega) = 1$, not 0). Option C is wrong (events can have zero probability). Option D is insufficient ($\sigma$-additivity is stronger than finite additivity).
       <strong>Answer:</strong>
       A probability measure must satisfy $P(\Omega) = 1$ and be $\sigma$-additive on disjoint sets.
+      <strong>Practical Use Case:</strong>
+      In risk-neutral pricing, we change from the real-world measure $\mathbb{P}$ to the risk-neutral measure $\mathbb{Q}$, both of which are probability measures on the same space $(\Omega, \mathcal{F})$. The $\sigma$-additivity property is essential for computing expectations via Lebesgue integration. For example, when pricing a European call option, we compute $C_0 = e^{-rT}\mathbb{E}^{\mathbb{Q}}[(S_T - K)^+]$, which requires integrating over all possible final stock prices. The $\sigma$-additivity ensures this integral is well-defined and allows us to use the dominated convergence theorem when approximating continuous distributions with discrete trees or Monte Carlo simulations.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

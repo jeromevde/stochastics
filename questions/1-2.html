@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       The fundamental asset pricing theorem states that in a no-arbitrage market, any derivative's fair value equals the expected payoff discounted at the risk-free rate, where the expectation is taken under the risk-neutral (equivalent martingale) measure.
       <strong>Reasoning:</strong>
-      Under the risk-neutral measure $\mathbb{Q}$, all assets grow at the risk-free rate $r$ on average. This allows us to compute the fair value as $V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT} \text{Payoff}]$. The theorem guarantees this price prevents arbitrage opportunities.
+      Under the risk-neutral measure $\mathbb{Q}$, all assets grow at the risk-free rate $r$ on average. This allows us to compute the fair value as:
+      $$V_0 = \mathbb{E}^{\mathbb{Q}}[e^{-rT} \text{Payoff}]$$
+      The theorem guarantees this price prevents arbitrage opportunities.
       <strong>Answer:</strong>
       We compute the discounted expected payoff in the risk-neutral world, not the real world, because the risk-neutral measure ensures no-arbitrage pricing.
+      <strong>Practical Use Case:</strong>
+      Investment banks use this principle to price exotic derivatives daily. For example, when pricing a barrier option on the S&P 500, traders generate risk-neutral scenarios where the index grows at the risk-free rate (not its historical 7-8% average return), simulate whether the barrier is breached, and discount the expected payoff. This ensures the derivative's price is consistent with observable market prices of vanilla options and prevents arbitrage opportunities that sophisticated market participants would exploit.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

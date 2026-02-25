@@ -17,11 +17,18 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Almost sure (a.s.) convergence means $X_n \to X$ on a set of probability 1. Convergence in probability means $P(|X_n - X| > \epsilon) \to 0$ for any $\epsilon > 0$. Mean square convergence means $E[(X_n - X)^2] \to 0$.
+      Different modes of convergence for sequences of random variables:
+      $$\begin{align}
+      &\text{Almost sure (a.s.): } P(\omega : X_n(\omega) \to X(\omega)) = 1 \\
+      &\text{In probability: } P(|X_n - X| > \epsilon) \to 0 \text{ for all } \epsilon > 0 \\
+      &\text{Mean square: } E[(X_n - X)^2] \to 0
+      \end{align}$$
       <strong>Reasoning:</strong>
       The hierarchy of convergence modes is: mean square $\Rightarrow$ convergence in probability $\Leftarrow$ a.s. convergence, and all imply convergence in distribution. Almost sure convergence is pathwise convergence (except on a null set), which is stronger than probabilistic convergence but doesn't control moments. You can have a.s. convergence where tails get heavier, preventing mean square convergence.
       <strong>Answer:</strong>
       Almost sure convergence implies convergence in probability.
+      <strong>Practical Use Case:</strong>
+      Understanding convergence modes is crucial for Monte Carlo pricing. When estimating an option price $V$ using $n$ simulations, the sample mean $\hat{V}_n$ converges almost surely to $V$ by the strong law of large numbers. This guarantees that $\hat{V}_n \to V$ along almost every simulation path as $n \to \infty$. In practice, we also care about convergence rates: the central limit theorem gives $\sqrt{n}(\hat{V}_n - V) \xrightarrow{d} N(0, \sigma^2)$, allowing us to construct confidence intervals. Different variance reduction techniques (antithetic variates, control variates) improve convergence rates, making Monte Carlo more efficient for complex derivatives where closed-form solutions don't exist.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

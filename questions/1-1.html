@@ -22,6 +22,8 @@
       CCR involves estimating future exposure and potential losses if the counterparty defaults. Since we care about actual default probabilities (not pricing), we need scenarios whose probabilities match real-world expectations. Risk-neutral scenarios are used for derivative pricing, not risk measurement.
       <strong>Answer:</strong>
       Real-world scenarios are required because CCR deals with actual default risk under physical probabilities.
+      <strong>Practical Use Case:</strong>
+      Banks use real-world scenarios to compute Credit Valuation Adjustment (CVA), which adjusts derivative values for counterparty default risk. For example, when a bank has a large interest rate swap portfolio with a corporate counterparty, it simulates thousands of real-world scenarios to estimate potential future exposure (PFE) and expected positive exposure (EPE). These metrics, computed under physical probabilities, determine capital requirements under Basel III regulations and inform credit limit decisions for counterparty relationships.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
