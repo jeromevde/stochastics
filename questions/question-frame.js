@@ -122,4 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
   observer.observe(document.body, { childList: true, subtree: true });
   // Stop observing after 5 seconds — KaTeX will have finished by then
   setTimeout(() => { observer.disconnect(); reportHeight(); }, 5000);
+
+  /* ── Build issue link dynamically ── */
+  const issueBtn = document.querySelector('.q-issue-btn');
+  if (issueBtn && !issueBtn.href) {
+    const qText = document.querySelector('.q-text')?.textContent || '';
+    const title = encodeURIComponent(`Question ${qId}: ${qText}`);
+    issueBtn.href = `https://github.com/jeromevde/stochastics/issues/new?title=${title}`;
+  }
 });
