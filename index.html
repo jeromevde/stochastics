@@ -11,12 +11,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --surface2: #232733;
-  --border: #2e3345;
-  --text: #e2e4ea;
-  --text-dim: #8b8fa3;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface2: #f1f5fb;
+  --border: #e2e8f0;
+  --text: #111827;
+  --text-dim: #6b7280;
   --primary: #6c8cff;
   --primary-hover: #8aa4ff;
   --correct: #34d399;
@@ -100,6 +100,7 @@ body {
 .progress-bar { height: 100%; background: var(--primary); border-radius: 3px; transition: width .3s; }
 .progress-text { font-size: .85rem; color: var(--text-dim); white-space: nowrap; }
 .score-text { font-size: .85rem; color: var(--primary); font-weight: 600; white-space: nowrap; }
+#nextBtn { margin-left: auto; }
 
 /* ───── Question Card ───── */
 .question-card {
@@ -162,8 +163,6 @@ body {
 .explanation-header { font-weight: 700; margin-bottom: .35rem; }
 .explanation-header.correct-hdr { color: var(--correct); }
 .explanation-header.wrong-hdr { color: var(--wrong); }
-
-#nextBtn { margin-top: 1.25rem; }
 
 .hidden { display: none !important; }
 
@@ -253,14 +252,11 @@ a.chapter-card {
       </div>
       <span class="progress-text" id="progressText">1 / 10</span>
       <span class="score-text" id="scoreText">Score: 0</span>
+      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
     </div>
 
     <div class="frame-wrap">
       <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
-    </div>
-
-    <div class="quiz-footer">
-      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
     </div>
   </div>
 
