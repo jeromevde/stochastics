@@ -12,20 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── KaTeX auto-render (fires once script loads) ── */
   function renderMath() {
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$',  right: '$',  display: false }
-        ],
-        throwOnError: false
-      });
-    }
+    if (!window.renderMathInElement) return false;
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+    return true;
   }
   // The auto-render script has an onload that calls renderMathInElement,
   // but we also trigger it here for safety.
-  if (document.readyState === 'complete') renderMath();
-  else window.addEventListener('load', renderMath);
+  let mathTries = 0;
+  const mathRetry = setInterval(() => {
+    mathTries++;
+    if (renderMath() || mathTries > 50) clearInterval(mathRetry);
+  }, 100);
+  window.addEventListener('load', () => { if (renderMath()) clearInterval(mathRetry); });
 
   /* ── MC click handler ── */
   document.querySelectorAll('.q-option').forEach(btn => {
