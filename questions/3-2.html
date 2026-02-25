@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       A complete market is one in which every contingent claim (derivative payoff) can be replicated by a self-financing trading strategy. The equivalent martingale measure is the risk-neutral probability measure used for pricing.
       <strong>Reasoning:</strong>
-      The Second Fundamental Theorem of Asset Pricing (2nd FTAP) states that (assuming no arbitrage) a market is complete if and only if the equivalent martingale measure is unique. In incomplete markets, there are infinitely many EMMs, leading to a range of possible prices for non-replicable claims. Uniqueness of the EMM ensures unique prices for all derivatives.
+      The Second Fundamental Theorem of Asset Pricing (2nd FTAP) states:
+      $$\text{Market is complete} \iff \text{EMM is unique}$$
+      (assuming no arbitrage). In incomplete markets, there are infinitely many EMMs, leading to a range of possible prices for non-replicable claims. Uniqueness of the EMM ensures unique prices for all derivatives.
       <strong>Answer:</strong>
       A market is complete if and only if there exists exactly one equivalent martingale measure.
+      <strong>Practical Use Case:</strong>
+      Market completeness determines whether all derivatives can be perfectly hedged. The Black-Scholes model with constant volatility is complete: every European option can be replicated with the underlying stock and bonds, leading to unique prices. However, stochastic volatility models (like Heston) are incomplete: volatility risk cannot be fully hedged with just the stock, so there are multiple valid prices for variance swaps. Traders exploit incompleteness: they take positions in non-replicable claims (like volatility derivatives) expecting to earn risk premiums. Investment banks must choose which EMM to use for valuation, often selecting one that matches observed market prices of liquid instruments.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

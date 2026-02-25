@@ -19,9 +19,15 @@
       <strong>Definitions:</strong>
       In a risk-neutral measure, the expected return on all assets equals the risk-free rate. With zero interest rate, this means the current stock price equals the risk-neutral expected future price. Let $q$ be the risk-neutral probability of the up move.
       <strong>Reasoning:</strong>
-      The risk-neutral pricing condition with $r=0$ gives: $S(0) = E^\mathbb{Q}[S(1)] = q \cdot 2 + (1-q) \cdot \frac{1}{2}$. Substituting $S(0) = 1$: $1 = 2q + \frac{1}{2} - \frac{q}{2} = \frac{3q}{2} + \frac{1}{2}$. Solving: $\frac{1}{2} = \frac{3q}{2}$, so $q = \frac{1}{3}$.
+      The risk-neutral pricing condition with $r=0$ gives:
+      $$S(0) = E^\mathbb{Q}[S(1)] = q \cdot 2 + (1-q) \cdot \frac{1}{2}$$
+      Substituting $S(0) = 1$:
+      $$1 = 2q + \frac{1}{2} - \frac{q}{2} = \frac{3q}{2} + \frac{1}{2}$$
+      Solving: $\frac{1}{2} = \frac{3q}{2}$, so $q = \frac{1}{3}$.
       <strong>Answer:</strong>
       The risk-neutral upward probability is $\frac{1}{3}$.
+      <strong>Practical Use Case:</strong>
+      This binomial tree calculation is the foundation of Cox-Ross-Rubinstein option pricing. In practice, traders build multi-period binomial trees to price American options where early exercise is optimal. The risk-neutral probabilities at each node are determined by the no-arbitrage condition, not historical frequencies. For example, a trader pricing a 3-month American put on a stock would construct a 90-period tree (daily steps), compute risk-neutral probabilities at each node ensuring $S_t = e^{-r\Delta t} E^{\mathbb{Q}}[S_{t+\Delta t}]$, then backward-induce comparing continuation value to immediate exercise value. This discrete method converges to Black-Scholes as time steps shrink.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

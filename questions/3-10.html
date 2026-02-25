@@ -24,8 +24,9 @@
       $$\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}[X]_t\right)$$
       The correction term $-\frac{1}{2}[X]_t$ accounts for the quadratic variation of $X$, analogous to the Itô correction. When $X$ is a martingale, $\mathcal{E}(X)$ is a local martingale. This appears in Girsanov's theorem for measure changes.
       <strong>Answer:</strong>
-      The Doléans-Dade exponential is
-      $$\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}[X]_t\right)$$
+      The Doléans-Dade exponential is $\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}[X]_t\right)$.
+      <strong>Practical Use Case:</strong>
+      The Doléans-Dade exponential appears in Girsanov's theorem for changing probability measures. When converting from real-world measure $\mathbb{P}$ to risk-neutral measure $\mathbb{Q}$, the Radon-Nikodym derivative is often a stochastic exponential. For example, in the Black-Scholes model, $\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathcal{E}(-\theta B)_T$ where $\theta$ is the market price of risk. This is used when pricing derivatives: compute payoffs under $\mathbb{P}$ (easier to calibrate), then convert expectations to $\mathbb{Q}$ using the Radon-Nikodym derivative. In interest rate models with HJM framework, stochastic exponentials appear throughout, linking forward rate evolutions across different measures.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
