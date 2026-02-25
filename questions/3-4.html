@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="3.4" data-type="mc" data-answer="1">
+    <div class="q-text">Under a risk-neutral measure Q with bank account numeraire, the value V(t) of a derivative satisfies:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>V(t) = E^Q[V(T)]</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>V(t)/N(t) = E^Q[V(T)/N(T) | $\mathcal{F}_t$]</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>V(t) = V(T) $\cdot$ e^{-rT}</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>V(t) = max V(T)</span></button>
+    </div>
+    <div class="q-explanation">V(t)/N(t) = E^Q[V(T)/N(T) | $\mathcal{F}_t$] — the discounted derivative price is a martingale under the risk-neutral measure.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%203.4%3A%20Under%20a%20risk-neutral%20measure%20Q%20with%20bank%20account%20numeraire%2C%20the%20value%20V(t)%20of%20a%20derivative%20satisfies%3A" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.15" data-type="mc" data-answer="2">
+    <div class="q-text">Consider dr = $\kappa(\theta$−r)dt + $\sigma$r dB (proportional volatility). What happens to E[exp($\int_0^t$ r(s) ds)]?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>It is finite for all t</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>It equals 1</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>It is infinite (bank account explodes)</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It equals e^{$\theta$t}</span></button>
+    </div>
+    <div class="q-explanation">With volatility proportional to r (not √r), the bank account e^{$\int$r ds} has infinite expectation. The model is unrealistic because extreme rate paths dominate.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%204.15%3A%20Consider%20dr%20%3D%20%CE%BA(%CE%B8%E2%88%92r)dt%20%2B%20%CF%83r%20dB%20(proportional%20volatility).%20What%20happens%20to%20E%5Bexp(%E2%88%AB%E2%82%80%E1%B5%97%20r(s)%20ds)%5D%3F" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

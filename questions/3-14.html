@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="3.14" data-type="mc" data-answer="1">
+    <div class="q-text">The change of numeraire toolkit: when switching from numeraire S to U, the drift change involves:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>Adding $\sigma^2$</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Subtracting d⟨ln $X_i$, ln(S/U)⟩</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Multiplying by S/U</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>No drift change</span></button>
+    </div>
+    <div class="q-explanation">d$\mu_i$^U = d$\mu_i$^S − d⟨ln $X_i$, ln(S/U)⟩. The drift adjustment involves the quadratic covariation of the log-process with the log-ratio of numeraires.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%203.14%3A%20The%20change%20of%20numeraire%20toolkit%3A%20when%20switching%20from%20numeraire%20S%20to%20U%2C%20the%20drift%20change%20involves%3A" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>
