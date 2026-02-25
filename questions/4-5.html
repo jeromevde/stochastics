@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Lognormal</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Normal N($\mut, \sigma$t)</span></button>
     </div>
-    <div class="q-explanation">ln(S(t)/S(0)) = ($\mu$ − $\tfrac{1}{2}\sigma^2$)t + $\sigma$B(t) ~ N(($\mu$ − $\tfrac{1}{2}\sigma^2$)t, $\sigma^2$t). The return is normally distributed; the price itself is lognormal.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> For GBM with $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$, the log return is $\ln(S(t)/S(0))$. Since $B(t) \sim N(0, t)$, this is a linear transformation of a normal random variable.<br><br>
+      <strong>Reasoning:</strong> From the GBM solution: $\ln(S(t)/S(0)) = (\mu - \frac{\sigma^2}{2})t + \sigma B(t)$. Since $B(t) \sim N(0, t)$, we have $\sigma B(t) \sim N(0, \sigma^2 t)$. Adding the deterministic drift term: $\ln(S(t)/S(0)) \sim N\left((\mu - \frac{\sigma^2}{2})t, \sigma^2 t\right)$. Note that the price $S(t)$ itself has a lognormal distribution, but the log return is normal.<br><br>
+      <strong>Answer:</strong> The log return has distribution $N\left((\mu - \frac{\sigma^2}{2})t, \sigma^2 t\right)$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

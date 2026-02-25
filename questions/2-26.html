@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\tfrac{1}{2}$ $f_x_x \mu^2$ dt</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$f_x_x \sigma^2$ dt</span></button>
     </div>
-    <div class="q-explanation">For Itô processes: df = $f_t$ dt + $f_x$ dX + $\tfrac{1}{2}$ $f_x_x \sigma^2$ dt. The correction involves $\sigma^2$ because (dX$)^2$ = $\sigma^2$(dB$)^2$ = $\sigma^2$ dt.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> An Itô process has the form $dX = \mu \, dt + \sigma \, dB$, where $\mu$ is the drift and $\sigma$ is the diffusion coefficient. Itô's lemma provides the differential of a function $f(X, t)$ of such a process.<br><br>
+      <strong>Reasoning:</strong> Starting with $df = f_t \, dt + f_x \, dX + \frac{1}{2}f_{xx}(dX)^2$, we substitute $dX = \mu \, dt + \sigma \, dB$. The key is computing $(dX)^2 = (\mu \, dt + \sigma \, dB)^2 = \sigma^2(dB)^2 = \sigma^2 \, dt$ (using $(dt)^2 = dt \cdot dB = 0$ and $(dB)^2 = dt$). Thus the correction term is $\frac{1}{2}f_{xx}\sigma^2 \, dt$.<br><br>
+      <strong>Answer:</strong> The missing term is $\frac{1}{2}f_{xx}\sigma^2 \, dt$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

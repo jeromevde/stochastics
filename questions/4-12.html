@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Match the market's current zero-coupon bond prices</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Add jump components</span></button>
     </div>
-    <div class="q-explanation">Hull-White uses $\theta$(t) calibrated so that P(0,T) matches observed market bond prices. This ensures market consistency at time 0.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Hull-White model (also called the extended Vasicek model) has the form $dr = [\theta(t) - \kappa r] dt + \sigma dB$, where $\theta(t)$ is now time-dependent. This is a one-factor model with time-varying mean reversion level.<br><br>
+      <strong>Reasoning:</strong> The key motivation is market consistency: the Vasicek model with constant $\theta$ typically does not match the current observed yield curve $P^{\text{market}}(0,T)$. By making $\theta(t)$ time-dependent, Hull-White can calibrate $\theta(t)$ so that the model-implied bond prices $P^{\text{model}}(0,T)$ exactly match market prices at time 0. This ensures the model is arbitrage-free relative to the current market and is particularly useful for pricing interest rate derivatives consistently.<br><br>
+      <strong>Answer:</strong> The time-dependent $\theta(t)$ allows the model to match the market's current zero-coupon bond prices.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

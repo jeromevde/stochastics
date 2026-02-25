@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Normal</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Exponential</span></button>
     </div>
-    <div class="q-explanation">r(t)|r(s) ~ N($\theta$ + (r(s)−$\theta$)e^{−$\kappa$(t−s)}, $\sigma^2/(2\kappa$)(1−e^{−2$\kappa$(t−s)})). The Vasicek short rate is Gaussian, which is both a feature and a drawback (rates can go negative).</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The conditional distribution of $r(t)$ given $r(s)$ describes how the short rate evolves over time in the Vasicek model. Since the SDE is linear in $r$ with Gaussian noise, the solution remains Gaussian.<br><br>
+      <strong>Reasoning:</strong> The Vasicek SDE can be solved explicitly using an integrating factor. The solution is: $r(t) | r(s) \sim N\left(\theta + (r(s) - \theta)e^{-\kappa(t-s)}, \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa(t-s)})\right)$. The mean shows exponential decay toward $\theta$, and the variance increases from 0 (at $t=s$) to the stationary variance $\sigma^2/(2\kappa)$ as $t \to \infty$. Being Gaussian is a key feature but also means rates can go negative.<br><br>
+      <strong>Answer:</strong> The conditional distribution is Normal.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

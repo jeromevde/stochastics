@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>E($M_t$|$\mathcal{F}_s$) = 0 for s &lt; t</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>E($M_t$|$\mathcal{F}_s$) = E($M_s$) for s &lt; t</span></button>
     </div>
-    <div class="q-explanation">The martingale property: E($M_t$|$\mathcal{F}_s$) = $M_s$ for s $\leq$ t. A martingale is a 'fair game' — the best prediction of its future value is its current value.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A martingale is a stochastic process $(M_t)$ adapted to a filtration $(\mathcal{F}_t)$ with integrable values, satisfying a specific conditional expectation property. It models a "fair game" where expected future values equal the current value.<br><br>
+      <strong>Reasoning:</strong> The defining property is $E[M_t | \mathcal{F}_s] = M_s$ for $s < t$. Given all information up to time $s$, the best prediction of the future value $M_t$ is simply the current value $M_s$—no drift up or down on average. This means martingales have no systematic trend; they fluctuate randomly around their current level.<br><br>
+      <strong>Answer:</strong> A martingale satisfies $E[M_t | \mathcal{F}_s] = M_s$ for $s < t$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>K $\cdot \Sigma$ P(t,$T_j$)$\tau_j$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>1 − P(t,T$\beta$)</span></button>
     </div>
-    <div class="q-explanation">The floating leg can be replicated by buying a T$\alpha$-bond and selling a T$\beta$-bond, giving value P(t,T$\alpha$) − P(t,T$\beta$). This uses a rolling reinvestment argument.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> An interest rate swap has two legs: the floating leg pays LIBOR rates at each period, and the fixed leg pays a constant rate. The present value of the floating leg can be computed without knowing future LIBOR rates.<br><br>
+      <strong>Reasoning:</strong> Consider a strategy: at time $t$, invest $P(t,T_\alpha)$ dollars in a $T_\alpha$-bond. At $T_\alpha$, you receive 1 dollar. At each reset date, reinvest the principal plus LIBOR interest in the next-period bond. At $T_\beta$, you receive 1 dollar back. This replicating strategy shows that the floating leg is equivalent to buying a $T_\alpha$-bond and selling a $T_\beta$-bond, giving value $P(t,T_\alpha) - P(t,T_\beta)$.<br><br>
+      <strong>Answer:</strong> The floating leg value equals $P(t,T_\alpha) - P(t,T_\beta)$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

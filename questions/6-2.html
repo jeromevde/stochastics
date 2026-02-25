@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Higher implied vol for low strikes, lower for high strikes (skew)</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Implied vol decreases for all strikes</span></button>
     </div>
-    <div class="q-explanation">For equities, a 'skew' is typical: implied volatility is higher for lower strikes (OTM puts) reflecting fat left tails and crash risk.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The volatility smile (or skew) refers to the pattern of implied volatilities across different strike prices for options with the same maturity. If Black-Scholes held perfectly, implied volatility would be constant across strikes.<br><br>
+      <strong>Reasoning:</strong> In equity markets, we typically observe a volatility skew: implied volatility is higher for out-of-the-money (OTM) puts (low strikes) and lower for OTM calls (high strikes). This reflects market fears of crashes (fat left tail) and asymmetric return distributions. The pattern creates a downward-sloping curve rather than a symmetric smile. This post-1987 phenomenon is sometimes called the "smirk" or "skew."<br><br>
+      <strong>Answer:</strong> Higher implied vol for low strikes, lower for high strikes (skew).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

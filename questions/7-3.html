@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>It has continuous paths</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It has non-independent increments</span></button>
     </div>
-    <div class="q-explanation">A compound Poisson process has random jump sizes $J_i$ drawn from a jump size measure J, while a Poisson process always jumps by 1.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A compound Poisson process is $X(t) = \sum_{i=1}^{N(t)} J_i$, where $N(t)$ is a Poisson process counting the number of jumps, and $J_i$ are i.i.d. random variables (jump sizes) drawn from some distribution, independent of $N(t)$.<br><br>
+      <strong>Reasoning:</strong> In a standard Poisson process $N(t)$, each jump has size 1, so $N(t)$ counts discrete events. In a compound Poisson process, each event $i$ has a random size $J_i$ that can vary. For example, $J_i$ could be normally distributed (for stock price log-returns) or deterministic. The process still has finite jump activity (finitely many jumps in any finite interval) but allows heterogeneous jump sizes.<br><br>
+      <strong>Answer:</strong> Jump sizes can vary (according to a jump size distribution $J$).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

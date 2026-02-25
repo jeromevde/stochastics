@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Equals the realized volatility</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Is constant across all strikes</span></button>
     </div>
-    <div class="q-explanation">The implied volatility is the $\sigma$ that, when plugged into the Black-Scholes formula, reproduces the observed market price of the option.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> Implied volatility is the volatility parameter $\sigma$ that, when input into the Black-Scholes formula, produces a theoretical price equal to the observed market price of an option. It's extracted by inverting the Black-Scholes formula.<br><br>
+      <strong>Reasoning:</strong> Given market price $C_{\text{market}}$ for a call with strike $K$ and maturity $T$, the implied volatility $\Sigma(T, K)$ solves: $C_{BS}(S_0, K, T, r, \Sigma(T, K)) = C_{\text{market}}$. This inversion is typically done numerically (e.g., Newton-Raphson). Implied volatility represents the market's expectation of future volatility and allows comparison of options across different strikes and maturities.<br><br>
+      <strong>Answer:</strong> Implied volatility makes the Black-Scholes formula match the observed market call price.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

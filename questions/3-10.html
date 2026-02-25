@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>e^{X(t) + $\tfrac{1}{2}[X]_t$}</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>e^{$\tfrac{1}{2}$X(t$)^2$}</span></button>
     </div>
-    <div class="q-explanation">$\mathcal{E}(X)_t$ = exp(X(t) − $\tfrac{1}{2}[X]_t$). When X is a stochastic integral, this exponential is a local martingale. It appears in Girsanov's theorem.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Doléans-Dade exponential (stochastic exponential) $\mathcal{E}(X)_t$ is a stochastic analog of the ordinary exponential that accounts for quadratic variation. For a continuous semimartingale $X$, it provides the solution to the stochastic differential equation $dY = Y \, dX$.<br><br>
+      <strong>Reasoning:</strong> The Doléans-Dade exponential is defined as $\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}[X]_t\right)$. The correction term $-\frac{1}{2}[X]_t$ accounts for the quadratic variation of $X$, analogous to the Itô correction. When $X$ is a martingale, $\mathcal{E}(X)$ is a local martingale. This appears in Girsanov's theorem for measure changes.<br><br>
+      <strong>Answer:</strong> The Doléans-Dade exponential is $\mathcal{E}(X)_t = \exp\left(X_t - \frac{1}{2}[X]_t\right)$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

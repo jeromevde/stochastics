@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\tfrac{2}{3}$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\tfrac{1}{4}$</span></button>
     </div>
-    <div class="q-explanation">Risk-neutral probability q satisfies: S(0) = q$\cdot$2 + (1−q)$\cdot\tfrac{1}{2} \to$ 1 = 2q + $\tfrac{1}{2}$ − $\tfrac{1}{2}q \to$ q = $\tfrac{1}{3}$.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In a risk-neutral measure, the expected return on all assets equals the risk-free rate. With zero interest rate, this means the current stock price equals the risk-neutral expected future price. Let $q$ be the risk-neutral probability of the up move.<br><br>
+      <strong>Reasoning:</strong> The risk-neutral pricing condition with $r=0$ gives: $S(0) = E^\mathbb{Q}[S(1)] = q \cdot 2 + (1-q) \cdot \frac{1}{2}$. Substituting $S(0) = 1$: $1 = 2q + \frac{1}{2} - \frac{q}{2} = \frac{3q}{2} + \frac{1}{2}$. Solving: $\frac{1}{2} = \frac{3q}{2}$, so $q = \frac{1}{3}$.<br><br>
+      <strong>Answer:</strong> The risk-neutral upward probability is $\frac{1}{3}$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

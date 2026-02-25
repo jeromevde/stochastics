@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>r(t), the risk-free rate</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>r(t) − $\sigma$(t)</span></button>
     </div>
-    <div class="q-explanation">Risk-neutrality requires E^Q[S(t)/C(t)] = S(0), where C is the bank account. This forces $\mu$(t) = r(t).</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In the Black-Scholes model, stock prices follow GBM under both the real-world and risk-neutral measures, but with different drift parameters. Under the risk-neutral measure $\mathbb{Q}$, the discounted stock price must be a martingale.<br><br>
+      <strong>Reasoning:</strong> The risk-neutral condition requires $E^\mathbb{Q}[S(t)/B(t)] = S(0)/B(0)$, where $B(t) = e^{rt}$ is the bank account. For $S(t)/B(t)$ to be a martingale, the drift of $S$ under $\mathbb{Q}$ must equal the growth rate of the numeraire, which is $r$. This means we must have $\mu = r$ in the risk-neutral SDE $dS = rS \, dt + \sigma S \, dB^\mathbb{Q}$.<br><br>
+      <strong>Answer:</strong> Under the risk-neutral measure, the drift must equal $\mu(t) = r(t)$, the risk-free rate.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

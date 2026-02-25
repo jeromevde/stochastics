@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Arbitrage-free only if probabilities are equal</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Not arbitrage-free</span></button>
     </div>
-    <div class="q-explanation">With 3 states and 2 assets (stock + bond), the model is incomplete. Multiple equivalent martingale measures exist, leading to a range of no-arbitrage prices.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> Market completeness requires that the number of linearly independent traded assets equals the number of states. In a complete market, every contingent claim can be replicated.<br><br>
+      <strong>Reasoning:</strong> With 3 possible outcomes and 2 assets (stock and risk-free bond), we have more states than assets (3 > 2), making the market incomplete. There exist infinitely many probability measures $(q_1, q_2, q_3)$ with $q_i > 0$, $\sum q_i = 1$, satisfying $1 = 2q_1 + 1 \cdot q_2 + \frac{1}{2}q_3$. Each such measure is an equivalent martingale measure, so by the 2nd FTAP, the market is incomplete.<br><br>
+      <strong>Answer:</strong> The model is incomplete with multiple risk-neutral measures.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

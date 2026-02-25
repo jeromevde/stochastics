@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Exponential distribution</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Gamma distribution</span></button>
     </div>
-    <div class="q-explanation">$N_\lambda(t) - N_\lambda(s) \\sim \\text{Poisson}(\\lambda (t-s))$. The increments are Poisson-distributed with parameter proportional to the interval length.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A Poisson process $N_\lambda(t)$ is a counting process that models the number of events occurring by time $t$, with arrival rate $\lambda$ (expected number of events per unit time). It has independent, stationary increments.<br><br>
+      <strong>Reasoning:</strong> For a Poisson process, the increment $N_\lambda(t) - N_\lambda(s)$ represents the number of events in $(s, t]$. This follows a Poisson distribution with parameter $\lambda(t-s)$: $P(N_\lambda(t) - N_\lambda(s) = k) = \frac{[\lambda(t-s)]^k e^{-\lambda(t-s)}}{k!}$. The mean and variance both equal $\lambda(t-s)$, and the distribution depends only on the interval length $(t-s)$, not the specific times.<br><br>
+      <strong>Answer:</strong> Poisson distribution with parameter $\lambda t$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

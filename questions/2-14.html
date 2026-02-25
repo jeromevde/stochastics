@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>{$\tau$ = t} $\in \mathcal{F}_t$ for all t</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\tau$ is constant</span></button>
     </div>
-    <div class="q-explanation">A stopping time satisfies {$\tau$ &lt; t} $\in \mathcal{F}_t$ for all t. You can decide whether to stop based only on information available up to time t.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A stopping time $\tau$ is a random time that represents when to stop observing a process, where the decision to stop at time $t$ can only depend on information available up to that time. Formally, the event $\{\tau \leq t\}$ must be $\mathcal{F}_t$-measurable.<br><br>
+      <strong>Reasoning:</strong> The condition $\{\tau \leq t\} \in \mathcal{F}_t$ (equivalently $\{\tau < t\} \in \mathcal{F}_t$ for continuous time) ensures that at any time $t$, we can determine whether the stopping event has already occurred using only past and present information. This prevents "peeking into the future" to decide when to stop—a crucial property for modeling realistic decision-making.<br><br>
+      <strong>Answer:</strong> A stopping time satisfies $\{\tau \leq t\} \in \mathcal{F}_t$ for all $t$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

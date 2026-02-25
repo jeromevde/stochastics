@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>B(t) + $\mu$t is Q-Brownian motion</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>B(t)/$\mu$ is Q-Brownian motion</span></button>
     </div>
-    <div class="q-explanation">This is a direct application of Girsanov: B(t) − $\mu$t is Brownian motion under Q. The measure change adds drift $\mu$ to the original Brownian motion.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_t} = \exp(\mu B(t) - \mu^2 t/2)$ defines a measure change. This is the Doléans-Dade exponential $\mathcal{E}(\mu B)_t$ where $X_t = \mu B_t$.<br><br>
+      <strong>Reasoning:</strong> By Girsanov's theorem, when $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_t} = \mathcal{E}(\mu B)_t$, the process $B^Q_t = B^P_t - [\ B^P]_t = B_t - \mu t$ is $\mathbb{Q}$-Brownian motion. The quadratic covariation $[\mu B, B]_t = \mu[B,B]_t = \mu t$. This fundamental result allows us to add or remove drift from Brownian motion by changing measure.<br><br>
+      <strong>Answer:</strong> Under $\mathbb{Q}$, the process $B(t) - \mu t$ is $\mathbb{Q}$-Brownian motion.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\tfrac{1}{2}$(B(t$)^2$ + t)</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>B(t$)^2$ − t</span></button>
     </div>
-    <div class="q-explanation">$\int_0^t$ B(s)dB(s) = $\tfrac{1}{2}$(B(t$)^2$ − t). The −t term is the Itô correction and distinguishes stochastic from ordinary calculus.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In ordinary calculus, $\int x \, dx = \frac{x^2}{2}$. The analogous stochastic integral $\int_0^t B(s) \, dB(s)$ requires stochastic calculus due to the non-differentiability of Brownian paths.<br><br>
+      <strong>Reasoning:</strong> Using Itô's lemma on $f(B) = \frac{B^2}{2}$, we have $df = B \, dB + \frac{1}{2}(dB)^2 = B \, dB + \frac{1}{2} dt$ (using $(dB)^2 = dt$). Rearranging: $B \, dB = df - \frac{1}{2} dt$. Integrating from 0 to $t$: $\int_0^t B(s) \, dB(s) = \frac{1}{2}B(t)^2 - \frac{1}{2}t$. The correction term $-\frac{t}{2}$ distinguishes this from ordinary calculus.<br><br>
+      <strong>Answer:</strong> $\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t)$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

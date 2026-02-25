@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>1</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>e^{−$\sigma^2$t/2}</span></button>
     </div>
-    <div class="q-explanation">For X ~ N(0, $\sigma^2$t): E[e^X] = e^{$\sigma^2$t/2}. So E[e^{−$\tfrac{1}{2}\sigma^2$t + $\sigma$B(t)}] = e^{−$\tfrac{1}{2}\sigma^2t} \cdot$ e^{$\tfrac{1}{2}\sigma^2$t} = 1. This is the exponential martingale property.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> For a normal random variable $X \sim N(\mu, \sigma^2)$, the moment generating function is $E[e^X] = e^{\mu + \sigma^2/2}$. Here, we have $-\frac{\sigma^2}{2}t + \sigma B(t)$ where $B(t) \sim N(0, t)$.<br><br>
+      <strong>Reasoning:</strong> Let $Y = -\frac{\sigma^2}{2}t + \sigma B(t)$. Then $Y \sim N(-\frac{\sigma^2}{2}t, \sigma^2 t)$. Using the MGF formula: $E[e^Y] = \exp(-\frac{\sigma^2}{2}t + \frac{\sigma^2 t}{2}) = e^0 = 1$. This is the exponential martingale property: the process $\exp(-\frac{\sigma^2}{2}t + \sigma B(t))$ is a martingale with expectation 1, crucial for Girsanov's theorem and GBM.<br><br>
+      <strong>Answer:</strong> The expectation equals 1.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

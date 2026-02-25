@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Short-maturity options (because it lacks jumps)</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>All options</span></button>
     </div>
-    <div class="q-explanation">Short-maturity smiles are driven by jumps, which Heston doesn't model. Long-maturity options are well-captured by stochastic volatility alone.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Heston model uses continuous stochastic volatility to generate the implied volatility smile. However, empirical volatility smiles have different shapes at different maturities, with short-maturity smiles being particularly steep.<br><br>
+      <strong>Reasoning:</strong> Short-maturity options (days to weeks) exhibit steep smiles that are best explained by jump risk - discrete, sudden price movements. The Heston model, with only continuous diffusion dynamics, cannot generate the steep wings observed in short-dated options. For longer maturities, stochastic volatility alone adequately explains the smile shape. This limitation motivates jump-diffusion extensions like Bates or Merton models that combine jumps with stochastic volatility.<br><br>
+      <strong>Answer:</strong> Short-maturity options (because it lacks jumps).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\mathcal{F}_t$ = $\mathcal{F}_s$ for all t, s</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\mathcal{F}_t \subset \mathcal{F}_0$ for all t</span></button>
     </div>
-    <div class="q-explanation">A filtration is an increasing family of $\sigma$-algebras: $\mathcal{F}_t \subset \mathcal{F}_s$ for t $\leq$ s. This models increasing information over time.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A filtration $(\mathcal{F}_t)_{t \geq 0}$ is a family of $\sigma$-algebras indexed by time, where each $\mathcal{F}_t \subseteq \mathcal{F}$ represents the information available up to time $t$. The key property is that information accumulates over time—once something is known, it remains known.<br><br>
+      <strong>Reasoning:</strong> For times $t \leq s$, we must have $\mathcal{F}_t \subseteq \mathcal{F}_s$ because information at time $s$ includes all the information that was available at the earlier time $t$. This increasing property models the natural flow of information: you can't forget what you've learned, only gain more knowledge.<br><br>
+      <strong>Answer:</strong> A filtration satisfies $\mathcal{F}_t \subseteq \mathcal{F}_s$ for all $t \leq s$ (increasing in time).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

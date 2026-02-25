@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\lambda$ = 1</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The jump sizes are normally distributed</span></button>
     </div>
-    <div class="q-explanation">If all jumps have size exactly 1 (J = $\delta_1$), then $X(t) = \sum_{i=1}^{N(t)} 1 = N(t)$, recovering the standard Poisson process.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A compound Poisson process $X(t) = \sum_{i=1}^{N(t)} J_i$ sums random jump sizes $J_i$ (drawn from distribution $J$) over a Poisson counting process $N(t)$. A standard Poisson process has all jumps of size 1.<br><br>
+      <strong>Reasoning:</strong> If we set the jump size distribution to be degenerate at 1, i.e., $J = \delta_1$ (the Dirac measure at 1), then every jump has size exactly 1: $J_i = 1$ for all $i$. Therefore $X(t) = \sum_{i=1}^{N(t)} 1 = N(t)$, which is exactly the standard Poisson counting process. This shows that Poisson processes are a special case of compound Poisson processes.<br><br>
+      <strong>Answer:</strong> The jump measure $J$ is the Dirac measure at 1: $J(\{1\}) = 1$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

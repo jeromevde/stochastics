@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$f_t$ + $f_x$ $\sigma$ + $\tfrac{1}{2}$ $f_x_x \mu^2$ = rf</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$f_t$ + $\tfrac{1}{2}$ $f_x_x$ = 0</span></button>
     </div>
-    <div class="q-explanation">The Feynman-Kac PDE: $f_t$ + $\mu$ $f_x$ + $\tfrac{1}{2}\sigma^2$ $f_x_x$ = rf, with boundary condition f(x,T) = g(x). The risk-neutral drift $\mu$ = rx for a stock.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Feynman-Kac theorem links stochastic processes to partial differential equations. For a derivative with value $f(x,t)$ where the underlying follows $dx = \mu(x,t) dt + \sigma(x,t) dB$, the theorem provides a PDE that $f$ must satisfy.<br><br>
+      <strong>Reasoning:</strong> Under the risk-neutral measure, the derivative price satisfies the PDE: $f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx} = rf$, with terminal condition $f(x,T) = g(x)$ (the payoff). For a stock with drift $\mu = rx$ in the risk-neutral world, this becomes the Black-Scholes PDE. The terms come from applying Itô's lemma to the discounted price process.<br><br>
+      <strong>Answer:</strong> The Feynman-Kac PDE is $f_t + \mu f_x + \frac{1}{2}\sigma^2 f_{xx} = rf$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

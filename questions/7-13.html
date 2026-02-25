@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>A deterministic process</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>An adapted process with independent increments</span></button>
     </div>
-    <div class="q-explanation">Time-changing with a dependent chronometer (like integrated Vasicek) breaks the i.i.d. increment property, creating volatility clustering — periods of fast/slow 'time' correspond to high/low volatility.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A stochastic time change (or subordination) replaces calendar time $t$ with random time $\tau(t)$ in a process $X$. The time-changed process is $Y(t) = X(\tau(t))$, where $\tau(t)$ is an increasing stochastic process (chronometer or subordinator).<br><br>
+      <strong>Reasoning:</strong> If $\tau(t)$ is itself a Lévy process independent of $X$ (e.g., VG uses a Gamma subordinator), then $Y$ is still a Lévy process with independent increments. However, if $\tau(t)$ has dependent increments (e.g., $\tau(t) = \int_0^t v(s) ds$ where $v$ is a stochastic volatility process like Vasicek), then $Y(t)$ no longer has independent increments. This creates volatility clustering: periods of fast clock time ($\tau$ increasing rapidly) correspond to high volatility.<br><br>
+      <strong>Answer:</strong> A process that can exhibit volatility clustering.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

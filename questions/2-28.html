@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Continuous everywhere</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Differentiable almost everywhere</span></button>
     </div>
-    <div class="q-explanation">Càdlàg = continue à droite, limite à gauche = right continuous with left limits. Most processes in stochastic finance are càdlàg.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> "Càdlàg" is French: "continue à droite, limite à gauche" meaning right-continuous with left limits. For a càdlàg process $X$, at each time $t$: (1) $\lim_{s \downarrow t} X(s) = X(t)$ (right-continuity), and (2) $\lim_{s \uparrow t} X(s)$ exists (left limit exists).<br><br>
+      <strong>Reasoning:</strong> Right-continuity is the natural convention for stochastic processes because it ensures measurability with respect to the natural filtration. It means the process "jumps to its new value immediately" rather than having a gap. Càdlàg processes can have jumps but are well-behaved enough for integration and other operations.<br><br>
+      <strong>Answer:</strong> A càdlàg process is right continuous with left limits.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

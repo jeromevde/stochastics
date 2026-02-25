@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$(1 - i\theta/\lambda)^{-1}$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$e^{-\lambda\theta^2/2}$</span></button>
     </div>
-    <div class="q-explanation">$\Phi_{N_\lambda(1)}(\theta) = E[e^{i\theta N_\lambda(1)}] = \sum_{n=0}^{\infty} e^{i\theta n} \frac{\lambda^n}{n!} e^{-\lambda} = e^{\lambda(e^{i\theta}-1)}$. This fully characterizes the Poisson distribution.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The characteristic function of a random variable $X$ is $\Phi_X(\theta) = E[e^{i\theta X}]$, the expected value of $e^{i\theta X}$. For a Poisson random variable with parameter $\lambda$, we compute this expectation using the Poisson PMF.<br><br>
+      <strong>Reasoning:</strong> For $N_\lambda(1) \sim \text{Poisson}(\lambda)$: $\Phi_{N_\lambda(1)}(\theta) = E[e^{i\theta N_\lambda(1)}] = \sum_{n=0}^{\infty} e^{i\theta n} P(N_\lambda(1) = n) = \sum_{n=0}^{\infty} e^{i\theta n} \frac{\lambda^n e^{-\lambda}}{n!} = e^{-\lambda} \sum_{n=0}^{\infty} \frac{(\lambda e^{i\theta})^n}{n!} = e^{-\lambda} e^{\lambda e^{i\theta}} = e^{\lambda(e^{i\theta} - 1)}$. This function uniquely characterizes the Poisson distribution.<br><br>
+      <strong>Answer:</strong> $e^{\lambda(e^{i\theta} - 1)}$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
