@@ -10,6 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const tolerance  = parseFloat(container.dataset.tolerance || '0.01');
   let answered     = false;
 
+  // Check if we're in study mode by checking if parent has study param
+  let isStudyMode = false;
+  try {
+    const parentUrl = new URLSearchParams(window.parent.location.search);
+    isStudyMode = parentUrl.get('study') !== null;
+  } catch (e) {
+    // Cross-origin restriction - check own URL
+    const urlParams = new URLSearchParams(window.location.search);
+    isStudyMode = urlParams.get('study') !== null;
+  }
+
+  // In study mode, show the answer immediately after load
+  if (isStudyMode) {
+    window.addEventListener('load', () => {
+      setTimeout(showAnswerInStudyMode, 300);
+    });
+  }
+
   /* ── KaTeX auto-render (fires once script loads) ── */
   function renderMath() {
     if (!window.renderMathInElement) return false;
@@ -139,5 +157,47 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       window.open(issueBtn.href, 'github-issue', 'width=800,height=600,resizable=yes');
     });
+  }
+
+  /* ── Show answer in study mode without interaction ── */
+  function showAnswerInStudyMode() {
+    // Disable all interaction
+    answered = true;
+
+    // Highlight correct answer
+    if (qType === 'mc') {
+      document.querySelectorAll('.q-option').forEach(b => {
+        b.classList.add('disabled');
+        if (parseInt(b.dataset.idx) === correctIdx) {
+          b.classList.add('correct');
+        }
+      });
+    } else if (qType === 'numeric') {
+      const numInput = document.querySelector('.q-input');
+      if (numInput) {
+        numInput.value = numAnswer;
+        numInput.disabled = true;
+      }
+      const submitBtn = document.querySelector('.q-submit');
+      if (submitBtn) submitBtn.style.display = 'none';
+    }
+
+    // Show explanation
+    const expl = document.querySelector('.q-explanation');
+    if (expl) {
+      expl.classList.add('visible', 'correct');
+
+      // Insert result header
+      const header = document.createElement('div');
+      header.className = 'q-result-header correct';
+      header.textContent = 'Answer: ' + (qType === 'numeric' ? numAnswer : 'ABCDEF'[correctIdx]);
+      expl.insertBefore(header, expl.firstChild);
+
+      // Re-render KaTeX inside explanation
+      renderMath();
+    }
+
+    // Report height so parent can resize iframe
+    reportHeight();
   }
 });
