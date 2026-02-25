@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>e^{−$\sigma^2$t/2}</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> For a normal random variable $X \sim N(\mu, \sigma^2)$, the moment generating function is $E[e^X] = e^{\mu + \sigma^2/2}$. Here, we have $-\frac{\sigma^2}{2}t + \sigma B(t)$ where $B(t) \sim N(0, t)$.<br><br>
-      <strong>Reasoning:</strong> Let $Y = -\frac{\sigma^2}{2}t + \sigma B(t)$. Then $Y \sim N(-\frac{\sigma^2}{2}t, \sigma^2 t)$. Using the MGF formula: $E[e^Y] = \exp(-\frac{\sigma^2}{2}t + \frac{\sigma^2 t}{2}) = e^0 = 1$. This is the exponential martingale property: the process $\exp(-\frac{\sigma^2}{2}t + \sigma B(t))$ is a martingale with expectation 1, crucial for Girsanov's theorem and GBM.<br><br>
-      <strong>Answer:</strong> The expectation equals 1.
+      <strong>Definitions:</strong>
+      For a normal random variable $X \sim N(\mu, \sigma^2)$, the moment generating function is $E[e^X] = e^{\mu + \sigma^2/2}$. Here, we have $-\frac{\sigma^2}{2}t + \sigma B(t)$ where $B(t) \sim N(0, t)$.
+      <strong>Reasoning:</strong>
+      Let $Y = -\frac{\sigma^2}{2}t + \sigma B(t)$. Then $Y \sim N(-\frac{\sigma^2}{2}t, \sigma^2 t)$. Using the MGF formula: $E[e^Y] = \exp(-\frac{\sigma^2}{2}t + \frac{\sigma^2 t}{2}) = e^0 = 1$. This is the exponential martingale property: the process $\exp(-\frac{\sigma^2}{2}t + \sigma B(t))$ is a martingale with expectation 1, crucial for Girsanov's theorem and GBM.
+      <strong>Answer:</strong>
+      The expectation equals 1.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

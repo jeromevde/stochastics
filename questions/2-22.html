@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>N(0, t $\cdot$ max f(s$)^2$)</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> When integrating a deterministic function $f(s)$ against Brownian motion, the result is a normally distributed random variable. The Itô isometry determines the variance.<br><br>
-      <strong>Reasoning:</strong> The stochastic integral $\int_0^t f(s) \, dB(s)$ is a weighted sum of independent normal increments, hence Gaussian. Its expectation is zero (since the integral is a martingale starting at 0). By the Itô isometry, its variance is $\int_0^t f(s)^2 \, ds$. Therefore, the distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.<br><br>
-      <strong>Answer:</strong> The distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
+      <strong>Definitions:</strong>
+      When integrating a deterministic function $f(s)$ against Brownian motion, the result is a normally distributed random variable. The Itô isometry determines the variance.
+      <strong>Reasoning:</strong>
+      The stochastic integral $\int_0^t f(s) \, dB(s)$ is a weighted sum of independent normal increments, hence Gaussian. Its expectation is zero (since the integral is a martingale starting at 0). By the Itô isometry, its variance is $\int_0^t f(s)^2 \, ds$. Therefore, the distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
+      <strong>Answer:</strong>
+      The distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

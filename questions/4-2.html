@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>($\mu$ − $\sigma^2$)t + $\sigma$B(t)</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The solution to the GBM SDE $dS = \mu S \, dt + \sigma S \, dB$ can be found by applying Itô's lemma to $\ln(S)$. The explicit solution expresses $S(t)$ in terms of the initial value $S(0)$, the parameters, and Brownian motion.<br><br>
-      <strong>Reasoning:</strong> Apply Itô's lemma to $f(S) = \ln(S)$: $d\ln(S) = \frac{1}{S} dS - \frac{1}{2S^2}(dS)^2 = \mu \, dt + \sigma \, dB - \frac{1}{2}\sigma^2 \, dt = (\mu - \frac{\sigma^2}{2}) dt + \sigma \, dB$. Integrating: $\ln(S(t)) - \ln(S(0)) = (\mu - \frac{\sigma^2}{2})t + \sigma B(t)$. Exponentiating gives the solution. The $-\frac{\sigma^2}{2}$ correction is the Itô term from $(dS)^2 = \sigma^2 S^2 \, dt$.<br><br>
-      <strong>Answer:</strong> $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$.
+      <strong>Definitions:</strong>
+      The solution to the GBM SDE $dS = \mu S \, dt + \sigma S \, dB$ can be found by applying Itô's lemma to $\ln(S)$. The explicit solution expresses $S(t)$ in terms of the initial value $S(0)$, the parameters, and Brownian motion.
+      <strong>Reasoning:</strong>
+      Apply Itô's lemma to $f(S) = \ln(S)$: $d\ln(S) = \frac{1}{S} dS - \frac{1}{2S^2}(dS)^2 = \mu \, dt + \sigma \, dB - \frac{1}{2}\sigma^2 \, dt = (\mu - \frac{\sigma^2}{2}) dt + \sigma \, dB$. Integrating: $\ln(S(t)) - \ln(S(0)) = (\mu - \frac{\sigma^2}{2})t + \sigma B(t)$. Exponentiating gives the solution. The $-\frac{\sigma^2}{2}$ correction is the Itô term from $(dS)^2 = \sigma^2 S^2 \, dt$.
+      <strong>Answer:</strong>
+      $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

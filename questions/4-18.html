@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>−$\kappa$xe^{$\kappa$t} dt + $\sigmae^{\kappa$t} dB</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> Given an SDE $dx = -\kappa x \, dt + \sigma \, dB$ and a function $f(x,t) = xe^{\kappa t}$, we apply Itô's lemma: $df = f_t \, dt + f_x \, dx + \frac{1}{2}f_{xx}(dx)^2$.<br><br>
-      <strong>Reasoning:</strong> Compute partial derivatives: $f_t = \kappa x e^{\kappa t}$, $f_x = e^{\kappa t}$, $f_{xx} = 0$. Substitute: $df = \kappa x e^{\kappa t} \, dt + e^{\kappa t}(-\kappa x \, dt + \sigma \, dB) = \kappa x e^{\kappa t} \, dt - \kappa x e^{\kappa t} \, dt + \sigma e^{\kappa t} \, dB = \sigma e^{\kappa t} \, dB$. The drift terms cancel perfectly, leaving only a stochastic integral. This transformation is key to solving the Vasicek SDE.<br><br>
-      <strong>Answer:</strong> $df = \sigma e^{\kappa t} \, dB$ (drift terms cancel).
+      <strong>Definitions:</strong>
+      Given an SDE $dx = -\kappa x \, dt + \sigma \, dB$ and a function $f(x,t) = xe^{\kappa t}$, we apply Itô's lemma: $df = f_t \, dt + f_x \, dx + \frac{1}{2}f_{xx}(dx)^2$.
+      <strong>Reasoning:</strong>
+      Compute partial derivatives: $f_t = \kappa x e^{\kappa t}$, $f_x = e^{\kappa t}$, $f_{xx} = 0$. Substitute: $df = \kappa x e^{\kappa t} \, dt + e^{\kappa t}(-\kappa x \, dt + \sigma \, dB) = \kappa x e^{\kappa t} \, dt - \kappa x e^{\kappa t} \, dt + \sigma e^{\kappa t} \, dB = \sigma e^{\kappa t} \, dB$. The drift terms cancel perfectly, leaving only a stochastic integral. This transformation is key to solving the Vasicek SDE.
+      <strong>Answer:</strong>
+      $df = \sigma e^{\kappa t} \, dB$ (drift terms cancel).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

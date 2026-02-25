@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>V(t) = max V(T)</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The bank account (numeraire) $N(t) = e^{rt}$ grows at the risk-free rate $r$. Under the risk-neutral measure $\mathbb{Q}$, discounted asset prices are martingales. The value $V(t)$ of a derivative is the price at which it can be traded at time $t$.<br><br>
-      <strong>Reasoning:</strong> The fundamental pricing formula states that the discounted derivative price forms a martingale: $V(t)/N(t) = E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t]$. This means the current discounted price equals the expected discounted payoff under $\mathbb{Q}$. Equivalently, $V(t) = N(t) E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t] = e^{-r(T-t)} E^\mathbb{Q}[V(T) | \mathcal{F}_t]$.<br><br>
-      <strong>Answer:</strong> The derivative price satisfies $V(t)/N(t) = E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t]$.
+      <strong>Definitions:</strong>
+      The bank account (numeraire) $N(t) = e^{rt}$ grows at the risk-free rate $r$. Under the risk-neutral measure $\mathbb{Q}$, discounted asset prices are martingales. The value $V(t)$ of a derivative is the price at which it can be traded at time $t$.
+      <strong>Reasoning:</strong>
+      The fundamental pricing formula states that the discounted derivative price forms a martingale: $V(t)/N(t) = E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t]$. This means the current discounted price equals the expected discounted payoff under $\mathbb{Q}$. Equivalently, $V(t) = N(t) E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t] = e^{-r(T-t)} E^\mathbb{Q}[V(T) | \mathcal{F}_t]$.
+      <strong>Answer:</strong>
+      The derivative price satisfies $V(t)/N(t) = E^\mathbb{Q}[V(T)/N(T) | \mathcal{F}_t]$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Stock returns are i.i.d.</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> Volatility clustering is an empirical feature of financial returns where periods of high volatility tend to be followed by high volatility, and periods of low volatility by low volatility. It's a form of autocorrelation in volatility (not in returns themselves).<br><br>
-      <strong>Reasoning:</strong> The Heston model captures this through its stochastic, mean-reverting variance process. Since $v(t)$ evolves continuously with mean reversion, if $v(t)$ is high today, it's likely to remain relatively high tomorrow (though decaying toward $\theta$). This creates positive autocorrelation in the variance process and in the squared returns, matching empirical observations. In contrast, Black-Scholes with constant volatility cannot generate clustering.<br><br>
-      <strong>Answer:</strong> High-volatility periods tend to be followed by high-volatility periods.
+      <strong>Definitions:</strong>
+      Volatility clustering is an empirical feature of financial returns where periods of high volatility tend to be followed by high volatility, and periods of low volatility by low volatility. It's a form of autocorrelation in volatility (not in returns themselves).
+      <strong>Reasoning:</strong>
+      The Heston model captures this through its stochastic, mean-reverting variance process. Since $v(t)$ evolves continuously with mean reversion, if $v(t)$ is high today, it's likely to remain relatively high tomorrow (though decaying toward $\theta$). This creates positive autocorrelation in the variance process and in the squared returns, matching empirical observations. In contrast, Black-Scholes with constant volatility cannot generate clustering.
+      <strong>Answer:</strong>
+      High-volatility periods tend to be followed by high-volatility periods.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

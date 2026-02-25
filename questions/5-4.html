@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>d$F_k$ = $\sigma_k$ √$F_k$ d$B_k$</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The LIBOR Market Model (LMM), also called the Brace-Gatarek-Musiela (BGM) model, models each forward rate $F_k(t)$ as a lognormal process under its own forward measure. This ensures positive rates and analytical caplet pricing.<br><br>
-      <strong>Reasoning:</strong> Under the forward measure $\mathbb{Q}^{T_{k+1}}$ corresponding to forward rate $F_k$, we have $dF_k/F_k = \sigma_k(t) \, dB_k$, where $B_k$ is a Brownian motion under that measure and there is no drift term. This driftless lognormal specification ensures: (1) $F_k$ is a martingale under its own measure, (2) $F_k$ stays positive, and (3) caplets can be priced using the Black formula, consistent with market practice.<br><br>
-      <strong>Answer:</strong> Under its own forward measure, $dF_k = \sigma_k F_k \, dB_k$ (driftless lognormal).
+      <strong>Definitions:</strong>
+      The LIBOR Market Model (LMM), also called the Brace-Gatarek-Musiela (BGM) model, models each forward rate $F_k(t)$ as a lognormal process under its own forward measure. This ensures positive rates and analytical caplet pricing.
+      <strong>Reasoning:</strong>
+      Under the forward measure $\mathbb{Q}^{T_{k+1}}$ corresponding to forward rate $F_k$, we have $dF_k/F_k = \sigma_k(t) \, dB_k$, where $B_k$ is a Brownian motion under that measure and there is no drift term. This driftless lognormal specification ensures: (1) $F_k$ is a martingale under its own measure, (2) $F_k$ stays positive, and (3) caplets can be priced using the Black formula, consistent with market practice.
+      <strong>Answer:</strong>
+      Under its own forward measure, $dF_k = \sigma_k F_k \, dB_k$ (driftless lognormal).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

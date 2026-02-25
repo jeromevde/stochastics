@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>To change the numeraire</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Carr-Madan method prices European options using the characteristic function of the log-stock price. The key technical issue is that the option price function $C(k)$ (where $k = \ln(K)$ is log-strike) is not square-integrable, which is required for Fourier transforms.<br><br>
-      <strong>Reasoning:</strong> As $k \to -\infty$ (deep in-the-money), $C(k) \to S_0$, so $\int |C(k)|^2 dk = \infty$ (not in $L^2$). To enable Fourier inversion, we multiply by a damping factor $e^{\alpha k}$ with $\alpha > 0$. The modified function $c(k) = e^{\alpha k} C(k)$ decays as $k \to -\infty$ and becomes square-integrable: $\int |c(k)|^2 dk < \infty$. This allows us to compute the Fourier transform and then invert it to recover option prices efficiently.<br><br>
-      <strong>Answer:</strong> To make the modified call price square-integrable for Fourier transform.
+      <strong>Definitions:</strong>
+      The Carr-Madan method prices European options using the characteristic function of the log-stock price. The key technical issue is that the option price function $C(k)$ (where $k = \ln(K)$ is log-strike) is not square-integrable, which is required for Fourier transforms.
+      <strong>Reasoning:</strong>
+      As $k \to -\infty$ (deep in-the-money), $C(k) \to S_0$, so $\int |C(k)|^2 dk = \infty$ (not in $L^2$). To enable Fourier inversion, we multiply by a damping factor $e^{\alpha k}$ with $\alpha > 0$. The modified function $c(k) = e^{\alpha k} C(k)$ decays as $k \to -\infty$ and becomes square-integrable: $\int |c(k)|^2 dk < \infty$. This allows us to compute the Fourier transform and then invert it to recover option prices efficiently.
+      <strong>Answer:</strong>
+      To make the modified call price square-integrable for Fourier transform.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

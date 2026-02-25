@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Half the maturity of the bond</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The half-life (or halvation time) $\tau$ is the time it takes for a deviation from the long-term mean $\theta$ to reduce to half its initial value on average. It characterizes the speed of mean reversion.<br><br>
-      <strong>Reasoning:</strong> From the Vasicek solution, the conditional expectation is $E[r(t) | r(s)] = \theta + (r(s) - \theta)e^{-\kappa(t-s)}$. The deviation from $\theta$ is $(r(s) - \theta)e^{-\kappa(t-s)}$. For this to equal half the initial deviation $(r(s) - \theta)/2$, we need $e^{-\kappa \tau} = 1/2$, giving $\tau = \ln(2)/\kappa \approx 0.693/\kappa$. Larger $\kappa$ means faster mean reversion and shorter half-life.<br><br>
-      <strong>Answer:</strong> It represents the time for the deviation from $\theta$ to halve (on average).
+      <strong>Definitions:</strong>
+      The half-life (or halvation time) $\tau$ is the time it takes for a deviation from the long-term mean $\theta$ to reduce to half its initial value on average. It characterizes the speed of mean reversion.
+      <strong>Reasoning:</strong>
+      From the Vasicek solution, the conditional expectation is $E[r(t) | r(s)] = \theta + (r(s) - \theta)e^{-\kappa(t-s)}$. The deviation from $\theta$ is $(r(s) - \theta)e^{-\kappa(t-s)}$. For this to equal half the initial deviation $(r(s) - \theta)/2$, we need $e^{-\kappa \tau} = 1/2$, giving $\tau = \ln(2)/\kappa \approx 0.693/\kappa$. Larger $\kappa$ means faster mean reversion and shorter half-life.
+      <strong>Answer:</strong>
+      It represents the time for the deviation from $\theta$ to halve (on average).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

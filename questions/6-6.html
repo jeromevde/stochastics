@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\theta$(1 − e^{−$\kappa$T})</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The expected average variance over $[0,T]$ is $E\left[\frac{1}{T}\int_0^T v(t) \, dt \mid v(0)\right]$ where $v = \sigma^2$ follows the CIR process in Heston. This quantity determines long-term option prices.<br><br>
-      <strong>Reasoning:</strong> From the CIR dynamics, we know $E[v(t) | v(0)] = \theta + (v(0) - \theta)e^{-\kappa t}$. Integrating and dividing by $T$: $E\left[\frac{1}{T}\int_0^T v(t) \, dt\right] = \frac{1}{T}\int_0^T [\theta + (v(0) - \theta)e^{-\kappa t}] dt = \theta + (v(0) - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}$. As $T \to \infty$, the term $(1-e^{-\kappa T})/(\kappa T) \to 0$, so the expected average converges to $\theta$.<br><br>
-      <strong>Answer:</strong> $\theta + (v(0) - \theta)(1 - e^{-\kappa T})/(\kappa T)$.
+      <strong>Definitions:</strong>
+      The expected average variance over $[0,T]$ is $E\left[\frac{1}{T}\int_0^T v(t) \, dt \mid v(0)\right]$ where $v = \sigma^2$ follows the CIR process in Heston. This quantity determines long-term option prices.
+      <strong>Reasoning:</strong>
+      From the CIR dynamics, we know $E[v(t) | v(0)] = \theta + (v(0) - \theta)e^{-\kappa t}$. Integrating and dividing by $T$: $E\left[\frac{1}{T}\int_0^T v(t) \, dt\right] = \frac{1}{T}\int_0^T [\theta + (v(0) - \theta)e^{-\kappa t}] dt = \theta + (v(0) - \theta)\frac{1 - e^{-\kappa T}}{\kappa T}$. As $T \to \infty$, the term $(1-e^{-\kappa T})/(\kappa T) \to 0$, so the expected average converges to $\theta$.
+      <strong>Answer:</strong>
+      $\theta + (v(0) - \theta)(1 - e^{-\kappa T})/(\kappa T)$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
