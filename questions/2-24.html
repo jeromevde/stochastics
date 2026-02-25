@@ -17,11 +17,18 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The quadratic variation of a function $f$ on $[0,t]$ is $\lim_{\|\Pi\| \to 0} \sum_{i} (f(t_i) - f(t_{i-1}))^2$, where $\Pi$ is a partition. It measures the "roughness" of the function at a fine scale.
+      The quadratic variation of a function $f$ on $[0,t]$ is:
+      $$[f]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (f(t_i) - f(t_{i-1}))^2$$
+      where $\Pi = \{0 = t_0 < t_1 < \cdots < t_n = t\}$ is a partition and $\|\Pi\| = \max_i(t_i - t_{i-1})$. It measures the "roughness" of the function at a fine scale.
       <strong>Reasoning:</strong>
-      For a continuously differentiable function, each increment satisfies $f(t_i) - f(t_{i-1}) \approx f'(t_{i-1})(t_i - t_{i-1}) = O(\Delta t)$. Therefore, $(f(t_i) - f(t_{i-1}))^2 = O((\Delta t)^2)$. Summing over $n$ intervals where $\Delta t \approx t/n$, we get $\sum O((\Delta t)^2) = O(n \cdot (t/n)^2) = O(t/n) \to 0$ as $n \to \infty$.
+      For a continuously differentiable function, each increment satisfies:
+      $$f(t_i) - f(t_{i-1}) \approx f'(t_{i-1})(t_i - t_{i-1}) = O(\Delta t)$$
+      Therefore, $(f(t_i) - f(t_{i-1}))^2 = O((\Delta t)^2)$. Summing over $n$ intervals where $\Delta t \approx t/n$:
+      $$\sum_{i=1}^n O((\Delta t)^2) = O(n \cdot (t/n)^2) = O(t/n) \to 0 \text{ as } n \to \infty$$
       <strong>Answer:</strong>
       A continuously differentiable function has quadratic variation equal to 0.
+      <strong>Practical Use Case:</strong>
+      This distinction between smooth functions (zero quadratic variation) and Brownian motion (non-zero quadratic variation) is crucial for model selection in finance. When backtesting trading strategies, if price changes behave like smooth functions, standard calculus applies. However, high-frequency price data exhibits non-zero quadratic variation similar to Brownian motion, requiring stochastic calculus. This is why high-frequency traders use realized volatility estimators based on summed squared returns—these converge to the integrated variance, exploiting the non-zero quadratic variation property to estimate volatility model-free from tick data.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Itô's lemma is the chain rule for stochastic calculus. For a function $f(x, t)$ applied to a stochastic process, it accounts for both the drift and diffusion, plus a correction term due to quadratic variation.
+      Itô's lemma is the chain rule for stochastic calculus. For a function $f(x, t)$ applied to Brownian motion $B(t)$:
+      $$df = f_t \, dt + f_x \, dB + \frac{1}{2}f_{xx}(dB)^2$$
+      It accounts for both the drift and diffusion, plus a correction term due to quadratic variation.
       <strong>Reasoning:</strong>
-      The classical chain rule would give $df = f_t \, dt + f_x \, dB$. However, in stochastic calculus, we must expand to second order because $(dB)^2 = dt$ (not zero!). The second-order term from the Taylor expansion is $\frac{1}{2}f_{xx}(dB)^2 = \frac{1}{2}f_{xx} \, dt$. This extra term captures the effect of Brownian motion's quadratic variation.
+      The classical chain rule would give $df = f_t \, dt + f_x \, dB$. However, in stochastic calculus, we must expand to second order because $(dB)^2 = dt$ (not zero!). The second-order term from the Taylor expansion is:
+      $$\frac{1}{2}f_{xx}(dB)^2 = \frac{1}{2}f_{xx} \, dt$$
+      This extra term captures the effect of Brownian motion's quadratic variation.
       <strong>Answer:</strong>
       The missing term in Itô's lemma is $\frac{1}{2}f_{xx} \, dt$.
+      <strong>Practical Use Case:</strong>
+      Itô's lemma is the foundation of the Black-Scholes PDE. When deriving option pricing equations, we apply it to $V(S_t, t)$ where $dS_t = \mu S_t dt + \sigma S_t dB_t$. The second-order term $\frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}$ appears in the Black-Scholes PDE and represents the cost of gamma hedging. Without this term, option prices would be incorrect. Traders use this relationship to understand how option Greeks (delta, gamma, theta) are interconnected through the PDE, helping them manage complex option portfolios.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

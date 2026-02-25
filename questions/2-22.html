@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       When integrating a deterministic function $f(s)$ against Brownian motion, the result is a normally distributed random variable. The Itô isometry determines the variance.
       <strong>Reasoning:</strong>
-      The stochastic integral $\int_0^t f(s) \, dB(s)$ is a weighted sum of independent normal increments, hence Gaussian. Its expectation is zero (since the integral is a martingale starting at 0). By the Itô isometry, its variance is $\int_0^t f(s)^2 \, ds$. Therefore, the distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
+      The stochastic integral $\int_0^t f(s) \, dB(s)$ is a weighted sum of independent normal increments, hence Gaussian. Its expectation is zero (since the integral is a martingale starting at 0). By the Itô isometry:
+      $$\text{Var}\left(\int_0^t f(s) \, dB(s)\right) = \int_0^t f(s)^2 \, ds$$
+      Therefore, the distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
       <strong>Answer:</strong>
       The distribution is $N\left(0, \int_0^t f(s)^2 \, ds\right)$.
+      <strong>Practical Use Case:</strong>
+      This result is used to compute exact distributions for certain path-dependent quantities. For example, in the Black-Scholes model with time-varying volatility $\sigma(t)$, the log-return $\log(S_T/S_0) = \int_0^T (r - \sigma(t)^2/2)dt + \int_0^T \sigma(t) dB_t$ is normally distributed with variance $\int_0^T \sigma(t)^2 dt$. This allows traders to price vanilla options under deterministic volatility term structures. In forward starting options (e.g., cliquet options), the payoff depends on $\int_{T_1}^{T_2} \sigma(t) dB_t$, and this normality property enables semi-closed-form pricing formulas. It's also why Gaussian copulas are used to model joint defaults in credit portfolios.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

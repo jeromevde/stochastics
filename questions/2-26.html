@@ -19,9 +19,14 @@
       <strong>Definitions:</strong>
       An Itô process has the form $dX = \mu \, dt + \sigma \, dB$, where $\mu$ is the drift and $\sigma$ is the diffusion coefficient. Itô's lemma provides the differential of a function $f(X, t)$ of such a process.
       <strong>Reasoning:</strong>
-      Starting with $df = f_t \, dt + f_x \, dX + \frac{1}{2}f_{xx}(dX)^2$, we substitute $dX = \mu \, dt + \sigma \, dB$. The key is computing $(dX)^2 = (\mu \, dt + \sigma \, dB)^2 = \sigma^2(dB)^2 = \sigma^2 \, dt$ (using $(dt)^2 = dt \cdot dB = 0$ and $(dB)^2 = dt$). Thus the correction term is $\frac{1}{2}f_{xx}\sigma^2 \, dt$.
+      Starting with $df = f_t \, dt + f_x \, dX + \frac{1}{2}f_{xx}(dX)^2$, we substitute $dX = \mu \, dt + \sigma \, dB$. The key is computing:
+      $$(dX)^2 = (\mu \, dt + \sigma \, dB)^2 = \mu^2(dt)^2 + 2\mu\sigma \, dt \, dB + \sigma^2(dB)^2 = \sigma^2 \, dt$$
+      using $(dt)^2 = 0$, $dt \cdot dB = 0$, and $(dB)^2 = dt$. Thus the correction term is:
+      $$\frac{1}{2}f_{xx}\sigma^2 \, dt$$
       <strong>Answer:</strong>
       The missing term is $\frac{1}{2}f_{xx}\sigma^2 \, dt$.
+      <strong>Practical Use Case:</strong>
+      This formula is essential for deriving the Black-Scholes equation. For a stock following $dS = \mu S dt + \sigma S dB$, applying Itô's lemma to an option value $V(S,t)$ gives the dynamics of the option price. The term $\frac{1}{2}\sigma^2 S^2 V_{SS}$ represents gamma exposure—the profit/loss from the stock's volatility. Market makers use this to determine hedging costs: higher gamma means more frequent rebalancing is needed, increasing transaction costs. This is why traders are willing to pay more for low-gamma strategies when transaction costs are high.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

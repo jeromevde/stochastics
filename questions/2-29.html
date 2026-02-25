@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The total variation of a function $f$ on an interval $[a,b]$ is $\sup_{\Pi} \sum_i |f(t_i) - f(t_{i-1})|$ over all partitions $\Pi$. A function has bounded variation if this supremum is finite.
+      The total variation of a function $f$ on an interval $[a,b]$ is:
+      $$TV(f) = \sup_{\Pi} \sum_i |f(t_i) - f(t_{i-1})|$$
+      over all partitions $\Pi = \{a = t_0 < t_1 < \cdots < t_n = b\}$. A function has bounded variation if this supremum is finite.
       <strong>Reasoning:</strong>
       The function $f(t) = \sin(1/t)$ oscillates with increasing frequency as $t \to 0^+$. Near zero, it completes infinitely many full cycles, each contributing approximately 4 to the total variation (from -1 to 1 and back). Since we can sum infinitely many non-negligible contributions by taking finer partitions near 0, the total variation diverges to infinity.
       <strong>Answer:</strong>
       The function $\sin(1/t)$ has unbounded variation on $(0,1]$.
+      <strong>Practical Use Case:</strong>
+      Understanding bounded vs unbounded variation helps distinguish between tradable and non-tradable price processes. While real asset prices have finite variation over any fixed period (due to transaction costs and market microstructure), models like Brownian motion have unbounded variation, making them idealizations. This matters for high-frequency trading: strategies that work in continuous-time models with unbounded variation may fail in practice because they assume infinite trading frequency with zero costs. Traders must account for the finite-variation reality when implementing continuous-time strategies, often using threshold-based rebalancing rules.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
