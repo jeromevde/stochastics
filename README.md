@@ -29,6 +29,17 @@ Interactive quiz website to test your understanding of stochastic processes in f
 
 The site lives in `docs/` and is configured for GitHub Pages (deploy from `docs/` folder on `main` branch).
 
+## Single-file Package
+
+Create a drag-and-drop standalone build with:
+
+```bash
+python package.py -o stochastics-standalone.html
+```
+
+The output HTML bundles all questions and supporting assets into one file for easy sharing.
+If the script cannot reach the KaTeX CDN, it will keep those links in place; run with internet access to fully inline them.
+
 ## References
 
 - Mikosch: *Elementary Stochastic Calculus*

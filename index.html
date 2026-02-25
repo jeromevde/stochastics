@@ -393,7 +393,14 @@ a.chapter-card {
     nextBtn.classList.add('hidden');
     const id = questionIds[currentIndex];
     const filename = id.replace('.', '-') + '.html';
-    iframe.src = 'questions/' + filename;
+    const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
+    if (embedded) {
+      iframe.removeAttribute('src');
+      iframe.srcdoc = embedded;
+    } else {
+      iframe.srcdoc = '';
+      iframe.src = 'questions/' + filename;
+    }
     updateProgress();
   }
 
