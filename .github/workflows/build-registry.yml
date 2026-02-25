@@ -1,0 +1,110 @@
+name: Build Registry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'questions/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate registry.js
+        run: |
+          cat > registry.js << 'EOF'
+          const chapters = [
+          EOF
+
+          # Function to extract chapter and question number
+          extract_chapter() {
+            filename="$1"
+            # Remove .html extension and split by -
+            base="${filename%.html}"
+            echo "$base" | sed 's/-/./'
+          }
+
+          # Create temporary files for each chapter
+          for i in {1..7}; do
+            echo "  {" >> "chapter_${i}.tmp"
+            case $i in
+              1) echo '    "id": 1,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 1 – Motivation",' >> "chapter_${i}.tmp" ;;
+              2) echo '    "id": 2,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 2 – Stochastic Calculus",' >> "chapter_${i}.tmp" ;;
+              3) echo '    "id": 3,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 3 – Derivative Valuation",' >> "chapter_${i}.tmp" ;;
+              4) echo '    "id": 4,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 4 – Basic Models",' >> "chapter_${i}.tmp" ;;
+              5) echo '    "id": 5,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 5 – Interest Rate Market Models",' >> "chapter_${i}.tmp" ;;
+              6) echo '    "id": 6,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 6 – Heston'\''s Model",' >> "chapter_${i}.tmp" ;;
+              7) echo '    "id": 7,' >> "chapter_${i}.tmp"
+                 echo '    "title": "Ch 7 – Lévy Processes",' >> "chapter_${i}.tmp" ;;
+            esac
+            echo '    "questions": [' >> "chapter_${i}.tmp"
+          done
+
+          # Process all question files
+          for file in questions/*.html; do
+            filename=$(basename "$file")
+            qid=$(extract_chapter "$filename")
+            chapter=$(echo "$qid" | cut -d. -f1)
+
+            # Add to appropriate chapter file
+            if [ -f "chapter_${chapter}.tmp" ]; then
+              echo "      \"$qid\"," >> "chapter_${chapter}.tmp"
+            fi
+          done
+
+          # Combine all chapters
+          first=true
+          for i in {1..7}; do
+            if [ -f "chapter_${i}.tmp" ]; then
+              # Remove trailing comma from last question
+              sed -i '$ s/,$//' "chapter_${i}.tmp"
+
+              # Add closing bracket
+              echo '    ]' >> "chapter_${i}.tmp"
+
+              # Add to main registry
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "  }," >> registry.js
+              fi
+              cat "chapter_${i}.tmp" >> registry.js
+
+              # Clean up
+              rm "chapter_${i}.tmp"
+            fi
+          done
+
+          # Close the array
+          cat >> registry.js << 'EOF'
+            }
+          ];
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add registry.js
+          if git diff --staged --quiet; then
+            echo "No changes to registry.js"
+          else
+            git commit -m "Auto-update registry.js from questions directory"
+            git push
+          fi

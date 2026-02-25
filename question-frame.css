@@ -1,0 +1,150 @@
+/* ── Question Frame Styles (loaded inside each question iframe) ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #232733;
+  --border: #2e3345;
+  --text: #e2e4ea;
+  --text-dim: #8b8fa3;
+  --primary: #6c8cff;
+  --correct: #34d399;
+  --correct-bg: rgba(52, 211, 153, .12);
+  --wrong: #f87171;
+  --wrong-bg: rgba(248, 113, 113, .12);
+  --radius: 10px;
+}
+
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding: 1.5rem;
+}
+
+/* ── Question Text ── */
+.q-text {
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+/* ── MC Options ── */
+.q-options {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+
+.q-option {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  width: 100%;
+  text-align: left;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .75rem 1rem;
+  font-family: inherit;
+  font-size: .95rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  line-height: 1.55;
+}
+
+.q-option:hover:not(.disabled) { border-color: var(--primary); }
+
+.q-letter {
+  flex-shrink: 0;
+  width: 26px; height: 26px; line-height: 26px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 600; font-size: .8rem;
+  background: var(--border);
+  color: var(--text);
+}
+
+.q-option.correct { border-color: var(--correct); background: var(--correct-bg); }
+.q-option.correct .q-letter { background: var(--correct); color: #fff; }
+.q-option.wrong   { border-color: var(--wrong); background: var(--wrong-bg); }
+.q-option.wrong .q-letter   { background: var(--wrong); color: #fff; }
+.q-option.disabled { pointer-events: none; opacity: .85; }
+.q-option.dimmed   { opacity: .45; }
+
+/* ── Numeric Input ── */
+.q-numeric {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.q-numeric label { font-size: .95rem; color: var(--text-dim); }
+
+.q-input {
+  font-family: inherit; font-size: 1rem;
+  padding: .5rem .75rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  width: 150px;
+}
+.q-input:focus { outline: none; border-color: var(--primary); }
+
+.q-submit {
+  font-family: inherit; font-weight: 600; font-size: .9rem;
+  background: var(--primary); color: #fff;
+  border: none; border-radius: var(--radius);
+  padding: .55rem 1.2rem; cursor: pointer;
+  transition: background .15s;
+}
+.q-submit:hover { background: #8aa4ff; }
+
+/* ── Explanation ── */
+.q-explanation {
+  display: none;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: .93rem;
+  line-height: 1.65;
+}
+.q-explanation.visible { display: block; }
+.q-explanation.correct { background: var(--correct-bg); border-left: 3px solid var(--correct); }
+.q-explanation.wrong   { background: var(--wrong-bg);   border-left: 3px solid var(--wrong); }
+
+.q-result-header { font-weight: 700; margin-bottom: .35rem; }
+.q-result-header.correct { color: var(--correct); }
+.q-result-header.wrong   { color: var(--wrong); }
+
+/* ── KaTeX overrides for dark theme ── */
+.katex { color: var(--text); }
+.katex .mord, .katex .mbin, .katex .mrel,
+.katex .mopen, .katex .mclose, .katex .mpunct,
+.katex .minner, .katex .mop { color: var(--text); }
+
+/* ── Report issue button ── */
+.q-issue-btn {
+  display: block;
+  text-align: right;
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.q-issue-btn:hover {
+  color: #aaa;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  html, body { padding: 1rem; }
+  .q-text { font-size: 1rem; }
+}

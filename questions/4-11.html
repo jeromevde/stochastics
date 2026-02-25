@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="4.11" data-type="mc" data-answer="1">
+    <div class="q-text">The halvation time $\tau$ in the Vasicek model satisfies e^{−$\kappa\tau$} = $\tfrac{1}{2}$. It represents:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>The time for rates to double</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>The time for the deviation from $\theta$ to halve (on average)</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The time for volatility to halve</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Half the maturity of the bond</span></button>
+    </div>
+    <div class="q-explanation">E[r(t)|r(s)] = $\theta$ + (r(s)−$\theta$)e^{−$\kappa$(t−s)}. The deviation from $\theta$ halves after time $\tau$ = ln(2)/$\kappa$. This is the mean-reversion half-life.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%204.11%3A%20The%20halvation%20time%20%CF%84%20in%20the%20Vasicek%20model%20satisfies%20e%5E%7B%E2%88%92%CE%BA%CF%84%7D%20%3D%20%C2%BD.%20It%20represents%3A" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

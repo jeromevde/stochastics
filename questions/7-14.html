@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="7.14" data-type="mc" data-answer="1">
+    <div class="q-text">For pricing vanilla calls via characteristic functions, why multiply C(k) by e^{$\alpha$k}?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>To improve convergence of Monte Carlo</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>To make the modified call price square-integrable for Fourier transform</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>To adjust for dividends</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>To change the numeraire</span></button>
+    </div>
+    <div class="q-explanation">C(k) $\to$ $S_0$ as k $\to$ −$\infty$, so it's not $L^2$. Multiplying by e^{$\alpha$k} (with suitable $\alpha$ &gt; 0) ensures c(k) = e^{$\alpha$k}C(k) is square-integrable, enabling Fourier inversion.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%207.14%3A%20For%20pricing%20vanilla%20calls%20via%20characteristic%20functions%2C%20why%20multiply%20C(k)%20by%20e%5E%7B%CE%B1k%7D%3F" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>

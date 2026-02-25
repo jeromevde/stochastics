@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="../question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="6.1" data-type="mc" data-answer="1">
+    <div class="q-text">The Heston model assumes that the variance $\sigma^2$(t) follows:</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>A geometric Brownian motion</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>A CIR (Cox-Ingersoll-Ross) process</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>A constant</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>A Poisson process</span></button>
+    </div>
+    <div class="q-explanation">d$\sigma^2$(t) = $\kappa(\theta$ − $\sigma^2$(t))dt + $\xi\sigma$(t)dB$\sigma$(t) is a CIR process for the variance. This ensures variance stays positive (under the Feller condition) and mean-reverts.</div>
+    <a class="q-issue-btn" href="https://github.com/jeromevde/stochastics/issues/new?title=Question%206.1%3A%20The%20Heston%20model%20assumes%20that%20the%20variance%20%CF%83%C2%B2(t)%20follows%3A" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="../question-frame.js"></script>
+</body>
+</html>
