@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      For a normal random variable $X \sim N(\mu, \sigma^2)$, the moment generating function is $E[e^X] = e^{\mu + \sigma^2/2}$. Here, we have $-\frac{\sigma^2}{2}t + \sigma B(t)$ where $B(t) \sim N(0, t)$.
+      For a normal random variable $X \sim N(\mu, \sigma^2)$, the moment generating function is $\mathbb{E}[e^X] = e^{\mu + \sigma^2/2}$. Here, we have the exponential of $-\frac{\sigma^2}{2}t + \sigma B(t)$ where $B(t) \sim N(0, t)$ is standard Brownian motion.
       <strong>Reasoning:</strong>
-      Let $Y = -\frac{\sigma^2}{2}t + \sigma B(t)$. Then $Y \sim N(-\frac{\sigma^2}{2}t, \sigma^2 t)$. Using the MGF formula: $E[e^Y] = \exp(-\frac{\sigma^2}{2}t + \frac{\sigma^2 t}{2}) = e^0 = 1$. This is the exponential martingale property: the process $\exp(-\frac{\sigma^2}{2}t + \sigma B(t))$ is a martingale with expectation 1, crucial for Girsanov's theorem and GBM.
+      Let $Y = -\frac{\sigma^2}{2}t + \sigma B(t)$. Then $Y$ is normally distributed:
+      $$Y \sim N\left(-\frac{\sigma^2}{2}t, \sigma^2 t\right)$$
+      with mean $-\frac{\sigma^2}{2}t$ and variance $\sigma^2 t$. Using the moment generating function formula:
+      $$\mathbb{E}[e^Y] = \exp\left(\text{mean} + \frac{\text{variance}}{2}\right) = \exp\left(-\frac{\sigma^2}{2}t + \frac{\sigma^2 t}{2}\right) = e^0 = 1$$
+      This is the exponential martingale property: the process $M_t = \exp(-\frac{\sigma^2}{2}t + \sigma B(t))$ is a martingale with constant expectation $\mathbb{E}[M_t] = 1$. This is crucial for Girsanov's theorem (Radon-Nikodym derivatives) and the solution to GBM.
       <strong>Answer:</strong>
       The expectation equals 1.
+      <strong>Practical Use Case:</strong>
+      This exponential martingale $\mathbb{E}[\exp(-\frac{\sigma^2}{2}t + \sigma B(t))] = 1$ is fundamental to option pricing and risk-neutral valuation. It appears in the GBM solution $S(t) = S_0 \exp((r-\frac{\sigma^2}{2})t + \sigma B(t))$ where the $-\frac{\sigma^2}{2}$ correction ensures $\mathbb{E}[S(t)/S_0] = e^{rt}$ under risk-neutral measure. Traders verify this in Monte Carlo simulations: when pricing options, they check that simulated stock prices have correct expected values—violations signal implementation bugs. The martingale property also underlies calibration: when fitting models to option prices, quants verify that simulated asset prices discount correctly. For variance swaps and volatility derivatives, this martingale connects realized variance to risk-neutral expectations. Model validation teams always test: "Does $\mathbb{E}[\exp(\text{integrated vol})] = 1$?" If not, the pricing engine has errors.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

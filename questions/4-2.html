@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The solution to the GBM SDE $dS = \mu S \, dt + \sigma S \, dB$ can be found by applying Itô's lemma to $\ln(S)$. The explicit solution expresses $S(t)$ in terms of the initial value $S(0)$, the parameters, and Brownian motion.
+      The solution to the GBM SDE $dS = \mu S \, dt + \sigma S \, dB$ can be found by applying Itô's lemma to $\ln(S)$. The explicit solution expresses $S(t)$ in terms of the initial value $S(0)$, the parameters $\mu$ (drift) and $\sigma$ (volatility), and Brownian motion $B(t)$.
       <strong>Reasoning:</strong>
-      Apply Itô's lemma to $f(S) = \ln(S)$: $d\ln(S) = \frac{1}{S} dS - \frac{1}{2S^2}(dS)^2 = \mu \, dt + \sigma \, dB - \frac{1}{2}\sigma^2 \, dt = (\mu - \frac{\sigma^2}{2}) dt + \sigma \, dB$. Integrating: $\ln(S(t)) - \ln(S(0)) = (\mu - \frac{\sigma^2}{2})t + \sigma B(t)$. Exponentiating gives the solution. The $-\frac{\sigma^2}{2}$ correction is the Itô term from $(dS)^2 = \sigma^2 S^2 \, dt$.
+      Apply Itô's lemma to $f(S) = \ln(S)$ with $f_S = 1/S$ and $f_{SS} = -1/S^2$:
+      $$d\ln(S) = \frac{1}{S} dS + \frac{1}{2} \cdot \frac{-1}{S^2} (dS)^2$$
+      Substituting $dS = \mu S \, dt + \sigma S \, dB$ and $(dS)^2 = \sigma^2 S^2 \, dt$:
+      $$d\ln(S) = \mu \, dt + \sigma \, dB - \frac{1}{2}\sigma^2 \, dt = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma \, dB$$
+      Integrating from $0$ to $t$:
+      $$\ln(S(t)) - \ln(S(0)) = \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B(t)$$
+      Exponentiating both sides yields the explicit solution. The $-\frac{\sigma^2}{2}$ term is the Itô correction from quadratic variation.
       <strong>Answer:</strong>
-      $S(t) = S(0) \exp\left((\mu - \frac{\sigma^2}{2})t + \sigma B(t)\right)$.
+      $S(t) = S(0) \exp\left(\left(\mu - \frac{\sigma^2}{2}\right)t + \sigma B(t)\right)$.
+      <strong>Practical Use Case:</strong>
+      This explicit solution is critical for Monte Carlo option pricing and risk simulations. When pricing path-dependent derivatives like Asian options or lookback options, traders generate thousands of price paths using this formula: sample $B(t_i) = \sqrt{t_i} Z_i$ where $Z_i \sim N(0,1)$, then compute $S(t_i)$ directly without discretization error. The $-\frac{\sigma^2}{2}$ correction is essential—without it, the expected value $E[S(t)]$ would be incorrect, leading to arbitrage. For volatility surface calibration, quants verify that simulated prices match theoretical expectations by checking $E[S(t)] = S(0) e^{\mu t}$, which only holds with this exact form. In backtesting trading strategies, this formula allows efficient generation of price scenarios for stress testing.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The CIR++ model extends CIR analogously to how Hull-White extends Vasicek. The model is $r(t) = x(t) + \varphi(t)$, where $x(t)$ follows a CIR process and $\varphi(t)$ is a deterministic shift function.
+      The CIR++ model extends CIR analogously to how Hull-White extends Vasicek. The model is $r(t) = x(t) + \varphi(t)$, where $x(t)$ follows a CIR process:
+      $$dx(t) = \kappa(\theta - x(t)) \, dt + \sigma\sqrt{x(t)} \, dB(t)$$
+      and $\varphi(t)$ is a deterministic shift function chosen for market calibration.
       <strong>Reasoning:</strong>
-      The pure CIR model typically doesn't match the current market yield curve. By adding a time-dependent shift $\varphi(t) = f^{\text{market}}(0,t) - f^{\text{CIR}}(0,t)$, where $f$ denotes instantaneous forward rates, the model can be calibrated to reproduce observed bond prices $P^{\text{market}}(0,T)$ at time 0. This ensures market consistency while preserving CIR's positive-rate property and mean-reverting dynamics.
+      The pure CIR model typically doesn't match the current market yield curve $P^{\text{market}}(0,T)$. By adding a time-dependent shift:
+      $$\varphi(t) = f^{\text{market}}(0,t) - f^{\text{CIR}}(0,t)$$
+      where $f$ denotes instantaneous forward rates, the model can be calibrated to reproduce observed bond prices at time $t=0$:
+      $$P^{\text{CIR++}}(0,T) = P^{\text{market}}(0,T) \text{ for all } T$$
+      This ensures market consistency (no arbitrage relative to observed prices) while preserving CIR's desirable properties: positive rates (if $x(t) > -\min_s \varphi(s)$) and mean-reverting dynamics. The shift $\varphi(t)$ is updated daily as market conditions change.
       <strong>Answer:</strong>
       The shift $\varphi(t)$ is chosen to match market bond prices.
+      <strong>Practical Use Case:</strong>
+      CIR++ combines CIR's positive rates with Hull-White's perfect calibration, making it ideal for pricing USD interest rate derivatives when negative rates are implausible. Trading desks use CIR++ for callable bonds, mortgage-backed securities, and Bermudan swaptions. The calibration works as follows: extract today's forward curve $f^{\text{market}}(0,t)$ from swap rates, compute CIR forward curve $f^{\text{CIR}}(0,t)$ using base parameters $(\kappa, \theta, \sigma)$, then set $\varphi(t) = f^{\text{market}}(0,t) - f^{\text{CIR}}(0,t)$. Quants fit $\kappa$ and $\sigma$ to swaption volatilities (matching the volatility surface), while $\varphi(t)$ handles yield curve fit. This two-step calibration separates level fitting from volatility fitting. For credit models where spreads must stay positive, CIR++ ensures realistic dynamics while matching market CDS spreads.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,22 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Cox-Ingersoll-Ross (CIR) model is $dr = \kappa(\theta - r) dt + \sigma \sqrt{r} \, dB$, where the volatility term $\sigma\sqrt{r}$ is proportional to the square root of the rate. This ensures rates remain non-negative under certain conditions.
+      The Cox-Ingersoll-Ross (CIR) model is:
+      $$dr(t) = \kappa(\theta - r(t)) \, dt + \sigma \sqrt{r(t)} \, dB(t)$$
+      where the volatility term $\sigma\sqrt{r}$ is proportional to the square root of the rate. This square-root structure ensures rates remain non-negative under certain conditions.
       <strong>Reasoning:</strong>
-      The Feller condition $2\kappa\theta > \sigma^2$ ensures that $r(t)$ stays strictly positive. The $\sqrt{r}$ volatility term shrinks as $r \to 0$, which prevents the rate from becoming negative. When the condition is satisfied, the drift toward $\theta$ dominates near zero, bouncing the rate back up before it can cross zero. This is a major improvement over Vasicek.
+      The Feller condition
+      $$2\kappa\theta > \sigma^2$$
+      ensures that $r(t)$ stays strictly positive ($r(t) > 0$ for all $t$ if $r(0) > 0$). The mechanism:
+      - As $r \to 0^+$, the volatility $\sigma\sqrt{r} \to 0$ shrinks to zero
+      - Meanwhile, the drift $\kappa(\theta - r) \approx \kappa\theta > 0$ remains positive
+      - The positive drift dominates near zero, bouncing the rate back up before it can reach zero
+
+      When $2\kappa\theta = \sigma^2$ (boundary case), the rate can touch zero but not become negative. When $2\kappa\theta < \sigma^2$, the rate can reach zero with positive probability and stay there. This is a major improvement over Vasicek, which allows negative rates.
       <strong>Answer:</strong>
       Rates remain positive if $2\kappa\theta > \sigma^2$ (the Feller condition).
+      <strong>Practical Use Case:</strong>
+      The Feller condition is critical when calibrating CIR models for credit spreads, commodity prices, or USD interest rates where negativity is economically implausible. Quants always check $2\kappa\theta > \sigma^2$ after parameter estimation—if violated, they increase $\kappa$ or $\theta$, or reduce $\sigma$ to restore positivity. For credit default swap (CDS) pricing, where intensity processes must stay positive, CIR with satisfied Feller condition is preferred. In energy markets, CIR models natural gas prices which can't go negative (except in exceptional circumstances). When the Feller condition fails, practitioners use shifted CIR or truncated models. For model validation, risk teams verify that simulated paths never hit zero, confirming the Feller condition holds in practice. The condition also affects option pricing: boundary behavior at $r=0$ influences tail probabilities and deep out-of-the-money option values.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -17,11 +17,17 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The CIR model has an exact solution for the transition density $p(r(T) | r(t))$. Due to the square-root volatility and mean reversion, the distribution is related to the chi-squared family but with a non-zero mean (noncentral).
+      The CIR model has an exact solution for the transition density $p(r(T) \mid r(t))$. Due to the square-root volatility and mean reversion, the distribution is related to the chi-squared family but with a non-zero noncentrality parameter (noncentral chi-squared).
       <strong>Reasoning:</strong>
-      The conditional distribution is: $2\gamma r(T) \sim \chi^2(2q+2, 2ur(t))$, a noncentral chi-squared distribution with degrees of freedom $2q+2$ and noncentrality parameter $2ur(t)$, where $\gamma, q, u$ are functions of model parameters. This distribution is positively skewed (asymmetric), reflecting the non-negativity constraint and the dynamics of interest rates.
+      The conditional distribution can be expressed as:
+      $$c \cdot r(T) \mid r(t) \sim \chi^2(d, \lambda)$$
+      a noncentral chi-squared distribution with degrees of freedom $d = 4\kappa\theta/\sigma^2$ and noncentrality parameter $\lambda$ depending on $r(t)$. More precisely:
+      $$\frac{4\kappa}{\sigma^2(1-e^{-\kappa(T-t)})} r(T) \sim \chi^2\left(\frac{4\kappa\theta}{\sigma^2}, \frac{4\kappa e^{-\kappa(T-t)}}{\sigma^2(1-e^{-\kappa(T-t)})} r(t)\right)$$
+      This distribution is positively skewed (asymmetric), reflecting the non-negativity constraint and the dynamics of interest rates. Unlike Vasicek's normal distribution, the noncentral chi-squared naturally lives on $(0, \infty)$.
       <strong>Answer:</strong>
       The CIR short rate follows a noncentral chi-squared distribution.
+      <strong>Practical Use Case:</strong>
+      The explicit noncentral chi-squared distribution enables analytical bond option pricing and efficient simulation in CIR models. Traders price caps and floors using closed-form formulas involving the noncentral chi-squared CDF, which are faster than Monte Carlo. For path-dependent derivatives like Asian options on interest rates, Monte Carlo simulations sample from this distribution exactly at each time step, avoiding discretization bias. The distribution's skewness captures realistic features: upward rate spikes are more likely than downward spikes. Quants use the noncentral chi-squared density for maximum likelihood estimation when calibrating CIR to historical rate data. Credit risk models use CIR for default intensities, and the noncentral chi-squared distribution provides exact survival probability calculations. Statistical libraries implement efficient noncentral chi-squared samplers specifically for CIR simulation in financial applications.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

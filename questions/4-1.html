@@ -17,11 +17,20 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Geometric Brownian Motion (GBM) is a continuous-time stochastic process where the logarithm of the variable follows a Brownian motion with drift. It's the standard model for stock prices in the Black-Scholes framework.
+      Geometric Brownian Motion (GBM) is a continuous-time stochastic process where the logarithm of the variable follows a Brownian motion with drift. It's the standard model for stock prices in the Black-Scholes framework. Here $S(t)$ is the asset price, $\mu$ is the drift (expected return), $\sigma$ is the volatility, and $B(t)$ is standard Brownian motion.
       <strong>Reasoning:</strong>
-      The GBM SDE is $dS = \mu S \, dt + \sigma S \, dB$, where both the drift and diffusion terms are proportional to the current value $S$. This proportionality ensures that: (1) $S$ remains positive if it starts positive, (2) returns are scale-independent, and (3) the log-returns are normally distributed. The percentage changes $dS/S = \mu \, dt + \sigma \, dB$ don't depend on the level of $S$.
+      The GBM stochastic differential equation is
+      $$dS(t) = \mu S(t) \, dt + \sigma S(t) \, dB(t)$$
+      where both the drift and diffusion terms are proportional to the current value $S(t)$. This proportionality ensures that:
+      1. $S(t)$ remains positive if it starts positive (no negative prices)
+      2. Returns are scale-independent: $\frac{dS}{S} = \mu \, dt + \sigma \, dB$ doesn't depend on the level of $S$
+      3. Log-returns are normally distributed
+
+      The percentage changes are what matter in financial markets, not absolute changes, making GBM the natural model for asset prices.
       <strong>Answer:</strong>
       The GBM SDE is $dS = \mu S \, dt + \sigma S \, dB$.
+      <strong>Practical Use Case:</strong>
+      GBM is the foundational model for equity and FX pricing in derivatives markets. When traders price vanilla options using Black-Scholes, they're assuming the underlying follows GBM with constant volatility. For risk management, portfolio managers use GBM to simulate future price paths in Value-at-Risk (VaR) calculations. The proportional structure means a 100 dollar stock and a 10 dollar stock with the same $\sigma$ have identical percentage volatility, allowing consistent risk comparisons across assets. When fitting historical data, quants estimate $\mu$ from sample mean returns and $\sigma$ from realized volatility, then use these parameters in Monte Carlo simulations for exotic options pricing or stress testing.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

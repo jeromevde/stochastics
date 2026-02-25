@@ -17,11 +17,22 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Given an SDE $dx = -\kappa x \, dt + \sigma \, dB$ and a function $f(x,t) = xe^{\kappa t}$, we apply Itô's lemma: $df = f_t \, dt + f_x \, dx + \frac{1}{2}f_{xx}(dx)^2$.
+      Given an SDE $dx = -\kappa x \, dt + \sigma \, dB$ and a function $f(x,t) = xe^{\kappa t}$, we apply Itô's lemma:
+      $$df = f_t \, dt + f_x \, dx + \frac{1}{2}f_{xx}(dx)^2$$
       <strong>Reasoning:</strong>
-      Compute partial derivatives: $f_t = \kappa x e^{\kappa t}$, $f_x = e^{\kappa t}$, $f_{xx} = 0$. Substitute: $df = \kappa x e^{\kappa t} \, dt + e^{\kappa t}(-\kappa x \, dt + \sigma \, dB) = \kappa x e^{\kappa t} \, dt - \kappa x e^{\kappa t} \, dt + \sigma e^{\kappa t} \, dB = \sigma e^{\kappa t} \, dB$. The drift terms cancel perfectly, leaving only a stochastic integral. This transformation is key to solving the Vasicek SDE.
+      Compute the partial derivatives:
+      - $f_t = \frac{\partial}{\partial t}(xe^{\kappa t}) = \kappa x e^{\kappa t}$
+      - $f_x = \frac{\partial}{\partial x}(xe^{\kappa t}) = e^{\kappa t}$
+      - $f_{xx} = \frac{\partial^2}{\partial x^2}(xe^{\kappa t}) = 0$
+
+      Substitute into Itô's lemma (noting $(dx)^2 = \sigma^2 dt$):
+      $$df = \kappa x e^{\kappa t} \, dt + e^{\kappa t}(-\kappa x \, dt + \sigma \, dB) + 0$$
+      $$= \kappa x e^{\kappa t} \, dt - \kappa x e^{\kappa t} \, dt + \sigma e^{\kappa t} \, dB = \sigma e^{\kappa t} \, dB$$
+      The drift terms cancel perfectly, leaving only a stochastic integral. This transformation $f(x,t) = xe^{\kappa t}$ is an integrating factor, key to solving the Vasicek SDE by converting it to a driftless process.
       <strong>Answer:</strong>
       $df = \sigma e^{\kappa t} \, dB$ (drift terms cancel).
+      <strong>Practical Use Case:</strong>
+      This integrating factor technique is essential for solving linear SDEs in closed form, avoiding numerical methods. For Vasicek $dr = \kappa(\theta - r) dt + \sigma dB$, rewriting as $d(r - \theta) = -\kappa(r-\theta) dt + \sigma dB$ and applying $f(r-\theta, t) = (r-\theta)e^{\kappa t}$ yields the explicit solution used in bond pricing. Quants use this technique for mean-reverting processes across asset classes: interest rates (Vasicek/Hull-White), commodity prices (Schwartz one-factor), and volatility (Ornstein-Uhlenbeck). When implementing pricing libraries, developers code the closed-form solution derived via integrating factors rather than discretizing the SDE, ensuring exact simulation. This also enables analytical bond price formulas in affine models. Students learning stochastic calculus master this as a key problem-solving technique for tractable models.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

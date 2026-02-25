@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      Consider a modified model with volatility proportional to $r$ (not $\sqrt{r}$): $dr = \kappa(\theta - r) dt + \sigma r \, dB$. The bank account value is $B(t) = \exp(\int_0^t r(s) \, ds)$.
+      Consider a modified model with volatility proportional to $r$ (not $\sqrt{r}$):
+      $$dr(t) = \kappa(\theta - r(t)) \, dt + \sigma r(t) \, dB(t)$$
+      The bank account (money market account) grows as $B(t) = \exp(\int_0^t r(s) \, ds)$, accumulating interest continuously.
       <strong>Reasoning:</strong>
-      With volatility $\sigma r$, rates can grow exponentially without bound along certain paths. The tails of the distribution become so heavy that $E[\exp(\int_0^t r(s) \, ds)] = \infty$ for any $t > 0$. This makes the model economically unrealistic - it assigns infinite value to bonds, and extreme rate paths dominate expectations. This demonstrates why CIR uses $\sqrt{r}$ instead of $r$.
+      With volatility $\sigma r$, the rate process can be written as:
+      $$r(t) = r(0) \exp\left(\left(-\kappa + \frac{\kappa\theta}{r(0)} - \frac{\sigma^2}{2}\right)t + \sigma B(t)\right) + \text{correction terms}$$
+      The key issue: rates can grow exponentially without bound along certain paths, and the volatility grows proportionally. The tails of the distribution become so heavy (fat-tailed) that:
+      $$\mathbb{E}\left[\exp\left(\int_0^t r(s) \, ds\right)\right] = \infty \text{ for any } t > 0$$
+      This makes the model economically unrealistic—it assigns infinite value to zero-coupon bonds, and extreme rate paths dominate all expectations. No finite-variance hedging strategies exist. This demonstrates why CIR uses $\sigma\sqrt{r}$ instead of $\sigma r$: the square-root dampens tail behavior sufficiently to keep expectations finite.
       <strong>Answer:</strong>
       The expectation is infinite (bank account explodes).
+      <strong>Practical Use Case:</strong>
+      This "explosion" problem illustrates why model specification matters critically for derivatives pricing. If a model allows $\mathbb{E}[\exp(\int r)] = \infty$, then bond prices, which require computing such expectations, become undefined or infinite—making the model useless. When quants propose new rate models, they must verify that bond prices remain finite by checking moment conditions. The CIR square-root specification $\sigma\sqrt{r}$ was specifically designed to avoid this: it keeps $\mathbb{E}[\exp(\int r)] < \infty$ while maintaining positive rates. Similarly, in equity models, practitioners avoid volatilities growing faster than $\sqrt{S}$ to prevent option pricing explosions. Model validation teams test for explosion by simulating extreme paths and computing tail expectations. When reviewing academic models or proprietary extensions, risk committees always check: "Does this model produce finite bond prices?" This discipline prevents implementation of mathematically interesting but economically meaningless models.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

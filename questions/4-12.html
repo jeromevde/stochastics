@@ -17,11 +17,19 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Hull-White model (also called the extended Vasicek model) has the form $dr = [\theta(t) - \kappa r] dt + \sigma dB$, where $\theta(t)$ is now time-dependent. This is a one-factor model with time-varying mean reversion level.
+      The Hull-White model (also called the extended Vasicek model) has the form:
+      $$dr(t) = [\theta(t) - \kappa r(t)] \, dt + \sigma \, dB(t)$$
+      where $\theta(t)$ is now time-dependent. This is a one-factor model with time-varying mean reversion level.
       <strong>Reasoning:</strong>
-      The key motivation is market consistency: the Vasicek model with constant $\theta$ typically does not match the current observed yield curve $P^{\text{market}}(0,T)$. By making $\theta(t)$ time-dependent, Hull-White can calibrate $\theta(t)$ so that the model-implied bond prices $P^{\text{model}}(0,T)$ exactly match market prices at time 0. This ensures the model is arbitrage-free relative to the current market and is particularly useful for pricing interest rate derivatives consistently.
+      The key motivation is market consistency. The Vasicek model with constant $\theta$ typically does not match the current observed yield curve $P^{\text{market}}(0,T)$ at time $t=0$. By making $\theta(t)$ time-dependent, Hull-White can calibrate $\theta(t)$ so that the model-implied bond prices $P^{\text{model}}(0,T)$ exactly match market prices:
+      $$P^{\text{model}}(0,T) = P^{\text{market}}(0,T) \text{ for all } T$$
+      Specifically, $\theta(t)$ is chosen via the formula:
+      $$\theta(t) = \frac{\partial f^{\text{market}}(0,t)}{\partial t} + \kappa f^{\text{market}}(0,t) + \frac{\sigma^2}{2\kappa}(1-e^{-2\kappa t})$$
+      where $f^{\text{market}}(0,t)$ is the instantaneous forward rate curve. This ensures the model is arbitrage-free relative to the current market and is particularly useful for pricing interest rate derivatives consistently.
       <strong>Answer:</strong>
       The time-dependent $\theta(t)$ allows the model to match the market's current zero-coupon bond prices.
+      <strong>Practical Use Case:</strong>
+      Hull-White is the industry standard for pricing exotic interest rate derivatives that require perfect initial calibration. When trading desks price Bermudan swaptions, callable bonds, or range accruals, they need models that exactly match the current swap curve to avoid arbitrage. Hull-White achieves this by setting $\theta(t)$ to fit observed forward rates, then using $\kappa$ and $\sigma$ for volatility dynamics. For example, pricing a 10-year callable bond starts by calibrating $\theta(t)$ to the Treasury curve, then fitting $\sigma$ to swaption volatilities. The model then consistently prices all cashflows and embedded options. Quants update $\theta(t)$ daily as yield curves shift. Hull-White also extends to two factors ($r$ and a time-dependent shift) for better volatility curve fitting. Major banks' pricing libraries implement Hull-White for most non-vanilla fixed income products.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

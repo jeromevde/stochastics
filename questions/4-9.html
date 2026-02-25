@@ -17,11 +17,15 @@
     </div>
     <div class="q-explanation">
       <strong>Definitions:</strong>
-      The Vasicek model has several desirable properties: tractability (analytical bond pricing formulas), mean reversion (realistic feature), and Gaussian dynamics (easy simulation). However, the Gaussian assumption has an important consequence.
+      The Vasicek model has several desirable properties: tractability (analytical bond pricing formulas via affine structure), mean reversion (captures empirical rate dynamics), and Gaussian dynamics (easy simulation and closed-form solutions). However, the Gaussian assumption has an important consequence for the range of possible interest rates.
       <strong>Reasoning:</strong>
-      Since $r(t)$ follows a normal distribution, it can take any value on the real line, including negative values. This was historically viewed as unrealistic since interest rates were thought to have a zero lower bound. However, in recent years, some central banks have implemented negative interest rates, making this "drawback" less severe in practice. Still, for modeling purposes, alternatives like CIR that guarantee positive rates are sometimes preferred.
+      Since $r(t)$ follows a normal distribution
+      $$r(t) \sim N\left(\text{mean}, \text{variance}\right)$$
+      it can take any value on the real line $(-\infty, +\infty)$, including negative values. For example, if $\theta = 0.03$ and $\sigma = 0.01$, there's always positive probability that $r(t) < 0$. Historically, this was viewed as a major drawback since interest rates were assumed to have a zero lower bound. However, in recent years (2010s-2020s), several central banks (ECB, Bank of Japan, Swiss National Bank) have implemented negative interest rates, making this "drawback" less severe in practice. For modeling purposes, alternatives like CIR (Cox-Ingersoll-Ross) that guarantee $r(t) \geq 0$ are sometimes preferred.
       <strong>Answer:</strong>
       The key drawback is that short rates can become negative.
+      <strong>Practical Use Case:</strong>
+      The possibility of negative rates has shifted from theoretical concern to practical reality. In the 2010s, European bond markets experienced negative yields, validating Vasicek's previously criticized feature. Today, traders use Vasicek or similar Gaussian models when pricing derivatives in negative-rate environments (like EUR or JPY interest rate swaps and swaptions). The model's analytical tractability outweighs the negative rate concern in these markets. However, for USD rates where zero lower bound is more relevant, or for credit spreads which should remain positive, traders prefer CIR or shifted models. Quants also address this by using "shifted" Vasicek where $r^* = r + \alpha$ is modeled, ensuring $r > -\alpha$. Model selection depends on the currency and instrument: Vasicek for EUR/JPY derivatives, CIR for USD when negative rates are unlikely.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
