@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>($\int_0^t$ f(s) ds$)^2$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\int_0^t$ E(f(s)) ds</span></button>
     </div>
-    <div class="q-explanation">The Itô isometry: E[($\int_0^t$ f(s) dB(s)$)^2$] = $\int_0^t$ f(s$)^2$ ds for deterministic f. It converts 'stochastic $L^2$' to ordinary $L^2$.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Itô isometry is a fundamental identity relating the $L^2$ norm of a stochastic integral to an ordinary integral. For an adapted process $f(s)$, it connects the expected square of the integral to the integral of the square.<br><br>
+      <strong>Reasoning:</strong> The isometry states: $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = E\left[\int_0^t f(s)^2 \, ds\right]$. For deterministic $f$, this simplifies to $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = \int_0^t f(s)^2 \, ds$. This is analogous to converting a stochastic $L^2$ norm into a deterministic one, and is essential for proving convergence of stochastic integrals.<br><br>
+      <strong>Answer:</strong> The Itô isometry gives $E\left[\left(\int_0^t f(s) \, dB(s)\right)^2\right] = \int_0^t f(s)^2 \, ds$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

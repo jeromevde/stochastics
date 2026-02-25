@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The forward rates become deterministic</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The volatilities change but drifts stay zero</span></button>
     </div>
-    <div class="q-explanation">Under a common measure, non-martingale forward rates acquire drift corrections $\Sigma_j \rho_k,_j \sigma_j \tau_j$ $F_j$/(1 + $\tau_j\,F_j$). These corrections require time discretization for simulation.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In the LMM, each forward rate $F_k$ is a martingale under its own forward measure $\mathbb{Q}^{T_{k+1}}$. However, for simulation and pricing complex derivatives, we often need all forward rates expressed under a single common measure.<br><br>
+      <strong>Reasoning:</strong> When we change from each rate's natural measure to a common measure (say $\mathbb{Q}^{T_i}$), Girsanov's theorem tells us that drift corrections appear. For forward rate $F_k$ under measure $\mathbb{Q}^{T_i}$, the drift is proportional to $\sum_j \rho_{k,j} \sigma_j \frac{\tau_j F_j}{1 + \tau_j F_j}$, involving correlations, other forward rates, and their volatilities. These drift terms make the system complex and require numerical discretization for Monte Carlo simulation.<br><br>
+      <strong>Answer:</strong> Drift corrections involving correlation and other forward rates appear.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

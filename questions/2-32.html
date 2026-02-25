@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>P(B(t) $\geq$ b$)^2$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>1 − P(B(t) $\geq$ b)</span></button>
     </div>
-    <div class="q-explanation">The reflection principle: P(max_{0$\leqs\leq$t} B(s) $\geq$ b) = 2P(B(t) $\geq$ b) for b $\geq$ 0. This is useful in pricing barrier options.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The reflection principle is a key property of Brownian motion relating the maximum process $M_t = \sup_{0 \leq s \leq t} B(s)$ to the terminal value $B(t)$. It exploits the symmetry of Brownian motion.<br><br>
+      <strong>Reasoning:</strong> If the maximum exceeds $b$, the process must have crossed level $b$ at some first passage time $\tau$. By the strong Markov property and symmetry, the path after $\tau$ is equally likely to go up or down. The event $\{M_t \geq b\}$ includes all paths with $B(t) \geq b$ plus those that crossed $b$ and came back down. By symmetry, this doubles the probability: $P(M_t \geq b) = 2P(B(t) \geq b)$.<br><br>
+      <strong>Answer:</strong> The reflection principle gives $P(\sup_{0 \leq s \leq t} B(s) \geq b) = 2P(B(t) \geq b)$ for $b \geq 0$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

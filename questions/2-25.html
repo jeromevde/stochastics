@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>$\rho$t</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\rho^2$t</span></button>
     </div>
-    <div class="q-explanation">[$B_1$, $B_2$]$_t$ = $\rho$t, often written as d$B_1\,\cdot$d$B_2$ = $\rho$ dt. This follows from the definition of quadratic covariation and the joint normal distribution of increments.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> For two stochastic processes $X$ and $Y$, the quadratic covariation $[X, Y]_t$ is defined as $\lim_{\|\Pi\| \to 0} \sum_i (X(t_i) - X(t_{i-1}))(Y(t_i) - Y(t_{i-1}))$. For Brownian motions $(B_1, B_2)$ with correlation $\rho$, we have $E[B_1(t)B_2(t)] = \rho t$.<br><br>
+      <strong>Reasoning:</strong> The increments $\Delta B_1 = B_1(t_i) - B_1(t_{i-1})$ and $\Delta B_2 = B_2(t_i) - B_2(t_{i-1})$ have covariance $\rho(t_i - t_{i-1})$. When we sum the products and take the limit, we get $[B_1, B_2]_t = \rho t$. This is often written informally as $dB_1 \cdot dB_2 = \rho \, dt$.<br><br>
+      <strong>Answer:</strong> The quadratic covariation is $[B_1, B_2]_t = \rho t$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

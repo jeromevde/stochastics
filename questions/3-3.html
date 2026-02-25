@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Events with probability 0 under one also have probability 0 under the other</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>They have the same variance</span></button>
     </div>
-    <div class="q-explanation">Equivalent measures agree on which events are possible (probability &gt; 0) and impossible (probability = 0), but may assign different positive probabilities.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> Two probability measures $P$ and $Q$ on a measurable space $(\Omega, \mathcal{F})$ are equivalent (written $P \sim Q$) if they have the same null sets: $P(A) = 0 \iff Q(A) = 0$ for all $A \in \mathcal{F}$.<br><br>
+      <strong>Reasoning:</strong> Equivalence means that $P$ and $Q$ agree on which events are possible and which are impossible, though they may assign different positive probabilities to possible events. This is crucial in finance: the risk-neutral measure must be equivalent to the real-world measure so that scenarios considered impossible in the real world remain impossible under risk-neutral pricing, ensuring consistency.<br><br>
+      <strong>Answer:</strong> Two measures are equivalent if events with probability 0 under one also have probability 0 under the other (and vice versa).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The interest rate differential</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\sigma$_X only</span></button>
     </div>
-    <div class="q-explanation">dP_f/d$P_{\\alpha}$|_{$\mathcal{F}_t$} = Y(t) = X(t)B_f(t)/$B_{\\alpha}$(t), the FX rate adjusted by bank account ratios. This is the key to switching between domestic and foreign measures.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In FX modeling, we have domestic and foreign risk-neutral measures $\mathbb{P}_\alpha$ and $\mathbb{P}_f$, corresponding to domestic and foreign bank accounts as numeraires. The FX rate $X(t)$ is the domestic currency price of one unit of foreign currency.<br><br>
+      <strong>Reasoning:</strong> The Radon-Nikodym derivative relating the foreign and domestic measures is $\frac{d\mathbb{P}_f}{d\mathbb{P}_\alpha}\Big|_{\mathcal{F}_t} = Y(t) = \frac{X(t) B_f(t)}{B_\alpha(t)}$, where $B_f$ and $B_\alpha$ are foreign and domestic bank accounts. This ratio represents the value in domestic currency of the foreign numeraire relative to the domestic numeraire. It's the key ingredient for switching between domestic and foreign risk-neutral measures.<br><br>
+      <strong>Answer:</strong> The Radon-Nikodym derivative is $Y(t) = X(t)B_f(t)/B_\alpha(t)$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

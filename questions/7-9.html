@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Its support is all of $\mathbb{R}$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It has a density function</span></button>
     </div>
-    <div class="q-explanation">A distribution is infinitely divisible if for every n, X =ᵈ $Y_1$ + $\cdot\cdot\cdot$ + $Y_n$ where the $Y_i$ are i.i.d. Every Lévy process value X(1) has an infinitely divisible distribution, and conversely.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A probability distribution is infinitely divisible if, for every positive integer $n$, it can be represented as the distribution of the sum of $n$ independent and identically distributed random variables. This is a key property connecting distributions to Lévy processes.<br><br>
+      <strong>Reasoning:</strong> Formally, $X$ has an infinitely divisible distribution if for every $n \geq 1$, there exist i.i.d. random variables $Y_1, \ldots, Y_n$ such that $X \stackrel{d}{=} Y_1 + \cdots + Y_n$. The connection to Lévy processes: if $X(t)$ is a Lévy process, then $X(1)$ has an infinitely divisible distribution (divide $[0,1]$ into $n$ equal parts and use independent increments). Conversely, every infinitely divisible distribution is the law of $X(1)$ for some Lévy process.<br><br>
+      <strong>Answer:</strong> For any $n$, it can be written as the sum of $n$ i.i.d. random variables.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

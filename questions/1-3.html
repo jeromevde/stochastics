@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Because random variables cannot model stock prices</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Because regulators require stochastic processes</span></button>
     </div>
-    <div class="q-explanation">Path-dependent derivatives like lookback options depend on the asset's value at many different future times, requiring a full stochastic process.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A random variable represents a single uncertain outcome at one point in time. A stochastic process is a collection of random variables indexed by time, describing how a quantity evolves over time. Path-dependent derivatives are contracts whose payoff depends on the history of the underlying asset's price, not just its final value.<br><br>
+      <strong>Reasoning:</strong> For European options, we only need the asset price at maturity, so a single random variable suffices. However, lookback options pay based on the maximum or minimum price over the contract's life. This requires knowing the entire path $(S_t)_{t \in [0,T]}$, not just $S_T$. Only a stochastic process can model this evolution.<br><br>
+      <strong>Answer:</strong> Path-dependent derivatives require a stochastic process because their payoffs depend on multiple asset values over time.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

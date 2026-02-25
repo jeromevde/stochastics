@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>It ensures rates are positive</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It has no effect on the smile</span></button>
     </div>
-    <div class="q-explanation">$\rho$ &lt; 0 means that when the stock drops, variance tends to increase — the 'leverage effect'. This produces fatter left tails and a volatility skew.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> In the Heston model, the correlation parameter $\rho$ measures the instantaneous correlation between the Brownian motions driving the stock price and the variance: $dW_S \cdot dW_v = \rho \, dt$.<br><br>
+      <strong>Reasoning:</strong> Setting $\rho < 0$ (negative correlation) captures the "leverage effect": when stock prices fall, volatility tends to increase, and vice versa. This creates asymmetry in the return distribution - negative shocks come with increased uncertainty. The result is a volatility skew where OTM puts (low strikes) have higher implied volatility than OTM calls, matching the observed equity market pattern. Positive $\rho$ would create the opposite effect.<br><br>
+      <strong>Answer:</strong> $\rho < 0$ produces a volatility skew (lower strikes have higher implied vol).
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

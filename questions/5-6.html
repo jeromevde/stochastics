@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>F(t,T$\alpha,T\beta$)</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>LIBOR rate at time t</span></button>
     </div>
-    <div class="q-explanation">The swap rate S_{$\alpha,\beta$}(t) = (P(t,T$\alpha$) − P(t,T$\beta$)) / $\Sigma$_{j=$\alpha$+1}^$\beta$ P(t,$T_j$)$\tau_j$ equates the present values of fixed and floating legs.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The swap rate $S_{\alpha,\beta}(t)$ is the fixed rate in an interest rate swap that makes the swap have zero value at initiation. A swap exchanges fixed payments at rate $S$ for floating LIBOR payments over periods from $T_\alpha$ to $T_\beta$.<br><br>
+      <strong>Reasoning:</strong> The floating leg has present value $P(t,T_\alpha) - P(t,T_\beta)$ (this is a standard result from bond pricing). The fixed leg has present value $S \sum_{j=\alpha+1}^{\beta} \tau_j P(t,T_j)$, where $\tau_j$ are the accrual periods. Setting these equal and solving for $S$ gives: $S_{\alpha,\beta}(t) = \frac{P(t,T_\alpha) - P(t,T_\beta)}{\sum_{j=\alpha+1}^{\beta} \tau_j P(t,T_j)}$.<br><br>
+      <strong>Answer:</strong> $S_{\alpha,\beta}(t) = \frac{P(t,T_\alpha) - P(t,T_\beta)}{\sum_j P(t,T_j)\tau_j}$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>E(X|$\mathcal{H}$) = E(X)</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>E(X|$\mathcal{H}$) is constant</span></button>
     </div>
-    <div class="q-explanation">The defining property of conditional expectation is $\int$_H E(X|$\mathcal{H}$) dP = $\int$_H X dP for every H $\in \mathcal{H}$. This makes it the best $\mathcal{H}$-measurable approximation of X.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The conditional expectation $E(X|\mathcal{H})$ is a random variable that is $\mathcal{H}$-measurable and satisfies a specific integration property. A random variable is $\mathcal{H}$-measurable if it can be determined from the information in $\mathcal{H}$.<br><br>
+      <strong>Reasoning:</strong> The defining property is that for every set $H \in \mathcal{H}$, we have $\int_H E(X|\mathcal{H}) \, dP = \int_H X \, dP$. This says that $E(X|\mathcal{H})$ agrees with $X$ on average over any $\mathcal{H}$-measurable set. It's the best prediction of $X$ using only information from $\mathcal{H}$, minimizing $L^2$ error.<br><br>
+      <strong>Answer:</strong> The characterizing property is $\int_H E(X|\mathcal{H}) \, dP = \int_H X \, dP$ for every $H \in \mathcal{H}$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

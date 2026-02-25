@@ -14,7 +14,11 @@
       <input type="number" step="any" class="q-input">
       <button class="q-submit">Submit</button>
     </div>
-    <div class="q-explanation">The Itô integral of an adapted process is a martingale (starting at 0), so its expectation is 0. Alternatively: E[$\tfrac{1}{2}$(B(t$)^2$−t)] = $\tfrac{1}{2}$(t−t) = 0.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Itô integral $\int_0^t B(s) \, dB(s)$ is a stochastic integral of an adapted process against Brownian motion. A key property of Itô integrals is that they are martingales (when the integrand satisfies integrability conditions).<br><br>
+      <strong>Reasoning:</strong> Since the Itô integral is a martingale starting at 0, its expectation at any time is $E[\int_0^t B(s) \, dB(s)] = 0$. Alternatively, we know from earlier that $\int_0^t B(s) \, dB(s) = \frac{1}{2}(B(t)^2 - t)$, so $E[\int_0^t B(s) \, dB(s)] = \frac{1}{2}(E[B(t)^2] - t) = \frac{1}{2}(t - t) = 0$.<br><br>
+      <strong>Answer:</strong> The expectation is 0.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

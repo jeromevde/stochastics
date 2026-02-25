@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>dS = $\mu\,S^2$ dt + $\sigma$S dB</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>dS = $\mu$S dt + $\sigma$ dB</span></button>
     </div>
-    <div class="q-explanation">GBM: dS = $\mu$S dt + $\sigma$S dB. Both drift and diffusion are proportional to S, which keeps S positive and gives log-normal returns.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> Geometric Brownian Motion (GBM) is a continuous-time stochastic process where the logarithm of the variable follows a Brownian motion with drift. It's the standard model for stock prices in the Black-Scholes framework.<br><br>
+      <strong>Reasoning:</strong> The GBM SDE is $dS = \mu S \, dt + \sigma S \, dB$, where both the drift and diffusion terms are proportional to the current value $S$. This proportionality ensures that: (1) $S$ remains positive if it starts positive, (2) returns are scale-independent, and (3) the log-returns are normally distributed. The percentage changes $dS/S = \mu \, dt + \sigma \, dB$ don't depend on the level of $S$.<br><br>
+      <strong>Answer:</strong> The GBM SDE is $dS = \mu S \, dt + \sigma S \, dB$.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

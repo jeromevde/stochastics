@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Multiplying Brownian motion by a Gamma random variable</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Taking the square of a Gamma process</span></button>
     </div>
-    <div class="q-explanation">VG: X(t) = $\theta\Gamma_\nu$(t) + $\sigmaB(\Gamma_\nu$(t)), where $\Gamma_\nu$ and B are independent. The Gamma process acts as a stochastic clock (time change) for BM with drift.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The Variance Gamma (VG) process is a pure-jump Lévy process constructed by subordinating (time-changing) Brownian motion with drift using an independent Gamma process. It provides a flexible model for asset returns with heavier tails than Gaussian.<br><br>
+      <strong>Reasoning:</strong> The VG process is defined as $X(t) = \theta \Gamma_\nu(t) + \sigma B(\Gamma_\nu(t))$, where $B$ is standard Brownian motion, $\Gamma_\nu$ is an independent Gamma process (the "stochastic clock"), $\theta$ is the drift, and $\sigma$ controls diffusion intensity. The Gamma subordinator $\Gamma_\nu(t)$ represents random time: the process "runs" at different speeds. This construction generates infinite jump activity and can match empirical features like skewness and excess kurtosis.<br><br>
+      <strong>Answer:</strong> Time-changing Brownian motion with drift by an independent Gamma process.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

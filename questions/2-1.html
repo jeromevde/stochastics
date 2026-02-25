@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Closed under countable unions</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Closed under arbitrary (uncountable) unions</span></button>
     </div>
-    <div class="q-explanation">A $\sigma$-algebra must contain $\Omega$ and be closed under complements and countable unions. It need not be closed under uncountable unions.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A $\sigma$-algebra $\mathcal{F}$ on a set $\Omega$ is a collection of subsets that satisfies: (1) $\Omega \in \mathcal{F}$, (2) if $A \in \mathcal{F}$ then $A^c \in \mathcal{F}$ (closed under complements), and (3) if $A_1, A_2, \ldots \in \mathcal{F}$ then $\bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$ (closed under countable unions).<br><br>
+      <strong>Reasoning:</strong> The definition only requires closure under <em>countable</em> unions. While this implies closure under finite unions (as a special case), it does not extend to arbitrary uncountable unions. In fact, most $\sigma$-algebras are not closed under uncountable unions.<br><br>
+      <strong>Answer:</strong> Closure under arbitrary uncountable unions is not required, making option D the exception.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

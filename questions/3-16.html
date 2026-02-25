@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Stock prices always go up</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The risk-neutral probability equals the real-world probability</span></button>
     </div>
-    <div class="q-explanation">Arbitrage-free means no self-financing strategy can guarantee a positive profit with zero initial investment. The 1st FAPT links this to existence of an equivalent martingale measure.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> An arbitrage is a self-financing trading strategy starting with zero capital that yields a non-negative payoff with positive probability of a strictly positive payoff—essentially a "free lunch." A self-financing strategy means no external cash is added or removed after the initial investment.<br><br>
+      <strong>Reasoning:</strong> A model is arbitrage-free if no such strategy exists. The formal definition: there is no self-financing strategy $(\phi_t)$ with zero initial cost such that the terminal value $V_T \geq 0$ almost surely and $P(V_T > 0) > 0$. By the First Fundamental Theorem of Asset Pricing, this is equivalent to the existence of an equivalent martingale measure.<br><br>
+      <strong>Answer:</strong> A model is arbitrage-free if no self-financing strategy yields a certain positive profit from zero initial investment.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

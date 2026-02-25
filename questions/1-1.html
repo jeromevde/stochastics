@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Historical scenarios only</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Deterministic scenarios</span></button>
     </div>
-    <div class="q-explanation">Counterparty credit risk requires real-world scenarios — paths whose probabilities correspond to the observed or expected distribution in the real world.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> Counterparty credit risk (CCR) is the risk that a counterparty in an OTC transaction defaults before the contract matures. Real-world scenarios use actual (physical) probabilities, while risk-neutral scenarios use adjusted probabilities for no-arbitrage pricing.<br><br>
+      <strong>Reasoning:</strong> CCR involves estimating future exposure and potential losses if the counterparty defaults. Since we care about actual default probabilities (not pricing), we need scenarios whose probabilities match real-world expectations. Risk-neutral scenarios are used for derivative pricing, not risk measurement.<br><br>
+      <strong>Answer:</strong> Real-world scenarios are required because CCR deals with actual default risk under physical probabilities.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
