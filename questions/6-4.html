@@ -24,7 +24,7 @@
       The Heston model has 5 parameters to calibrate.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Calibrating Heston to market data requires fitting these 5 parameters $(\kappa, \theta, \xi, \rho, v_0)$ to liquid option prices across strikes and maturities. Quants typically use nonlinear optimization (e.g., Levenberg-Marquardt) to minimize pricing errors between model and market. Because Heston admits semi-analytical solutions via Fourier methods, calibration is fast enough for daily risk management. However, the 5-parameter structure creates trade-offs: the model fits liquid options well but may struggle to simultaneously match short-dated steep skews and long-dated flatter smiles.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

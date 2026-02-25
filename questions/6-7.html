@@ -24,7 +24,7 @@
       The implied volatility of a put with same strike and maturity.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Put-call parity is used daily by options traders and market makers to enforce arbitrage-free pricing and to check data quality. If quoted call and put implied volatilities differ for the same strike and maturity, it signals either a data error or a fleeting arbitrage opportunity (e.g., bid-ask spread crossing). Conversion and reversal strategies exploit any violations: buy the underpriced side, sell the overpriced side, and hedge with stock to lock in risk-free profit. Automated trading systems continuously monitor for such violations across thousands of option contracts.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

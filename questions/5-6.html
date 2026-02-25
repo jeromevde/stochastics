@@ -24,7 +24,7 @@
       $S_{\alpha,\beta}(t) = \frac{P(t,T_\alpha) - P(t,T_\beta)}{\sum_j P(t,T_j)\tau_j}$.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Swap rates are the foundation for interest rate swap trading and benchmarking. Market makers continuously compute $S_{\alpha,\beta}(t)$ from the observed term structure of zero-coupon bond prices $P(t,T_j)$ to quote bid-offer spreads to clients. This formula also enables arbitrage detection: if a trader observes quoted swap rates inconsistent with bond prices, they can execute a cash-and-carry strategy buying/selling the bond portfolio and entering the opposite swap position to lock in risk-free profit.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

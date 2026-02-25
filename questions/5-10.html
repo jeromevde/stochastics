@@ -24,7 +24,7 @@
       Under the $T_2$-forward measure, $F$ follows a geometric Brownian motion (lognormal martingale).
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Market makers quote caplet prices using implied Black volatilities, which are calibrated from market prices by inverting the Black formula. This works because the lognormal assumption under the $T_2$-forward measure makes caplet pricing mathematically identical to equity option pricing under Black-Scholes (with zero drift replacing the risk-free rate). Volatility surfaces for caplets (varying by tenor and strike) are fundamental inputs for calibrating the full LIBOR Market Model used to price more complex structures like callable LIBOR exotics.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

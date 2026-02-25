@@ -24,7 +24,7 @@
       To make the modified call price square-integrable for Fourier transform.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      The Carr-Madan FFT method revolutionized option pricing by enabling simultaneous valuation of thousands of strikes in a single FFT operation. The damping factor $e^{\alpha k}$ is essential for numerical stability: without it, the Fourier integral diverges. Practitioners must choose $\alpha$ carefully (typically $\alpha \in [0.5, 2.5]$ for equity calls) based on the model's moment-generating function to ensure integrability. This technique is now standard in derivatives trading systems for pricing under Levy processes (VG, NIG, Merton) and even stochastic volatility models with semi-analytical characteristic functions, providing speed advantages over Monte Carlo for vanilla and first-generation exotic options.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

@@ -24,7 +24,7 @@
       $\theta + (v(0) - \theta)(1 - e^{-\kappa T})/(\kappa T)$.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Variance swap pricing depends critically on the expected integrated variance over the swap's lifetime. Market makers use this formula to compute fair strikes for variance swaps: the strike should equal the expected average variance $E[\frac{1}{T}\int_0^T v(t)dt]$. For short maturities, current volatility $v(0)$ dominates; for long maturities, the strike converges to $\theta$ (long-run variance). This maturity structure helps traders arbitrage discrepancies between short-term VIX futures and long-term variance swap quotes.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

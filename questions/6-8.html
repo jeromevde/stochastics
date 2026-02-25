@@ -24,7 +24,7 @@
       Short-maturity options (because it lacks jumps).
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Weekly and monthly equity options exhibit steep volatility smiles that pure stochastic volatility models cannot replicate - these require jump-diffusion models. Practitioners therefore use Heston for longer-dated exotics (e.g., autocallables, cliquet options) where stochastic vol dominates, but switch to Bates or SVJJ (stochastic volatility with jumps) for short-dated structures sensitive to gap risk. Understanding this limitation is crucial when choosing models for specific payoffs: mispricing short-dated digitals or barrier options due to inadequate jump modeling can lead to significant P&L losses.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

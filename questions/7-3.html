@@ -24,7 +24,7 @@
       Jump sizes can vary (according to a jump size distribution $J$).
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      The Merton jump-diffusion model for stock prices uses a compound Poisson process to add random-sized jumps to geometric Brownian motion: $dS = \mu S dt + \sigma S dW + S dJ$, where $J$ is a compound Poisson process with normally distributed jump sizes. This captures sudden large moves (earnings announcements, geopolitical shocks) that pure diffusion cannot model. Option pricing under Merton's model requires integrating over all possible jump counts, leading to semi-analytical formulas that sum Black-Scholes terms weighted by Poisson probabilities.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

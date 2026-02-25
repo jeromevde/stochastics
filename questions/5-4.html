@@ -24,7 +24,7 @@
       Under its own forward measure, $dF_k = \sigma_k F_k \, dB_k$ (driftless lognormal).
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      The LIBOR Market Model is the industry standard for pricing exotic interest rate derivatives like Bermudan swaptions, callable range accruals, and structured notes. By modeling each forward rate $F_k$ as driftless lognormal under its own measure, practitioners can calibrate directly to market caplet prices (quoted as Black volatilities $\sigma_k$) without numerical inversion. This lognormal specification ensures rates stay positive and allows for closed-form caplet pricing, making the model both theoretically sound and practically implementable.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

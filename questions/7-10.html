@@ -24,7 +24,7 @@
       Fatter left tails / volatility skew.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Equity derivatives desks calibrate the VG parameter $\theta < 0$ to reproduce the left-skew in volatility surfaces, where out-of-the-money puts trade at significantly higher implied vols than calls. This negative drift captures markets' asymmetric fear of downside moves. When pricing structured products like reverse convertibles or autocallables that have barrier triggers, correctly modeling tail risk via $\theta$ is critical - mispricing the probability of breaching downside barriers leads to substantial losses. Portfolio insurance strategies also rely on accurate skew modeling to price protective puts efficiently.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

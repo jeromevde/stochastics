@@ -24,7 +24,7 @@
       $(a, \sigma, \Pi)$ - drift, diffusion, jump intensity measure.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      The Levy-Khintchine triplet provides a complete specification for calibrating Levy models to market data. Practitioners estimate the drift $a$ from mean returns, diffusion $\sigma$ from continuous price movements, and Levy measure $\Pi$ from the jump structure inferred from option prices. For example, when calibrating a variance gamma model, the triplet parameters map directly to the model's characteristic function, enabling fast Fourier transform (FFT) methods for pricing entire volatility surfaces simultaneously rather than option-by-option.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

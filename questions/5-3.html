@@ -24,7 +24,7 @@
       Under the $T_2$-forward measure, $F(t,T_1,T_2)$ must be a martingale.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Interest rate derivatives desks exploit the martingale property of forward rates under their natural measures to price caplets analytically using Black's formula. This is why market participants quote caplet volatilities rather than modeling complex drift terms - under the $T_2$-forward measure, $F(t,T_1,T_2)$ has zero drift, making pricing tractable. Understanding which measure makes which quantity a martingale is essential for choosing the right numeraire when pricing exotic interest rate derivatives.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

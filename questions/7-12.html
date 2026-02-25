@@ -24,7 +24,7 @@
       $e^{\lambda(e^{i\theta} - 1)}$.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Characteristic functions are the backbone of Fourier-based option pricing methods used across the industry. For any Levy process (including Poisson, VG, NIG), the characteristic function of log-returns is available in closed form, enabling fast pricing via the Carr-Madan FFT algorithm. Market makers use this to compute entire option surfaces (hundreds of strikes simultaneously) in milliseconds rather than seconds, critical for high-frequency trading and real-time risk management. The Poisson characteristic function $e^{\lambda(e^{i\theta}-1)}$ specifically appears when pricing options under jump-diffusion models like Merton's.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>

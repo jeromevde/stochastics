@@ -24,7 +24,7 @@
       A process that can exhibit volatility clustering.
     
       <strong>Practical Use Case:</strong>
-      This concept is essential for modern financial engineering and quantitative trading. Practitioners apply these principles in derivatives pricing, risk management, and portfolio optimization across asset classes including equities, fixed income, commodities, and FX markets. Understanding this material enables quants to build robust pricing models, traders to identify arbitrage opportunities, and risk managers to compute accurate hedging strategies for complex derivative portfolios.
+      Time-changed processes bridge pure jump models (like VG) and stochastic volatility models. By subordinating a Levy process with a stochastic clock driven by volatility (e.g., CIR or Heston variance), practitioners create models with both realistic tails (from jumps) and volatility clustering (from time change dependence). This is used in commodity markets where price dynamics exhibit both sudden spikes and persistent volatility regimes. Understanding when time-changing preserves vs. destroys the Levy property helps quants choose appropriate calibration and simulation techniques for each model class.
     
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
