@@ -22,6 +22,8 @@
       By Girsanov's theorem, when $d\mathbb{Q}/d\mathbb{P}|_{\mathcal{F}_t} = \mathcal{E}(\mu B)_t$, the process $B^Q_t = B^P_t - [\ B^P]_t = B_t - \mu t$ is $\mathbb{Q}$-Brownian motion. The quadratic covariation $[\mu B, B]_t = \mu[B,B]_t = \mu t$. This fundamental result allows us to add or remove drift from Brownian motion by changing measure.
       <strong>Answer:</strong>
       Under $\mathbb{Q}$, the process $B(t) - \mu t$ is $\mathbb{Q}$-Brownian motion.
+      <strong>Practical Use Case:</strong>
+      This specific form of Girsanov's theorem is used to price path-dependent options when the underlying has drift. For example, when pricing Asian options on commodities with storage costs, the forward price has drift under the spot measure. Using this measure change, traders convert the drifting process to driftless Brownian motion under a forward measure, simplifying Monte Carlo simulation. It's also fundamental in interest rate modeling: when pricing caplets and swaptions, traders change from the spot measure (where rates have drift) to the forward measure (where forward rates are martingales), dramatically simplifying calculations and enabling closed-form formulas like Black's formula for caps/floors.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

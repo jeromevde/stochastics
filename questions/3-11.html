@@ -22,6 +22,8 @@
       Under Girsanov's theorem, if $Y^P$ is $\mathbb{P}$-Brownian motion and we change to measure $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P} = \mathcal{E}(X)$, then $Y^Q_t = Y^P_t - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion. Intuitively, the measure change adds/removes drift, and the covariation $[X, Y^P]$ quantifies this drift change. This is the foundation for risk-neutral pricing.
       <strong>Answer:</strong>
       Under $\mathbb{Q}$, the process $Y^Q = Y^P - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion.
+      <strong>Practical Use Case:</strong>
+      Girsanov's theorem is the mathematical foundation for converting between real-world and risk-neutral measures in derivatives pricing. When traders observe real-world stock dynamics $dS = \mu S dt + \sigma S dB^{\mathbb{P}}$ and need risk-neutral dynamics for pricing, they apply Girsanov with $\lambda = (\mu - r)/\sigma$ (market price of risk) to get $dS = rS dt + \sigma S dB^{\mathbb{Q}}$ where $dB^{\mathbb{Q}} = dB^{\mathbb{P}} + \lambda dt$. This measure change is also used for quanto derivatives, stochastic volatility models (Heston), and interest rate models where multiple measure changes are needed. Quants verify Novikov's condition to ensure the Radon-Nikodym derivative is a true martingale, preventing arbitrage.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

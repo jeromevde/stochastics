@@ -19,9 +19,13 @@
       <strong>Definitions:</strong>
       The risk-neutral (equivalent martingale) measure is a probability measure under which all discounted asset prices are martingales. The bank account numeraire $N(t) = e^{rt}$ grows at the risk-free rate $r$.
       <strong>Reasoning:</strong>
-      Under the risk-neutral measure, every tradable asset (including derivatives) has expected return equal to the risk-free rate. This is because the discounted price $V(t)/N(t)$ is a martingale, so $E^\mathbb{Q}[V(t+dt)/N(t+dt) | \mathcal{F}_t] = V(t)/N(t)$, which implies $E^\mathbb{Q}[dV/V] = r \, dt$. This property is what makes the measure "risk-neutral" - all risk premiums are removed.
+      Under the risk-neutral measure, every tradable asset (including derivatives) has expected return equal to the risk-free rate. This is because the discounted price $V(t)/N(t)$ is a martingale, so:
+      $$E^\mathbb{Q}\left[\frac{V(t+dt)}{N(t+dt)} \Big| \mathcal{F}_t\right] = \frac{V(t)}{N(t)}$$
+      which implies $E^\mathbb{Q}[dV/V] = r \, dt$. This property is what makes the measure "risk-neutral" - all risk premiums are removed.
       <strong>Answer:</strong>
       Under the risk-neutral measure, every derivative has expected return equal to the risk-free rate.
+      <strong>Practical Use Case:</strong>
+      This principle is the cornerstone of arbitrage-free pricing and risk management. When traders construct hedging portfolios, the hedge (stock + bonds) must have the same expected return as the derivative (the risk-free rate) under $\mathbb{Q}$ to prevent arbitrage. This is why the Black-Scholes PDE has no $\mu$ (real-world drift) term—under $\mathbb{Q}$, all assets grow at $r$. In practice, this means traders can price options without knowing or estimating the stock's expected return, only needing current price, volatility, and interest rate. For multi-asset derivatives, each asset grows at $r$ under $\mathbb{Q}$, simplifying correlations structures in copula models used for basket options and CDOs.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

@@ -19,9 +19,15 @@
       <strong>Definitions:</strong>
       For a stochastic integral $X_t = \int_0^t \alpha(s) \, dB(s)$, the quadratic variation is $[X]_t = \int_0^t \alpha(s)^2 \, ds$ (by the Itô isometry). The Doléans-Dade exponential is $\mathcal{E}(X)_t = \exp(X_t - \frac{1}{2}[X]_t)$.
       <strong>Reasoning:</strong>
-      Substituting the expressions: $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$. This exponential martingale is central to Girsanov's theorem and appears as the Radon-Nikodym derivative for measure changes. It satisfies the SDE $d\mathcal{E}(X) = \mathcal{E}(X) \alpha \, dB$.
+      Substituting the expressions:
+      $$\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$$
+      This exponential martingale is central to Girsanov's theorem and appears as the Radon-Nikodym derivative for measure changes. It satisfies the stochastic differential equation
+      $$d\mathcal{E}(X)_t = \mathcal{E}(X)_t \alpha(t) \, dB(t)$$
+      which shows $\mathcal{E}(X)$ is a local martingale (and a true martingale under Novikov's condition). The $-\frac{1}{2}[X]_t$ term is the Itô correction ensuring the martingale property—without it, we'd have $\exp(X_t)$ which has positive drift.
       <strong>Answer:</strong>
       $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$.
+      <strong>Practical Use Case:</strong>
+      The Doléans-Dade exponential with time-varying $\alpha(t)$ is essential for pricing path-dependent options and volatility derivatives. When pricing Asian options, if the averaging method or strike adjustment creates time-varying volatility, Monte Carlo simulations use this form to generate price paths with correct martingale properties. In the SABR stochastic volatility model, the volatility process itself involves a stochastic exponential with time-dependent coefficients when extended to term structures. For variance swaps, where the payoff depends on realized variance $\int_0^T \sigma(s)^2 ds$, traders model log-returns using this exponential form. Credit quants use it in intensity-based default models where the survival probability involves exponentials of stochastic integrals with time-varying intensities. The key insight: whenever volatility or hazard rates are time-dependent, the Doléans-Dade form preserves martingale properties needed for arbitrage-free pricing.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
