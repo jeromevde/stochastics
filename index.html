@@ -328,15 +328,15 @@ body {
   transform: rotate(-90deg);
 }
 .study-question-content {
-  transition: max-height .3s ease, opacity .3s ease;
-  overflow: hidden;
+  transition: none;
+  overflow: visible;
 }
 .study-question-card.collapsed .study-question-content {
-  max-height: 0;
-  opacity: 0;
+  max-height: none;
+  opacity: 1;
 }
 .study-question-card:not(.collapsed) .study-question-content {
-  max-height: 5000px;
+  max-height: none;
   opacity: 1;
 }
 .study-question-card iframe {
@@ -534,6 +534,31 @@ body {
 
   // Load all questions
   const studyQuestions = document.getElementById('studyQuestions');
+  const toggleBtn = document.getElementById('toggleAllAnswers');
+  let allExpanded = true;
+  const studyCards = [];
+
+  function sendAnswerVisibility(card, show) {
+    const frame = card.querySelector('iframe');
+    if (frame && frame.contentWindow) {
+      frame.contentWindow.postMessage({ type: 'study-toggle-answers', show }, '*');
+    }
+  }
+
+  function setCardAnswersState(card, show) {
+    card.dataset.answersVisible = show ? 'true' : 'false';
+    card.classList.toggle('collapsed', !show);
+    sendAnswerVisibility(card, show);
+  }
+
+  function refreshToggleButton() {
+    const anyCollapsed = studyCards.some(c => c.dataset.answersVisible === 'false');
+    allExpanded = !anyCollapsed;
+    if (toggleBtn) {
+      toggleBtn.textContent = allExpanded ? 'Collapse All Answers' : 'Expand All Answers';
+    }
+  }
+
   const sortedQuestions = [...chapter.questions].sort((a, b) => {
     const [ac, aq] = a.split('.').map(Number);
     const [bc, bq] = b.split('.').map(Number);
@@ -543,6 +568,7 @@ body {
   sortedQuestions.forEach(qId => {
     const card = document.createElement('div');
     card.className = 'study-question-card';
+    card.dataset.answersVisible = 'true';
 
     // Create header with question number and collapse icon
     const header = document.createElement('div');
@@ -569,41 +595,41 @@ body {
 
     // Listen for resize messages to adjust iframe height
     window.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'resize') {
+      if (e.data && e.data.type === 'resize' && e.source === iframe.contentWindow) {
         // Find the iframe that sent this message
         iframe.style.height = e.data.height + 'px';
       }
     });
 
-    // Add click handler for expand/collapse
+    iframe.addEventListener('load', () => {
+      const showAnswers = card.dataset.answersVisible !== 'false';
+      setCardAnswersState(card, showAnswers);
+    });
+
+    // Add click handler for expand/collapse answers
     header.addEventListener('click', () => {
-      card.classList.toggle('collapsed');
+      const isVisible = card.dataset.answersVisible !== 'false';
+      setCardAnswersState(card, !isVisible);
+      refreshToggleButton();
     });
 
     content.appendChild(iframe);
     card.appendChild(header);
     card.appendChild(content);
     studyQuestions.appendChild(card);
+    studyCards.push(card);
   });
 
   // Add toggle all answers functionality
-  const toggleBtn = document.getElementById('toggleAllAnswers');
-  let allExpanded = true;
-
-  toggleBtn.addEventListener('click', () => {
-    const cards = document.querySelectorAll('.study-question-card');
-    if (allExpanded) {
-      // Collapse all
-      cards.forEach(card => card.classList.add('collapsed'));
-      toggleBtn.textContent = 'Expand All Answers';
-      allExpanded = false;
-    } else {
-      // Expand all
-      cards.forEach(card => card.classList.remove('collapsed'));
-      toggleBtn.textContent = 'Collapse All Answers';
-      allExpanded = true;
-    }
-  });
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const next = !allExpanded;
+      studyCards.forEach(card => setCardAnswersState(card, next));
+      allExpanded = next;
+      toggleBtn.textContent = allExpanded ? 'Collapse All Answers' : 'Expand All Answers';
+    });
+  }
+  refreshToggleButton();
 })();
 
 /* ── Quiz Runner ── */
@@ -635,8 +661,10 @@ body {
   function init() {
     const params = new URLSearchParams(location.search);
     const randomParam  = params.get('random');
+    const studyParam   = params.get('study');
 
     if (!randomParam) {
+      if (studyParam) return;
       landingView.classList.add('active');
       quizView.classList.remove('active');
       resultsView.classList.remove('active');
