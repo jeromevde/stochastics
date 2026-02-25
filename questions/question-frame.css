@@ -135,6 +135,13 @@ html, body {
   margin-top: 0;
 }
 
+body.study-hidden-answers .q-options,
+body.study-hidden-answers .q-numeric,
+body.study-hidden-answers .q-explanation,
+body.study-hidden-answers .q-result-header {
+  display: none !important;
+}
+
 /* Center display math in explanations */
 .q-explanation .katex-display {
   margin: 1rem 0;

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const numAnswer  = qType === 'numeric' ? parseFloat(container.dataset.answer) : null;
   const tolerance  = parseFloat(container.dataset.tolerance || '0.01');
   let answered     = false;
+  let answersVisible = true;
 
   // Check if we're in study mode by checking if parent has study param
   let isStudyMode = false;
@@ -27,6 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(showAnswerInStudyMode, 300);
     });
   }
+
+  // Listen for parent toggles (study mode collapse/expand answers)
+  window.addEventListener('message', (e) => {
+    if (!e.data || typeof e.data !== 'object') return;
+    if (e.data.type === 'study-toggle-answers') {
+      setAnswerVisibility(!!e.data.show);
+    }
+  });
 
   /* ── KaTeX auto-render (fires once script loads) ── */
   function renderMath() {
@@ -198,6 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Report height so parent can resize iframe
+    setAnswerVisibility(answersVisible);
+  }
+
+  function setAnswerVisibility(show) {
+    answersVisible = show;
+    document.body.classList.toggle('study-hidden-answers', !show);
     reportHeight();
   }
 });
