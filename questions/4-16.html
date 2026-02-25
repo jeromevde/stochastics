@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Add jumps to the process</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The CIR++ model extends CIR analogously to how Hull-White extends Vasicek. The model is $r(t) = x(t) + \varphi(t)$, where $x(t)$ follows a CIR process and $\varphi(t)$ is a deterministic shift function.<br><br>
-      <strong>Reasoning:</strong> The pure CIR model typically doesn't match the current market yield curve. By adding a time-dependent shift $\varphi(t) = f^{\text{market}}(0,t) - f^{\text{CIR}}(0,t)$, where $f$ denotes instantaneous forward rates, the model can be calibrated to reproduce observed bond prices $P^{\text{market}}(0,T)$ at time 0. This ensures market consistency while preserving CIR's positive-rate property and mean-reverting dynamics.<br><br>
-      <strong>Answer:</strong> The shift $\varphi(t)$ is chosen to match market bond prices.
+      <strong>Definitions:</strong>
+      The CIR++ model extends CIR analogously to how Hull-White extends Vasicek. The model is $r(t) = x(t) + \varphi(t)$, where $x(t)$ follows a CIR process and $\varphi(t)$ is a deterministic shift function.
+      <strong>Reasoning:</strong>
+      The pure CIR model typically doesn't match the current market yield curve. By adding a time-dependent shift $\varphi(t) = f^{\text{market}}(0,t) - f^{\text{CIR}}(0,t)$, where $f$ denotes instantaneous forward rates, the model can be calibrated to reproduce observed bond prices $P^{\text{market}}(0,T)$ at time 0. This ensures market consistency while preserving CIR's positive-rate property and mean-reverting dynamics.
+      <strong>Answer:</strong>
+      The shift $\varphi(t)$ is chosen to match market bond prices.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

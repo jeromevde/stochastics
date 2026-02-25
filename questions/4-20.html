@@ -15,9 +15,12 @@
       <button class="q-submit">Submit</button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> In the Black-Scholes model with zero volatility ($\sigma = 0$), the stock price becomes deterministic: $S(T) = S_0 e^{rT}$. The call option payoff is $(S(T) - K)^+ = \max(S(T) - K, 0)$, discounted at rate $r$.<br><br>
-      <strong>Reasoning:</strong> With $\sigma = 0$: $S(T) = 100 e^{0.05 \cdot 1} = 100 e^{0.05} \approx 105.127$. The payoff is $\max(105.127 - 90, 0) = 15.127$. Discounting to present value: $C = e^{-0.05} \cdot 15.127 = 0.95123 \cdot 15.127 \approx 14.39$. With zero volatility, the option price is simply the discounted deterministic payoff.<br><br>
-      <strong>Answer:</strong> The call price is approximately 14.39.
+      <strong>Definitions:</strong>
+      In the Black-Scholes model with zero volatility ($\sigma = 0$), the stock price becomes deterministic: $S(T) = S_0 e^{rT}$. The call option payoff is $(S(T) - K)^+ = \max(S(T) - K, 0)$, discounted at rate $r$.
+      <strong>Reasoning:</strong>
+      With $\sigma = 0$: $S(T) = 100 e^{0.05 \cdot 1} = 100 e^{0.05} \approx 105.127$. The payoff is $\max(105.127 - 90, 0) = 15.127$. Discounting to present value: $C = e^{-0.05} \cdot 15.127 = 0.95123 \cdot 15.127 \approx 14.39$. With zero volatility, the option price is simply the discounted deterministic payoff.
+      <strong>Answer:</strong>
+      The call price is approximately 14.39.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

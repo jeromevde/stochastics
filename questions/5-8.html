@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>1</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The swap numeraire (or swap measure numeraire) $C^{\alpha,\beta}(t)$ is the present value of receiving $\tau_j$ dollars at each payment date $T_j$ in the swap. It's used as the numeraire for pricing swaptions.<br><br>
-      <strong>Reasoning:</strong> The swap numeraire is $C^{\alpha,\beta}(t) = \sum_{j=\alpha+1}^{\beta} \tau_j P(t,T_j)$, which represents the fixed-leg annuity factor. This is a portfolio of zero-coupon bonds (each bond scaled by $\tau_j$), making it a tradable asset and thus a valid numeraire. Under the corresponding swap measure, the swap rate becomes a martingale, which simplifies swaption pricing.<br><br>
-      <strong>Answer:</strong> $C^{\alpha,\beta}(t) = \sum_{j=\alpha+1}^{\beta} P(t,T_j)\tau_j$ (the fixed-leg annuity).
+      <strong>Definitions:</strong>
+      The swap numeraire (or swap measure numeraire) $C^{\alpha,\beta}(t)$ is the present value of receiving $\tau_j$ dollars at each payment date $T_j$ in the swap. It's used as the numeraire for pricing swaptions.
+      <strong>Reasoning:</strong>
+      The swap numeraire is $C^{\alpha,\beta}(t) = \sum_{j=\alpha+1}^{\beta} \tau_j P(t,T_j)$, which represents the fixed-leg annuity factor. This is a portfolio of zero-coupon bonds (each bond scaled by $\tau_j$), making it a tradable asset and thus a valid numeraire. Under the corresponding swap measure, the swap rate becomes a martingale, which simplifies swaption pricing.
+      <strong>Answer:</strong>
+      $C^{\alpha,\beta}(t) = \sum_{j=\alpha+1}^{\beta} P(t,T_j)\tau_j$ (the fixed-leg annuity).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

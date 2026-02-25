@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>A random point in each partition interval</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Itô integral $\int_0^t f(s, B(s)) \, dB(s)$ is defined as the limit of Riemann-type sums. The choice of where to evaluate the integrand within each partition interval affects the integral's value and properties.<br><br>
-      <strong>Reasoning:</strong> The Itô integral uses left-endpoint evaluation: $\sum f(t_{i-1}, B(t_{i-1}))(B(t_i) - B(t_{i-1}))$. This ensures the integrand at each step is independent of the subsequent Brownian increment, which is crucial for the integral to be a martingale. Other evaluation points (midpoint, right endpoint) lead to different integrals with different properties.<br><br>
-      <strong>Answer:</strong> The Itô integral evaluates the integrand at the left endpoint of each partition interval.
+      <strong>Definitions:</strong>
+      The Itô integral $\int_0^t f(s, B(s)) \, dB(s)$ is defined as the limit of Riemann-type sums. The choice of where to evaluate the integrand within each partition interval affects the integral's value and properties.
+      <strong>Reasoning:</strong>
+      The Itô integral uses left-endpoint evaluation: $\sum f(t_{i-1}, B(t_{i-1}))(B(t_i) - B(t_{i-1}))$. This ensures the integrand at each step is independent of the subsequent Brownian increment, which is crucial for the integral to be a martingale. Other evaluation points (midpoint, right endpoint) lead to different integrals with different properties.
+      <strong>Answer:</strong>
+      The Itô integral evaluates the integrand at the left endpoint of each partition interval.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

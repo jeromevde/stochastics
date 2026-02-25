@@ -16,9 +16,14 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Gamma distribution</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> A Poisson process $N_\lambda(t)$ is a counting process that models the number of events occurring by time $t$, with arrival rate $\lambda$ (expected number of events per unit time). It has independent, stationary increments.<br><br>
-      <strong>Reasoning:</strong> For a Poisson process, the increment $N_\lambda(t) - N_\lambda(s)$ represents the number of events in $(s, t]$. This follows a Poisson distribution with parameter $\lambda(t-s)$: $P(N_\lambda(t) - N_\lambda(s) = k) = \frac{[\lambda(t-s)]^k e^{-\lambda(t-s)}}{k!}$. The mean and variance both equal $\lambda(t-s)$, and the distribution depends only on the interval length $(t-s)$, not the specific times.<br><br>
-      <strong>Answer:</strong> Poisson distribution with parameter $\lambda t$.
+      <strong>Definitions:</strong>
+      A Poisson process $N_\lambda(t)$ is a counting process that models the number of events occurring by time $t$, with arrival rate $\lambda$ (expected number of events per unit time). It has independent, stationary increments.
+      <strong>Reasoning:</strong>
+      For a Poisson process, the increment $N_\lambda(t) - N_\lambda(s)$ represents the number of events in $(s, t]$. This follows a Poisson distribution with parameter $\lambda(t-s)$:
+      $$P(N_\lambda(t) - N_\lambda(s) = k) = \frac{[\lambda(t-s)]^k e^{-\lambda(t-s)}}{k!}$$
+      The mean and variance both equal $\lambda(t-s)$, and the distribution depends only on the interval length $(t-s)$, not the specific times.
+      <strong>Answer:</strong>
+      Poisson distribution with parameter $\lambda t$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

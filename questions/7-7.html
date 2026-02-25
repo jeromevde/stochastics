@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Mean t and variance $\nu$</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Gamma process $\Gamma_\nu(t)$ is a Lévy process with strictly increasing paths (all jumps are positive). At each time $t$, $\Gamma_\nu(t)$ follows a Gamma distribution. It's used to model cumulative defaults, degradation, or as a subordinator in time-changed models.<br><br>
-      <strong>Reasoning:</strong> For a Gamma process with parameter $\nu$, we have $\Gamma_\nu(t) \sim \text{Gamma}(\text{shape} = t/\nu, \text{scale} = \nu)$, giving $E[\Gamma_\nu(t)] = t$ and $\text{Var}[\Gamma_\nu(t)] = \nu t$. The mean grows linearly with time at rate 1, while the variance grows linearly with rate $\nu$. Larger $\nu$ means more variability. The process has infinite jump activity but finite variation.<br><br>
-      <strong>Answer:</strong> Mean $t$ and variance $\nu t$.
+      <strong>Definitions:</strong>
+      The Gamma process $\Gamma_\nu(t)$ is a Lévy process with strictly increasing paths (all jumps are positive). At each time $t$, $\Gamma_\nu(t)$ follows a Gamma distribution. It's used to model cumulative defaults, degradation, or as a subordinator in time-changed models.
+      <strong>Reasoning:</strong>
+      For a Gamma process with parameter $\nu$, we have $\Gamma_\nu(t) \sim \text{Gamma}(\text{shape} = t/\nu, \text{scale} = \nu)$, giving $E[\Gamma_\nu(t)] = t$ and $\text{Var}[\Gamma_\nu(t)] = \nu t$. The mean grows linearly with time at rate 1, while the variance grows linearly with rate $\nu$. Larger $\nu$ means more variability. The process has infinite jump activity but finite variation.
+      <strong>Answer:</strong>
+      Mean $t$ and variance $\nu t$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

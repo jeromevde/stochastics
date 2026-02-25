@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>It equals e^{$\theta$t}</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> Consider a modified model with volatility proportional to $r$ (not $\sqrt{r}$): $dr = \kappa(\theta - r) dt + \sigma r \, dB$. The bank account value is $B(t) = \exp(\int_0^t r(s) \, ds)$.<br><br>
-      <strong>Reasoning:</strong> With volatility $\sigma r$, rates can grow exponentially without bound along certain paths. The tails of the distribution become so heavy that $E[\exp(\int_0^t r(s) \, ds)] = \infty$ for any $t > 0$. This makes the model economically unrealistic - it assigns infinite value to bonds, and extreme rate paths dominate expectations. This demonstrates why CIR uses $\sqrt{r}$ instead of $r$.<br><br>
-      <strong>Answer:</strong> The expectation is infinite (bank account explodes).
+      <strong>Definitions:</strong>
+      Consider a modified model with volatility proportional to $r$ (not $\sqrt{r}$): $dr = \kappa(\theta - r) dt + \sigma r \, dB$. The bank account value is $B(t) = \exp(\int_0^t r(s) \, ds)$.
+      <strong>Reasoning:</strong>
+      With volatility $\sigma r$, rates can grow exponentially without bound along certain paths. The tails of the distribution become so heavy that $E[\exp(\int_0^t r(s) \, ds)] = \infty$ for any $t > 0$. This makes the model economically unrealistic - it assigns infinite value to bonds, and extreme rate paths dominate expectations. This demonstrates why CIR uses $\sqrt{r}$ instead of $r$.
+      <strong>Answer:</strong>
+      The expectation is infinite (bank account explodes).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

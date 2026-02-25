@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>exp($\int_0^t \alpha$(s$)^2$ dB(s))</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> For a stochastic integral $X_t = \int_0^t \alpha(s) \, dB(s)$, the quadratic variation is $[X]_t = \int_0^t \alpha(s)^2 \, ds$ (by the Itô isometry). The Doléans-Dade exponential is $\mathcal{E}(X)_t = \exp(X_t - \frac{1}{2}[X]_t)$.<br><br>
-      <strong>Reasoning:</strong> Substituting the expressions: $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$. This exponential martingale is central to Girsanov's theorem and appears as the Radon-Nikodym derivative for measure changes. It satisfies the SDE $d\mathcal{E}(X) = \mathcal{E}(X) \alpha \, dB$.<br><br>
-      <strong>Answer:</strong> $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$.
+      <strong>Definitions:</strong>
+      For a stochastic integral $X_t = \int_0^t \alpha(s) \, dB(s)$, the quadratic variation is $[X]_t = \int_0^t \alpha(s)^2 \, ds$ (by the Itô isometry). The Doléans-Dade exponential is $\mathcal{E}(X)_t = \exp(X_t - \frac{1}{2}[X]_t)$.
+      <strong>Reasoning:</strong>
+      Substituting the expressions: $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$. This exponential martingale is central to Girsanov's theorem and appears as the Radon-Nikodym derivative for measure changes. It satisfies the SDE $d\mathcal{E}(X) = \mathcal{E}(X) \alpha \, dB$.
+      <strong>Answer:</strong>
+      $\mathcal{E}(X)_t = \exp\left(\int_0^t \alpha(s) \, dB(s) - \frac{1}{2}\int_0^t \alpha(s)^2 \, ds\right)$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

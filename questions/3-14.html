@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>No drift change</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> A numeraire is a reference asset used to measure relative prices. When changing from numeraire $S$ to numeraire $U$, the probability measure changes, which affects the drift of processes. The change of numeraire formula quantifies this drift adjustment.<br><br>
-      <strong>Reasoning:</strong> When switching numeraires from $S$ to $U$, the drift of a process $X_i$ changes according to: $d\mu_i^U = d\mu_i^S - d\langle \ln X_i, \ln(S/U) \rangle$. This formula comes from Girsanov's theorem applied to the Radon-Nikodym derivative relating the two measures. The quadratic covariation term captures how the log-process co-varies with the log-ratio of numeraires, determining the drift correction needed.<br><br>
-      <strong>Answer:</strong> The drift change involves subtracting $d\langle \ln X_i, \ln(S/U) \rangle$.
+      <strong>Definitions:</strong>
+      A numeraire is a reference asset used to measure relative prices. When changing from numeraire $S$ to numeraire $U$, the probability measure changes, which affects the drift of processes. The change of numeraire formula quantifies this drift adjustment.
+      <strong>Reasoning:</strong>
+      When switching numeraires from $S$ to $U$, the drift of a process $X_i$ changes according to: $d\mu_i^U = d\mu_i^S - d\langle \ln X_i, \ln(S/U) \rangle$. This formula comes from Girsanov's theorem applied to the Radon-Nikodym derivative relating the two measures. The quadratic covariation term captures how the log-process co-varies with the log-ratio of numeraires, determining the drift correction needed.
+      <strong>Answer:</strong>
+      The drift change involves subtracting $d\langle \ln X_i, \ln(S/U) \rangle$.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

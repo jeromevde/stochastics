@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>$\kappa\theta$ &gt; $\sigma$</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Cox-Ingersoll-Ross (CIR) model is $dr = \kappa(\theta - r) dt + \sigma \sqrt{r} \, dB$, where the volatility term $\sigma\sqrt{r}$ is proportional to the square root of the rate. This ensures rates remain non-negative under certain conditions.<br><br>
-      <strong>Reasoning:</strong> The Feller condition $2\kappa\theta > \sigma^2$ ensures that $r(t)$ stays strictly positive. The $\sqrt{r}$ volatility term shrinks as $r \to 0$, which prevents the rate from becoming negative. When the condition is satisfied, the drift toward $\theta$ dominates near zero, bouncing the rate back up before it can cross zero. This is a major improvement over Vasicek.<br><br>
-      <strong>Answer:</strong> Rates remain positive if $2\kappa\theta > \sigma^2$ (the Feller condition).
+      <strong>Definitions:</strong>
+      The Cox-Ingersoll-Ross (CIR) model is $dr = \kappa(\theta - r) dt + \sigma \sqrt{r} \, dB$, where the volatility term $\sigma\sqrt{r}$ is proportional to the square root of the rate. This ensures rates remain non-negative under certain conditions.
+      <strong>Reasoning:</strong>
+      The Feller condition $2\kappa\theta > \sigma^2$ ensures that $r(t)$ stays strictly positive. The $\sqrt{r}$ volatility term shrinks as $r \to 0$, which prevents the rate from becoming negative. When the condition is satisfied, the drift toward $\theta$ dominates near zero, bouncing the rate back up before it can cross zero. This is a major improvement over Vasicek.
+      <strong>Answer:</strong>
+      Rates remain positive if $2\kappa\theta > \sigma^2$ (the Feller condition).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

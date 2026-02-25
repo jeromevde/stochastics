@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Y^P becomes a Poisson process</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> Girsanov's theorem describes how Brownian motion transforms under a change of measure. Given a measure $\mathbb{Q}$ defined via Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P} = \mathcal{E}(X)$, the theorem tells us how processes change their behavior.<br><br>
-      <strong>Reasoning:</strong> Under Girsanov's theorem, if $Y^P$ is $\mathbb{P}$-Brownian motion and we change to measure $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P} = \mathcal{E}(X)$, then $Y^Q_t = Y^P_t - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion. Intuitively, the measure change adds/removes drift, and the covariation $[X, Y^P]$ quantifies this drift change. This is the foundation for risk-neutral pricing.<br><br>
-      <strong>Answer:</strong> Under $\mathbb{Q}$, the process $Y^Q = Y^P - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion.
+      <strong>Definitions:</strong>
+      Girsanov's theorem describes how Brownian motion transforms under a change of measure. Given a measure $\mathbb{Q}$ defined via Radon-Nikodym derivative $d\mathbb{Q}/d\mathbb{P} = \mathcal{E}(X)$, the theorem tells us how processes change their behavior.
+      <strong>Reasoning:</strong>
+      Under Girsanov's theorem, if $Y^P$ is $\mathbb{P}$-Brownian motion and we change to measure $\mathbb{Q}$ with $d\mathbb{Q}/d\mathbb{P} = \mathcal{E}(X)$, then $Y^Q_t = Y^P_t - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion. Intuitively, the measure change adds/removes drift, and the covariation $[X, Y^P]$ quantifies this drift change. This is the foundation for risk-neutral pricing.
+      <strong>Answer:</strong>
+      Under $\mathbb{Q}$, the process $Y^Q = Y^P - [X, Y^P]_t$ is $\mathbb{Q}$-Brownian motion.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

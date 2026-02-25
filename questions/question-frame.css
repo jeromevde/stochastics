@@ -111,14 +111,35 @@ html, body {
 .q-explanation {
   display: none;
   margin-top: 1.25rem;
-  padding: 1rem 1.25rem;
+  padding: 1.5rem 2rem;
   border-radius: var(--radius);
-  font-size: .93rem;
-  line-height: 1.65;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .q-explanation.visible { display: block; }
 .q-explanation.correct { background: var(--correct-bg); border-left: 3px solid var(--correct); }
 .q-explanation.wrong   { background: var(--wrong-bg);   border-left: 3px solid var(--wrong); }
+
+.q-explanation strong {
+  display: block;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+.q-explanation strong:first-child {
+  margin-top: 0;
+}
+
+/* Center display math in explanations */
+.q-explanation .katex-display {
+  margin: 1rem 0;
+  text-align: center;
+}
 
 .q-result-header { font-weight: 700; margin-bottom: .35rem; }
 .q-result-header.correct { color: var(--correct); }
@@ -148,4 +169,8 @@ html, body {
 @media (max-width: 600px) {
   html, body { padding: 1rem; }
   .q-text { font-size: 1rem; }
+  .q-explanation {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
 }

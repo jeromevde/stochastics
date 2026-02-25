@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Uniform(0, 1/$\lambda$)</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The first jump time $\tau$ (or first arrival time) of a Poisson process is the random time at which the first event occurs. Inter-arrival times between successive events are i.i.d. and memoryless.<br><br>
-      <strong>Reasoning:</strong> The first jump occurs after time $t$ if and only if no events occur in $[0,t]$: $P(\tau > t) = P(N_\lambda(t) = 0) = e^{-\lambda t}$. This is the survival function of an exponential distribution with rate $\lambda$. Therefore $\tau \sim \text{Exp}(\lambda)$, with density $f(t) = \lambda e^{-\lambda t}$ for $t \geq 0$ and mean $1/\lambda$. This memoryless property is unique to the exponential distribution.<br><br>
-      <strong>Answer:</strong> Exponential distribution with rate $\lambda$ (Exp($\lambda$)).
+      <strong>Definitions:</strong>
+      The first jump time $\tau$ (or first arrival time) of a Poisson process is the random time at which the first event occurs. Inter-arrival times between successive events are i.i.d. and memoryless.
+      <strong>Reasoning:</strong>
+      The first jump occurs after time $t$ if and only if no events occur in $[0,t]$: $P(\tau > t) = P(N_\lambda(t) = 0) = e^{-\lambda t}$. This is the survival function of an exponential distribution with rate $\lambda$. Therefore $\tau \sim \text{Exp}(\lambda)$, with density $f(t) = \lambda e^{-\lambda t}$ for $t \geq 0$ and mean $1/\lambda$. This memoryless property is unique to the exponential distribution.
+      <strong>Answer:</strong>
+      Exponential distribution with rate $\lambda$ (Exp($\lambda$)).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

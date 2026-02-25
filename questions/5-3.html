@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Constant</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> A forward measure is a risk-neutral measure where a specific zero-coupon bond $P(t,T)$ is used as numeraire (pricing unit). The $T_2$-forward measure $\mathbb{Q}^{T_2}$ uses $P(t,T_2)$ as numeraire.<br><br>
-      <strong>Reasoning:</strong> Under the $T_2$-forward measure, any asset price divided by $P(t,T_2)$ must be a martingale. Consider the forward rate: it can be shown that $P(t,T_2) \cdot F(t,T_1,T_2)$ represents the price of a tradable asset (essentially $P(t,T_1) - P(t,T_2)$ up to scaling). Dividing by the numeraire $P(t,T_2)$ gives $F(t,T_1,T_2)$ itself, which must therefore be a martingale under $\mathbb{Q}^{T_2}$.<br><br>
-      <strong>Answer:</strong> Under the $T_2$-forward measure, $F(t,T_1,T_2)$ must be a martingale.
+      <strong>Definitions:</strong>
+      A forward measure is a risk-neutral measure where a specific zero-coupon bond $P(t,T)$ is used as numeraire (pricing unit). The $T_2$-forward measure $\mathbb{Q}^{T_2}$ uses $P(t,T_2)$ as numeraire.
+      <strong>Reasoning:</strong>
+      Under the $T_2$-forward measure, any asset price divided by $P(t,T_2)$ must be a martingale. Consider the forward rate: it can be shown that $P(t,T_2) \cdot F(t,T_1,T_2)$ represents the price of a tradable asset (essentially $P(t,T_1) - P(t,T_2)$ up to scaling). Dividing by the numeraire $P(t,T_2)$ gives $F(t,T_1,T_2)$ itself, which must therefore be a martingale under $\mathbb{Q}^{T_2}$.
+      <strong>Answer:</strong>
+      Under the $T_2$-forward measure, $F(t,T_1,T_2)$ must be a martingale.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

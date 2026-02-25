@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The Poisson CDF</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Black-Scholes formula prices European call options analytically. The function $N(\cdot)$ appearing in the formula represents the cumulative distribution function (CDF) of the standard normal distribution: $N(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz$.<br><br>
-      <strong>Reasoning:</strong> The formula $C = S_0 N(d_+) - K e^{-rT} N(d_-)$ arises from computing $E^\mathbb{Q}[e^{-rT}(S(T) - K)^+]$. Since $\ln(S(T))$ is normally distributed, the expectation involves integrals over the normal distribution. The $N(d_+)$ and $N(d_-)$ terms represent probabilities of exercise and discounted payoffs, computed using the standard normal CDF.<br><br>
-      <strong>Answer:</strong> $N(\cdot)$ is the standard normal cumulative distribution function (CDF).
+      <strong>Definitions:</strong>
+      The Black-Scholes formula prices European call options analytically. The function $N(\cdot)$ appearing in the formula represents the cumulative distribution function (CDF) of the standard normal distribution: $N(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz$.
+      <strong>Reasoning:</strong>
+      The formula $C = S_0 N(d_+) - K e^{-rT} N(d_-)$ arises from computing $E^\mathbb{Q}[e^{-rT}(S(T) - K)^+]$. Since $\ln(S(T))$ is normally distributed, the expectation involves integrals over the normal distribution. The $N(d_+)$ and $N(d_-)$ terms represent probabilities of exercise and discounted payoffs, computed using the standard normal CDF.
+      <strong>Answer:</strong>
+      $N(\cdot)$ is the standard normal cumulative distribution function (CDF).
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>

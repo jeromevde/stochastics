@@ -16,9 +16,12 @@
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>A Poisson process</span></button>
     </div>
     <div class="q-explanation">
-      <strong>Definitions:</strong> The Heston model is a stochastic volatility model where both the stock price and its instantaneous variance are stochastic. The stock follows $dS = \mu S \, dt + \sqrt{v} S \, dW_S$, where $v = \sigma^2$ is the variance process.<br><br>
-      <strong>Reasoning:</strong> The variance process in Heston follows $dv = \kappa(\theta - v) dt + \xi \sqrt{v} \, dW_v$, which is exactly the Cox-Ingersoll-Ross (CIR) process. The CIR specification ensures: (1) variance remains non-negative under the Feller condition $2\kappa\theta > \xi^2$, (2) variance mean-reverts to long-run level $\theta$, and (3) the "vol-of-vol" $\xi\sqrt{v}$ scales with volatility level, preventing explosions.<br><br>
-      <strong>Answer:</strong> The variance follows a CIR (Cox-Ingersoll-Ross) process.
+      <strong>Definitions:</strong>
+      The Heston model is a stochastic volatility model where both the stock price and its instantaneous variance are stochastic. The stock follows $dS = \mu S \, dt + \sqrt{v} S \, dW_S$, where $v = \sigma^2$ is the variance process.
+      <strong>Reasoning:</strong>
+      The variance process in Heston follows $dv = \kappa(\theta - v) dt + \xi \sqrt{v} \, dW_v$, which is exactly the Cox-Ingersoll-Ross (CIR) process. The CIR specification ensures: (1) variance remains non-negative under the Feller condition $2\kappa\theta > \xi^2$, (2) variance mean-reverts to long-run level $\theta$, and (3) the "vol-of-vol" $\xi\sqrt{v}$ scales with volatility level, preventing explosions.
+      <strong>Answer:</strong>
+      The variance follows a CIR (Cox-Ingersoll-Ross) process.
     </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
