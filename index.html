@@ -363,7 +363,7 @@ body {
 
     <div class="frame-wrap">
       <div id="jumpNav" class="jump-nav hidden"></div>
-      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
   </div>
 
@@ -478,7 +478,7 @@ body {
 
     const iframe = document.createElement('iframe');
     iframe.className = 'question-iframe';
-    iframe.sandbox = 'allow-scripts allow-same-origin';
+    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox';
 
     const filename = qId.replace('.', '-') + '.html';
     const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
