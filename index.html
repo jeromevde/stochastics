@@ -59,7 +59,6 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
-  cursor: pointer;
   transition: border-color .15s, transform .15s;
 }
 .chapter-card:hover { border-color: var(--primary); transform: translateY(-2px); }
@@ -70,6 +69,21 @@ body {
 }
 .chapter-card .bar-fill {
   height: 100%; background: var(--primary); border-radius: 2px; transition: width .3s;
+}
+.chapter-actions {
+  display: flex; gap: .5rem; margin-top: .75rem;
+}
+.chapter-actions .btn {
+  flex: 1; font-size: .82rem; padding: .5rem .75rem;
+}
+.btn-study {
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-study:hover {
+  background: var(--surface);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
@@ -92,37 +106,6 @@ body {
 .jump-btn.current { border-color: var(--primary); background: rgba(108,140,255,.12); color: var(--primary); }
 .jump-btn.answered-correct { border-color: var(--correct); background: var(--correct-bg); color: #1a7a5a; }
 .jump-btn.answered-wrong { border-color: var(--wrong); background: var(--wrong-bg); color: #b84040; }
-
-/* ───── Random Quiz Section ───── */
-.random-quiz-section {
-  margin-top: 2rem; padding: 1.5rem;
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
-}
-.random-quiz-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
-.random-quiz-section > p { color: var(--text-dim); font-size: .9rem; margin-bottom: 1rem; }
-.chapter-checkboxes {
-  display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem;
-}
-.chapter-checkbox-label {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .35rem .7rem;
-  border: 1px solid var(--border); border-radius: var(--radius);
-  cursor: pointer; font-size: .82rem;
-  transition: border-color .15s; user-select: none;
-}
-.chapter-checkbox-label:hover { border-color: var(--primary); }
-.chapter-checkbox-label input[type=checkbox] { accent-color: var(--primary); }
-.random-options {
-  display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;
-  font-size: .9rem; color: var(--text-dim);
-}
-.random-options input[type=number] {
-  width: 70px; padding: .35rem .6rem;
-  border: 1px solid var(--border); border-radius: var(--radius);
-  font-family: inherit; font-size: .9rem; color: var(--text);
-  background: var(--surface2);
-}
-.random-options input[type=number]:focus { outline: none; border-color: var(--primary); }
 
 /* ───── Buttons ───── */
 .btn {
@@ -270,13 +253,77 @@ body {
   padding: .75rem 0;
 }
 
-/* ───── Chapter cards as links ───── */
-a.chapter-card {
-  text-decoration: none;
-  color: inherit;
+/* ───── Study Mode ───── */
+#studyView {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.study-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; padding-bottom: .75rem;
+  border-bottom: 1px solid var(--border);
+}
+.study-header h2 {
+  font-size: 1.5rem; font-weight: 700;
+}
+.study-questions {
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.study-question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.study-question-card iframe {
+  width: 100%;
+  min-height: 400px;
+  border: none;
   display: block;
 }
-  </style>
+
+/* ───── Progress History ───── */
+.progress-history {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.progress-history h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 1rem;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  font-size: .9rem;
+}
+.history-item .score {
+  font-weight: 600;
+  color: var(--primary);
+}
+.history-item .chapter-name {
+  color: var(--text-dim);
+  font-size: .85rem;
+}
+.history-empty {
+  color: var(--text-dim);
+  font-size: .9rem;
+  text-align: center;
+  padding: 1rem;
+}
 </head>
 <body>
   <!-- Landing view -->
@@ -288,16 +335,18 @@ a.chapter-card {
 
     <div class="chapter-grid" id="chapterGrid"></div>
 
-    <div class="random-quiz-section">
-      <h2>🎲 Random Quiz</h2>
-      <p>Select chapters and launch a quiz with questions in random order</p>
-      <div class="chapter-checkboxes" id="randomChapterChecks"></div>
-      <div class="random-options">
-        <label for="randomQuizN">Number of questions:</label>
-        <input type="number" id="randomQuizN" value="10" min="1" max="500">
-      </div>
-      <button class="btn btn-primary btn-lg" id="startRandomBtn">Start Random Quiz</button>
+    <div class="cta-row">
+      <button class="btn btn-primary btn-lg" id="startAllBtn">🎲 Start Quiz - ALL Chapters</button>
     </div>
+  </div>
+
+  <!-- Study view -->
+  <div id="studyView" class="view">
+    <div class="study-header">
+      <h2 id="studyTitle">Study Mode</h2>
+      <a href="?" class="btn btn-ghost">← Back to Chapters</a>
+    </div>
+    <div class="study-questions" id="studyQuestions"></div>
   </div>
 
   <!-- Quiz view -->
@@ -329,6 +378,11 @@ a.chapter-card {
         <button class="btn btn-ghost" id="backToChapters">Back to Chapters</button>
       </div>
     </div>
+
+    <div class="progress-history" id="progressHistory" style="display: none;">
+      <h3>📊 Quiz History</h3>
+      <div class="history-list" id="historyList"></div>
+    </div>
   </div>
 
   <script src="registry.js"></script>
@@ -337,9 +391,8 @@ a.chapter-card {
 (function initLanding() {
   const grid = document.getElementById('chapterGrid');
   chapters.forEach(ch => {
-    const card = document.createElement('a');
+    const card = document.createElement('div');
     card.className = 'chapter-card';
-    card.href = '?chapter=' + ch.id;
 
     const best = (() => {
       try { return JSON.parse(localStorage.getItem('stoch_best_' + ch.id) || '{}'); } catch(_) { return {}; }
@@ -349,32 +402,103 @@ a.chapter-card {
     card.innerHTML =
       '<h3>' + ch.title + '</h3>' +
       '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
-      '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+      '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="chapter-actions">' +
+        '<button class="btn btn-primary start-quiz-btn" data-chapter="' + ch.id + '">Start Quiz</button>' +
+        '<button class="btn btn-study study-btn" data-chapter="' + ch.id + '" title="Study Mode">ℹ️</button>' +
+      '</div>';
     grid.appendChild(card);
   });
 
-  /* ── Random quiz section ── */
-  const checksContainer = document.getElementById('randomChapterChecks');
-  if (checksContainer) {
-    chapters.forEach(ch => {
-      const label = document.createElement('label');
-      label.className = 'chapter-checkbox-label';
-      label.innerHTML = `<input type="checkbox" value="${ch.id}" checked><span>${ch.title}</span>`;
-      checksContainer.appendChild(label);
+  // Add event listeners for start quiz buttons
+  document.querySelectorAll('.start-quiz-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const chapterId = e.target.dataset.chapter;
+      location.href = '?random=' + chapterId + '&n=10';
     });
+  });
+
+  // Add event listeners for study mode buttons
+  document.querySelectorAll('.study-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const chapterId = e.target.dataset.chapter;
+      location.href = '?study=' + chapterId;
+    });
+  });
+
+  // Add event listener for ALL button
+  const startAllBtn = document.getElementById('startAllBtn');
+  if (startAllBtn) {
+    startAllBtn.addEventListener('click', () => {
+      const allChapterIds = chapters.map(ch => ch.id).join(',');
+      location.href = '?random=' + allChapterIds + '&n=10';
+    });
+  }
+})();
+
+/* ── Study Mode ── */
+(function initStudy() {
+  const params = new URLSearchParams(location.search);
+  const studyParam = params.get('study');
+  if (!studyParam) return;
+
+  const studyView = document.getElementById('studyView');
+  const landingView = document.getElementById('landingView');
+  const quizView = document.getElementById('quizView');
+  const resultsView = document.getElementById('resultsView');
+
+  // Show study view
+  landingView.classList.remove('active');
+  studyView.classList.add('active');
+  quizView.classList.remove('active');
+  resultsView.classList.remove('active');
+
+  const chapterId = parseInt(studyParam);
+  const chapter = chapters.find(c => c.id === chapterId);
+  if (!chapter) {
+    location.href = '?';
+    return;
   }
 
-  const startRandomBtn = document.getElementById('startRandomBtn');
-  if (startRandomBtn) {
-    startRandomBtn.addEventListener('click', () => {
-      const checks = checksContainer.querySelectorAll('input[type=checkbox]:checked');
-      const selected = Array.from(checks).map(c => c.value).join(',');
-      if (!selected) { alert('Please select at least one chapter.'); return; }
-      const nInput = document.getElementById('randomQuizN');
-      const n = (nInput && parseInt(nInput.value) > 0) ? nInput.value : '10';
-      location.href = '?random=' + selected + '&n=' + n;
+  // Set title
+  document.getElementById('studyTitle').textContent = chapter.title + ' — Study Mode';
+  document.title = chapter.title + ' — Study Mode';
+
+  // Load all questions
+  const studyQuestions = document.getElementById('studyQuestions');
+  const sortedQuestions = [...chapter.questions].sort((a, b) => {
+    const [ac, aq] = a.split('.').map(Number);
+    const [bc, bq] = b.split('.').map(Number);
+    return ac !== bc ? ac - bc : aq - bq;
+  });
+
+  sortedQuestions.forEach(qId => {
+    const card = document.createElement('div');
+    card.className = 'study-question-card';
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'question-iframe';
+    iframe.sandbox = 'allow-scripts allow-same-origin';
+
+    const filename = qId.replace('.', '-') + '.html';
+    const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
+    if (embedded) {
+      iframe.srcdoc = embedded;
+    } else {
+      iframe.src = 'questions/' + filename;
+    }
+
+    // Listen for resize messages to adjust iframe height
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'resize') {
+        // Find the iframe that sent this message
+        iframe.style.height = e.data.height + 'px';
+      }
     });
-  }
+
+    card.appendChild(iframe);
+    studyQuestions.appendChild(card);
+  });
 })();
 
 /* ── Quiz Runner ── */
@@ -405,10 +529,9 @@ a.chapter-card {
   /* ── Init ── */
   function init() {
     const params = new URLSearchParams(location.search);
-    const chapterParam = params.get('chapter');
     const randomParam  = params.get('random');
 
-    if (!chapterParam && !randomParam) {
+    if (!randomParam) {
       landingView.classList.add('active');
       quizView.classList.remove('active');
       resultsView.classList.remove('active');
@@ -419,28 +542,18 @@ a.chapter-card {
     quizView.classList.add('active');
     resultsView.classList.remove('active');
 
-    if (chapterParam) {
-      // Chapter learning mode — all questions in chronological order
-      isChapterMode = true;
-      const ch = chapters.find(c => c.id === parseInt(chapterParam));
-      if (!ch) { location.href = '?'; return; }
-      questionIds = sortChronologically(ch.questions);
-      chapterId = chapterParam;
-      document.title = `${ch.title} — Stochastic Processes`;
-    } else {
-      // Random quiz mode
-      isChapterMode = false;
-      const chapIds = randomParam === 'all'
-        ? chapters.map(c => c.id)
-        : randomParam.split(',').map(Number);
-      const pool = chapters
-        .filter(c => chapIds.includes(c.id))
-        .flatMap(c => c.questions);
-      const n = Math.max(1, parseInt(params.get('n') || '10'));
-      questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
-      chapterId = 'random';
-      document.title = 'Random Quiz — Stochastic Processes';
-    }
+    // Random quiz mode
+    isChapterMode = false;
+    const chapIds = randomParam === 'all'
+      ? chapters.map(c => c.id)
+      : randomParam.split(',').map(Number);
+    const pool = chapters
+      .filter(c => chapIds.includes(c.id))
+      .flatMap(c => c.questions);
+    const n = Math.max(1, parseInt(params.get('n') || '10'));
+    questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
+    chapterId = chapIds.length === 1 ? chapIds[0] : 'random';
+    document.title = 'Random Quiz — Stochastic Processes';
 
     currentIndex = 0;
     score = 0;
@@ -451,21 +564,7 @@ a.chapter-card {
     backBtn.addEventListener('click', () => location.href = '?');
     window.addEventListener('message', onMessage);
 
-    if (isChapterMode) {
-      buildJumpNav();
-      jumpNav.classList.remove('hidden');
-    }
-
     loadQuestion();
-  }
-
-  /* ── Sort question IDs numerically ── */
-  function sortChronologically(questions) {
-    return [...questions].sort((a, b) => {
-      const [ac, aq] = a.split('.').map(Number);
-      const [bc, bq] = b.split('.').map(Number);
-      return ac !== bc ? ac - bc : aq - bq;
-    });
   }
 
   /* ── Load current question in iframe ── */
@@ -482,7 +581,6 @@ a.chapter-card {
       iframe.src = 'questions/' + filename;
     }
     updateProgress();
-    if (isChapterMode) updateJumpNav();
   }
 
   /* ── Listen for postMessage from question iframe ── */
@@ -497,45 +595,16 @@ a.chapter-card {
       scoreTxt.textContent = `Score: ${score}`;
       nextBtn.textContent = currentIndex < questionIds.length - 1 ? 'Next →' : 'See Results';
       nextBtn.classList.remove('hidden');
-
-      if (isChapterMode) updateJumpNav();
     }
 
     if (e.data.type === 'resize') {
       const headerH = quizHeader?.offsetHeight || 0;
-      const jumpH   = jumpNav?.offsetHeight || 0;
       const bodyStyles = getComputedStyle(document.body);
       const paddingV = parseFloat(bodyStyles.paddingTop || '0') + parseFloat(bodyStyles.paddingBottom || '0');
-      const availableHeight = window.innerHeight - headerH - jumpH - paddingV;
+      const availableHeight = window.innerHeight - headerH - paddingV;
       const targetHeight = Math.max(e.data.height, availableHeight);
       iframe.style.height = targetHeight + 'px';
     }
-  }
-
-  /* ── Build jump navigation buttons ── */
-  function buildJumpNav() {
-    jumpNav.innerHTML = '';
-    questionIds.forEach((id, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'jump-btn';
-      btn.textContent = idx + 1;
-      btn.title = 'Question ' + id;
-      btn.addEventListener('click', () => { currentIndex = idx; loadQuestion(); });
-      jumpNav.appendChild(btn);
-    });
-  }
-
-  /* ── Update jump nav button states ── */
-  function updateJumpNav() {
-    const btns = jumpNav.querySelectorAll('.jump-btn');
-    btns.forEach((btn, idx) => {
-      btn.className = 'jump-btn';
-      if (idx === currentIndex) btn.classList.add('current');
-      const id = questionIds[idx];
-      if (answers[id] !== undefined) {
-        btn.classList.add(answers[id] ? 'answered-correct' : 'answered-wrong');
-      }
-    });
   }
 
   /* ── Next question ── */
@@ -566,6 +635,7 @@ a.chapter-card {
     $('resultsScore').textContent = `${score} / ${total}  (${pct}%)`;
 
     saveBest(chapterId, score, total);
+    saveQuizHistory(chapterId, score, total);
 
     const bd = $('resultsBreakdown');
     bd.innerHTML = '';
@@ -587,6 +657,9 @@ a.chapter-card {
 
     const wrongCount = Object.keys(answers).filter(id => !answers[id]).length;
     retryBtn.classList.toggle('hidden', wrongCount === 0);
+
+    // Display quiz history
+    displayQuizHistory();
   }
 
   function saveBest(chId, score, total) {
@@ -599,6 +672,84 @@ a.chapter-card {
     } catch (_) {}
   }
 
+  function saveQuizHistory(chId, score, total) {
+    try {
+      const history = JSON.parse(localStorage.getItem('stoch_quiz_history') || '[]');
+      const byChapter = {};
+      Object.keys(answers).forEach(id => {
+        const chNum = id.split('.')[0];
+        if (!byChapter[chNum]) byChapter[chNum] = { correct: 0, total: 0 };
+        byChapter[chNum].total++;
+        if (answers[id]) byChapter[chNum].correct++;
+      });
+
+      const entry = {
+        timestamp: Date.now(),
+        chapterId: chId,
+        score: score,
+        total: total,
+        breakdown: byChapter
+      };
+
+      history.push(entry);
+      // Keep only last 20 entries
+      if (history.length > 20) {
+        history.shift();
+      }
+      localStorage.setItem('stoch_quiz_history', JSON.stringify(history));
+    } catch (_) {}
+  }
+
+  function displayQuizHistory() {
+    try {
+      const history = JSON.parse(localStorage.getItem('stoch_quiz_history') || '[]');
+      const historyContainer = $('progressHistory');
+      const historyList = $('historyList');
+
+      if (history.length === 0) {
+        historyContainer.style.display = 'none';
+        return;
+      }
+
+      historyContainer.style.display = 'block';
+      historyList.innerHTML = '';
+
+      // Show last 10 entries in reverse order (newest first)
+      history.slice(-10).reverse().forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+
+        const date = new Date(entry.timestamp);
+        const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        let chapterNames = '';
+        if (entry.chapterId === 'random') {
+          const chapterIds = Object.keys(entry.breakdown);
+          if (chapterIds.length === 1) {
+            const ch = chapters.find(c => c.id === +chapterIds[0]);
+            chapterNames = ch ? ch.title : 'Chapter ' + chapterIds[0];
+          } else {
+            chapterNames = 'Multiple Chapters';
+          }
+        } else {
+          const ch = chapters.find(c => c.id === +entry.chapterId);
+          chapterNames = ch ? ch.title : 'Chapter ' + entry.chapterId;
+        }
+
+        item.innerHTML = `
+          <div>
+            <div class="score">${entry.score}/${entry.total}</div>
+            <div class="chapter-name">${chapterNames}</div>
+          </div>
+          <div style="font-size: .8rem; color: var(--text-dim);">${dateStr}</div>
+        `;
+        historyList.appendChild(item);
+      });
+    } catch (_) {
+      $('progressHistory').style.display = 'none';
+    }
+  }
+
   /* ── Retry wrong answers ── */
   function retryWrong() {
     const wrongIds = Object.keys(answers).filter(id => !answers[id]);
@@ -607,7 +758,6 @@ a.chapter-card {
     score = 0;
     answers = {};
     isChapterMode = false;
-    jumpNav.classList.add('hidden');
     resultsView.classList.remove('active');
     quizView.classList.add('active');
     loadQuestion();
