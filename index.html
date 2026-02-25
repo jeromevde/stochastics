@@ -74,15 +74,15 @@ body {
 }
 .chapter-info-btn {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 24px;
-  height: 24px;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  font-size: 0.75rem;
+  background: rgba(108, 140, 255, 0.1);
+  border: 1px solid rgba(108, 140, 255, 0.3);
+  color: var(--primary);
+  font-size: 0.625rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@ body {
   background: var(--primary);
   color: white;
   border-color: var(--primary);
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
@@ -131,6 +131,7 @@ body {
 .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
 .btn-ghost:hover { color: var(--text); border-color: var(--text-dim); }
 .btn-lg { font-size: 1rem; padding: .75rem 2rem; }
+.btn-sm { font-size: 0.85rem; padding: .5rem 1rem; }
 
 /* ───── Quiz Header ───── */
 .quiz-header {
@@ -269,6 +270,7 @@ body {
 #studyView {
   max-width: 900px;
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 .study-header {
   display: flex; align-items: center; justify-content: space-between;
@@ -277,6 +279,11 @@ body {
 }
 .study-header h2 {
   font-size: 1.5rem; font-weight: 700;
+}
+.study-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 .study-questions {
   display: flex; flex-direction: column; gap: 1.5rem;
@@ -402,7 +409,10 @@ body {
   <div id="studyView" class="view">
     <div class="study-header">
       <h2 id="studyTitle">Study Mode</h2>
-      <a href="?" class="btn btn-ghost">← Back to Chapters</a>
+      <div class="study-header-right">
+        <button class="btn btn-ghost btn-sm" id="toggleAllAnswers">Collapse All Answers</button>
+        <a href="?" class="btn btn-ghost">← Back to Chapters</a>
+      </div>
     </div>
     <div class="study-questions" id="studyQuestions"></div>
   </div>
@@ -532,7 +542,7 @@ body {
 
   sortedQuestions.forEach(qId => {
     const card = document.createElement('div');
-    card.className = 'study-question-card collapsed';
+    card.className = 'study-question-card';
 
     // Create header with question number and collapse icon
     const header = document.createElement('div');
@@ -574,6 +584,25 @@ body {
     card.appendChild(header);
     card.appendChild(content);
     studyQuestions.appendChild(card);
+  });
+
+  // Add toggle all answers functionality
+  const toggleBtn = document.getElementById('toggleAllAnswers');
+  let allExpanded = true;
+
+  toggleBtn.addEventListener('click', () => {
+    const cards = document.querySelectorAll('.study-question-card');
+    if (allExpanded) {
+      // Collapse all
+      cards.forEach(card => card.classList.add('collapsed'));
+      toggleBtn.textContent = 'Expand All Answers';
+      allExpanded = false;
+    } else {
+      // Expand all
+      cards.forEach(card => card.classList.remove('collapsed'));
+      toggleBtn.textContent = 'Collapse All Answers';
+      allExpanded = true;
+    }
   });
 })();
 
