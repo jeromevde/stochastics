@@ -129,9 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Build issue link dynamically ── */
   const issueBtn = document.querySelector('.q-issue-btn');
-  if (issueBtn && !issueBtn.href) {
-    const qText = document.querySelector('.q-text')?.textContent || '';
-    const title = encodeURIComponent(`Question ${qId}: ${qText}`);
-    issueBtn.href = `https://github.com/jeromevde/stochastics/issues/new?title=${title}`;
+  if (issueBtn) {
+    if (!issueBtn.href) {
+      const qText = document.querySelector('.q-text')?.textContent || '';
+      const title = encodeURIComponent(`Question ${qId}: ${qText}`);
+      issueBtn.href = `https://github.com/jeromevde/stochastics/issues/new?title=${title}`;
+    }
+    issueBtn.addEventListener('click', e => {
+      e.preventDefault();
+      window.open(issueBtn.href, 'github-issue', 'width=800,height=600,resizable=yes');
+    });
   }
 });
