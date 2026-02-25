@@ -40,6 +40,7 @@ body {
 /* ───── Views ───── */
 .view { display: none; max-width: 800px; margin: 0 auto; }
 .view.active { display: block; }
+#quizView { max-width: none; width: 100%; }
 
 /* ───── Landing ───── */
 .hero { text-align: center; padding: 3rem 0 2rem; }
@@ -323,6 +324,8 @@ a.chapter-card {
   const nextBtn     = $('nextBtn');
   const retryBtn    = $('retryWrong');
   const backBtn     = $('backToChapters');
+  const quizHeader  = quizView.querySelector('.quiz-header');
+  const quizFooter  = quizView.querySelector('.quiz-footer');
 
   /* ── Init ── */
   function init() {
@@ -416,7 +419,13 @@ a.chapter-card {
     }
 
     if (e.data.type === 'resize') {
-      iframe.style.height = e.data.height + 'px';
+      const headerH = quizHeader?.offsetHeight || 0;
+      const footerH = quizFooter?.offsetHeight || 0;
+      const bodyStyles = getComputedStyle(document.body);
+      const paddingV = parseFloat(bodyStyles.paddingTop || '0') + parseFloat(bodyStyles.paddingBottom || '0');
+      const availableHeight = window.innerHeight - headerH - footerH - paddingV;
+      const targetHeight = Math.max(e.data.height, availableHeight);
+      iframe.style.height = targetHeight + 'px';
     }
   }
 
