@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>P(A) &gt; 0 for all A $\in \mathcal{F}$</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>P is finitely additive only</span></button>
     </div>
-    <div class="q-explanation">A probability measure is a measure with P($\Omega$) = 1. It must be $\sigma$-additive (countably additive) on disjoint sets.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> A probability measure $P$ on $(\Omega, \mathcal{F})$ is a function $P: \mathcal{F} \to [0,1]$ satisfying: (1) $P(\Omega) = 1$ (normalization), (2) $P(\emptyset) = 0$, and (3) $\sigma$-additivity: for disjoint sets $A_1, A_2, \ldots \in \mathcal{F}$, we have $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$.<br><br>
+      <strong>Reasoning:</strong> Option B correctly states both normalization ($P(\Omega) = 1$) and $\sigma$-additivity (countable additivity). Option A is wrong ($P(\Omega) = 1$, not 0). Option C is wrong (events can have zero probability). Option D is insufficient ($\sigma$-additivity is stronger than finite additivity).<br><br>
+      <strong>Answer:</strong> A probability measure must satisfy $P(\Omega) = 1$ and be $\sigma$-additive on disjoint sets.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

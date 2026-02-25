@@ -15,7 +15,11 @@
       <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>The risk-free spot rate</span></button>
       <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>The stock's dividend yield</span></button>
     </div>
-    <div class="q-explanation">In the risk-neutral world, stock prices are expected to grow at the risk-free rate. This ensures the discounted stock price is a martingale.</div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong> The risk-neutral world (or risk-neutral measure $\mathbb{Q}$) is a probability measure under which all assets, when discounted at the risk-free rate, become martingales. A martingale is a process whose expected future value equals its current value.<br><br>
+      <strong>Reasoning:</strong> Under $\mathbb{Q}$, the discounted stock price $e^{-rt}S_t$ must be a martingale. This means $\mathbb{E}^{\mathbb{Q}}[e^{-rt}S_t] = S_0$, which implies $\mathbb{E}^{\mathbb{Q}}[S_t] = S_0 e^{rt}$. Therefore, the expected growth rate of $S_t$ is exactly the risk-free rate $r$, not the actual historical return.<br><br>
+      <strong>Answer:</strong> In the risk-neutral world, stock prices grow at the risk-free rate to ensure no-arbitrage.
+    </div>
     <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
