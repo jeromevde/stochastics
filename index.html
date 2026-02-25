@@ -60,6 +60,8 @@ body {
   border-radius: var(--radius-lg);
   padding: 1.25rem;
   transition: border-color .15s, transform .15s;
+  cursor: pointer;
+  position: relative;
 }
 .chapter-card:hover { border-color: var(--primary); transform: translateY(-2px); }
 .chapter-card h3 { font-size: .95rem; font-weight: 600; }
@@ -70,20 +72,30 @@ body {
 .chapter-card .bar-fill {
   height: 100%; background: var(--primary); border-radius: 2px; transition: width .3s;
 }
-.chapter-actions {
-  display: flex; gap: .5rem; margin-top: .75rem;
-}
-.chapter-actions .btn {
-  flex: 1; font-size: .82rem; padding: .5rem .75rem;
-}
-.btn-study {
-  background: var(--surface2); color: var(--text);
+.chapter-info-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface2);
   border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .15s;
+  z-index: 10;
 }
-.btn-study:hover {
-  background: var(--surface);
+.chapter-info-btn:hover {
+  background: var(--primary);
+  color: white;
   border-color: var(--primary);
-  color: var(--primary);
+  transform: scale(1.1);
 }
 
 .cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
@@ -267,13 +279,55 @@ body {
   font-size: 1.5rem; font-weight: 700;
 }
 .study-questions {
-  display: flex; flex-direction: column; gap: 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
 }
 .study-question-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.5rem;
+  overflow: hidden;
+}
+.study-question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s;
+}
+.study-question-header:hover {
+  background: rgba(108, 140, 255, 0.08);
+}
+.study-question-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(108,140,255,.12);
+  padding: .25rem .65rem;
+  border-radius: 6px;
+}
+.study-collapse-icon {
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: transform .2s;
+}
+.study-question-card.collapsed .study-collapse-icon {
+  transform: rotate(-90deg);
+}
+.study-question-content {
+  transition: max-height .3s ease, opacity .3s ease;
+  overflow: hidden;
+}
+.study-question-card.collapsed .study-question-content {
+  max-height: 0;
+  opacity: 0;
+}
+.study-question-card:not(.collapsed) .study-question-content {
+  max-height: 5000px;
+  opacity: 1;
 }
 .study-question-card iframe {
   width: 100%;
@@ -401,27 +455,27 @@ body {
     const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
 
     card.innerHTML =
+      '<div class="chapter-info-btn" data-chapter="' + ch.id + '" title="Study Mode">i</div>' +
       '<h3>' + ch.title + '</h3>' +
       '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
-      '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>' +
-      '<div class="chapter-actions">' +
-        '<button class="btn btn-primary start-quiz-btn" data-chapter="' + ch.id + '">Start Quiz</button>' +
-        '<button class="btn btn-study study-btn" data-chapter="' + ch.id + '" title="Study Mode">ℹ️</button>' +
-      '</div>';
+      '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
     grid.appendChild(card);
   });
 
-  // Add event listeners for start quiz buttons
-  document.querySelectorAll('.start-quiz-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const chapterId = e.target.dataset.chapter;
+  // Add event listeners for chapter cards (click to start quiz)
+  document.querySelectorAll('.chapter-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't trigger if clicking the info button
+      if (e.target.classList.contains('chapter-info-btn')) return;
+      const chapterId = card.querySelector('.chapter-info-btn').dataset.chapter;
       location.href = '?random=' + chapterId + '&n=10';
     });
   });
 
-  // Add event listeners for study mode buttons
-  document.querySelectorAll('.study-btn').forEach(btn => {
+  // Add event listeners for info buttons (study mode)
+  document.querySelectorAll('.chapter-info-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card click
       const chapterId = e.target.dataset.chapter;
       location.href = '?study=' + chapterId;
     });
@@ -477,6 +531,17 @@ body {
     const card = document.createElement('div');
     card.className = 'study-question-card';
 
+    // Create header with question number and collapse icon
+    const header = document.createElement('div');
+    header.className = 'study-question-header';
+    header.innerHTML =
+      '<span class="study-question-number">Question ' + qId + '</span>' +
+      '<span class="study-collapse-icon">▼</span>';
+
+    // Create content wrapper
+    const content = document.createElement('div');
+    content.className = 'study-question-content';
+
     const iframe = document.createElement('iframe');
     iframe.className = 'question-iframe';
     iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox';
@@ -497,7 +562,14 @@ body {
       }
     });
 
-    card.appendChild(iframe);
+    // Add click handler for expand/collapse
+    header.addEventListener('click', () => {
+      card.classList.toggle('collapsed');
+    });
+
+    content.appendChild(iframe);
+    card.appendChild(header);
+    card.appendChild(content);
     studyQuestions.appendChild(card);
   });
 })();
