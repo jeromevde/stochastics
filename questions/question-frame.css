@@ -2,12 +2,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --surface2: #232733;
-  --border: #2e3345;
-  --text: #e2e4ea;
-  --text-dim: #8b8fa3;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface2: #f1f5fb;
+  --border: #e2e8f0;
+  --text: #111827;
+  --text-dim: #6b7280;
   --primary: #6c8cff;
   --correct: #34d399;
   --correct-bg: rgba(52, 211, 153, .12);
