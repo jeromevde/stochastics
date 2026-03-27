@@ -273,75 +273,57 @@ body {
   padding: 2rem 1rem;
 }
 .study-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 1.5rem; padding-bottom: .75rem;
-  border-bottom: 1px solid var(--border);
-}
-.study-header h2 {
-  font-size: 1.5rem; font-weight: 700;
-}
-.study-header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.study-questions {
-  display: flex; flex-direction: column; gap: 1.5rem;
-}
-.study-question-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.study-question-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--border);
+}
+.study-header-left {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.study-header h2 { font-size: 1.5rem; font-weight: 700; }
+.study-header-right { display: flex; align-items: center; gap: 0.75rem; }
+
+.study-questions {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+.study-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.study-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .55rem .8rem;
   background: var(--surface2);
   border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  user-select: none;
-  transition: background .15s, border-color .15s;
-}
-.study-question-card.collapsed .study-question-header {
-  border-bottom: none;
-}
-.study-question-header:hover {
-  background: rgba(108, 140, 255, 0.08);
 }
 .study-question-number {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--primary);
-  background: rgba(108,140,255,.12);
-  padding: .25rem .65rem;
-  border-radius: 6px;
 }
-.study-collapse-icon {
-  font-size: 1rem;
+.study-answer-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
   color: var(--text-dim);
-  transition: transform .2s;
+  border-radius: 8px;
+  font-size: .76rem;
+  padding: .2rem .55rem;
+  cursor: pointer;
 }
-.study-question-card.collapsed .study-collapse-icon {
-  transform: rotate(-90deg);
-}
-.study-question-content {
-  transition: none;
-  overflow: visible;
-}
-.study-question-card.collapsed .study-question-content {
-  max-height: none;
-  opacity: 1;
-}
-.study-question-card:not(.collapsed) .study-question-content {
-  max-height: none;
-  opacity: 1;
-}
-.study-question-card iframe {
+.study-item iframe {
   width: 100%;
-  min-height: 400px;
+  min-height: 360px;
   border: none;
   display: block;
 }
@@ -408,10 +390,12 @@ body {
   <!-- Study view -->
   <div id="studyView" class="view">
     <div class="study-header">
-      <h2 id="studyTitle">Study Mode</h2>
-      <div class="study-header-right">
-        <button class="btn btn-ghost btn-sm" id="toggleAllAnswers">Collapse All Answers</button>
+      <div class="study-header-left">
         <a href="?" class="btn btn-ghost">← Back to Chapters</a>
+        <h2 id="studyTitle">Study Mode</h2>
+      </div>
+      <div class="study-header-right">
+        <button class="btn btn-ghost btn-sm" id="toggleAllAnswers">Hide All Explanations</button>
       </div>
     </div>
     <div class="study-questions" id="studyQuestions"></div>
@@ -547,7 +531,8 @@ body {
 
   function setCardAnswersState(card, show) {
     card.dataset.answersVisible = show ? 'true' : 'false';
-    card.classList.toggle('collapsed', !show);
+    const btn = card.querySelector('.study-answer-toggle');
+    if (btn) btn.textContent = show ? 'Hide explanation' : 'Show explanation';
     sendAnswerVisibility(card, show);
   }
 
@@ -555,7 +540,7 @@ body {
     const anyCollapsed = studyCards.some(c => c.dataset.answersVisible === 'false');
     allExpanded = !anyCollapsed;
     if (toggleBtn) {
-      toggleBtn.textContent = allExpanded ? 'Collapse All Answers' : 'Expand All Answers';
+      toggleBtn.textContent = allExpanded ? 'Hide All Explanations' : 'Show All Explanations';
     }
   }
 
@@ -567,19 +552,14 @@ body {
 
   sortedQuestions.forEach(qId => {
     const card = document.createElement('div');
-    card.className = 'study-question-card';
+    card.className = 'study-item';
     card.dataset.answersVisible = 'true';
 
-    // Create header with question number and collapse icon
-    const header = document.createElement('div');
-    header.className = 'study-question-header';
-    header.innerHTML =
+    const top = document.createElement('div');
+    top.className = 'study-item-top';
+    top.innerHTML =
       '<span class="study-question-number">Question ' + qId + '</span>' +
-      '<span class="study-collapse-icon">▼</span>';
-
-    // Create content wrapper
-    const content = document.createElement('div');
-    content.className = 'study-question-content';
+      '<button class="study-answer-toggle" type="button">Hide explanation</button>';
 
     const iframe = document.createElement('iframe');
     iframe.className = 'question-iframe';
@@ -593,10 +573,8 @@ body {
       iframe.src = 'questions/' + filename;
     }
 
-    // Listen for resize messages to adjust iframe height
     window.addEventListener('message', (e) => {
       if (e.data && e.data.type === 'resize' && e.source === iframe.contentWindow) {
-        // Find the iframe that sent this message
         iframe.style.height = e.data.height + 'px';
       }
     });
@@ -606,16 +584,15 @@ body {
       setCardAnswersState(card, showAnswers);
     });
 
-    // Add click handler for expand/collapse answers
-    header.addEventListener('click', () => {
+    const toggle = top.querySelector('.study-answer-toggle');
+    toggle.addEventListener('click', () => {
       const isVisible = card.dataset.answersVisible !== 'false';
       setCardAnswersState(card, !isVisible);
       refreshToggleButton();
     });
 
-    content.appendChild(iframe);
-    card.appendChild(header);
-    card.appendChild(content);
+    card.appendChild(top);
+    card.appendChild(iframe);
     studyQuestions.appendChild(card);
     studyCards.push(card);
   });
@@ -626,7 +603,7 @@ body {
       const next = !allExpanded;
       studyCards.forEach(card => setCardAnswersState(card, next));
       allExpanded = next;
-      toggleBtn.textContent = allExpanded ? 'Collapse All Answers' : 'Expand All Answers';
+      toggleBtn.textContent = allExpanded ? 'Hide All Explanations' : 'Show All Explanations';
     });
   }
   refreshToggleButton();
