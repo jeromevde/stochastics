@@ -135,8 +135,6 @@ html, body {
   margin-top: 0;
 }
 
-body.study-hidden-answers .q-options,
-body.study-hidden-answers .q-numeric,
 body.study-hidden-answers .q-explanation,
 body.study-hidden-answers .q-result-header {
   display: none !important;
