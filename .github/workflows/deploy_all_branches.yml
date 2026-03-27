@@ -1,0 +1,82 @@
+name: Deploy all branches to GitHub Pages
+
+on:
+  push:
+    branches: ['**']
+  delete:
+    branches: ['**']
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'delete' || github.event.ref_type == 'branch'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build deploy directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          git fetch --all --prune
+
+          copy_site_files() {
+            local ref="$1"
+            local target="$2"
+            mkdir -p "$target"
+
+            if git cat-file -e "$ref:index.html" 2>/dev/null; then
+              git show "$ref:index.html" > "$target/index.html"
+            fi
+            if git cat-file -e "$ref:registry.js" 2>/dev/null; then
+              git show "$ref:registry.js" > "$target/registry.js"
+            fi
+            if git ls-tree -d --name-only "$ref" questions >/dev/null 2>&1; then
+              git archive "$ref" questions | tar -x -C "$target"
+            fi
+          }
+
+          # main branch -> root /
+          if git show-ref --verify --quiet refs/remotes/origin/main; then
+            copy_site_files "origin/main" "_site"
+          fi
+
+          # all other branches -> /<branch>/
+          while IFS= read -r ref; do
+            branch="${ref#origin/}"
+            case "$branch" in
+              main|HEAD|gh-pages) continue ;;
+            esac
+            copy_site_files "$ref" "_site/$branch"
+          done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin)
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
