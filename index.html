@@ -603,6 +603,7 @@ function sendQuestionContextToFrame(frame, qId) {
     });
 
     iframe.addEventListener('load', () => {
+      // initial push + frame-ready handshake fallback
       sendQuestionContextToFrame(iframe, qId);
       const showAnswers = card.dataset.answersVisible !== 'false';
       setCardAnswersState(card, showAnswers);
@@ -726,6 +727,14 @@ function sendQuestionContextToFrame(frame, qId) {
   /* ── Listen for postMessage from question iframe ── */
   function onMessage(e) {
     if (!e.data || typeof e.data !== 'object') return;
+
+    if (e.data.type === 'question-frame-ready') {
+      const id = questionIds[currentIndex];
+      if (id && e.source === iframe.contentWindow) {
+        sendQuestionContextToFrame(iframe, id);
+      }
+      return;
+    }
 
     if (e.data.type === 'answered') {
       const { id, correct } = e.data;

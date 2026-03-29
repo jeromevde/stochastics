@@ -60,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Handshake: request context from parent when this frame is ready
+  try {
+    window.parent.postMessage({ type: 'question-frame-ready', id: qId }, '*');
+  } catch (_) {}
+
   /* ── KaTeX auto-render (fires once script loads) ── */
   function renderMath() {
     if (!window.renderMathInElement) return false;
