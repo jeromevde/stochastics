@@ -50,6 +50,9 @@ jobs:
             if git cat-file -e "$ref:registry.js" 2>/dev/null; then
               git show "$ref:registry.js" > "$target/registry.js"
             fi
+            if git cat-file -e "$ref:question-topics.js" 2>/dev/null; then
+              git show "$ref:question-topics.js" > "$target/question-topics.js"
+            fi
             if git ls-tree -d --name-only "$ref" questions >/dev/null 2>&1; then
               git archive "$ref" questions | tar -x -C "$target"
             fi
