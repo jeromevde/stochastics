@@ -129,7 +129,13 @@ body {
   transition: all .12s;
 }
 .jump-btn:hover { border-color: var(--primary); color: var(--primary); }
-.jump-btn.current { border-color: var(--primary); background: rgba(108,140,255,.12); color: var(--primary); }
+.jump-btn.current {
+  border-color: var(--primary);
+  background: rgba(108,140,255,.12);
+  color: var(--primary);
+  font-size: .98rem;
+  font-weight: 700;
+}
 .jump-btn.answered-correct { border-color: var(--correct); background: var(--correct-bg); color: #1a7a5a; }
 .jump-btn.answered-wrong { border-color: var(--wrong); background: var(--wrong-bg); color: #b84040; }
 
