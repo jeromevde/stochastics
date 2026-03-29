@@ -438,7 +438,13 @@ body {
   </div>
 
   <script src="registry.js"></script>
+  <script src="question-topics.js"></script>
   <script>
+function getQuestionTopic(qId) {
+  if (window.questionTopics && window.questionTopics[qId]) return window.questionTopics[qId];
+  return 'Core Concept';
+}
+
 /* ── Landing Page ── */
 (function initLanding() {
   const grid = document.getElementById('chapterGrid');
@@ -557,8 +563,9 @@ body {
 
     const top = document.createElement('div');
     top.className = 'study-item-top';
+    const topic = getQuestionTopic(qId);
     top.innerHTML =
-      '<span class="study-question-number">Question ' + qId + '</span>' +
+      '<span class="study-question-number" title="' + topic + '">Question ' + qId + ' — ' + topic + '</span>' +
       '<button class="study-answer-toggle" type="button">Hide explanation</button>';
 
     const iframe = document.createElement('iframe');
