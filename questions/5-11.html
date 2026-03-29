@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="5.11" data-type="mc" data-answer="1">
+    <div class="q-text">Conceptually, why is the swap rate a weighted average of forward rates under the swap annuity numeraire?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>Because all forwards have identical maturities</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>Because the fixed-leg annuity weights each period by $\tau_j P(t,T_j)$</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>Because caplet volatility is zero under the swap measure</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>Because discount factors cancel completely</span></button>
+    </div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong>
+      The swap annuity is $A(t)=\sum_j \tau_j P(t,T_j)$, the PV of unit fixed-leg cashflows.
+      <strong>Reasoning:</strong>
+      Writing floating and fixed legs on the same discounting basis naturally introduces weights proportional to each fixed payment PV contribution, i.e. $\tau_j P(t,T_j)$.
+      <strong>Answer:</strong>
+      The swap rate is annuity-weighted because each period contributes according to $\tau_j P(t,T_j)$.
+      <strong>Practical Use Case:</strong>
+      This weighting is central for mapping quoted swaption volatilities into model inputs in LMM/annuity-measure frameworks.
+    </div>
+    <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="question-frame.js"></script>
+</body>
+</html>

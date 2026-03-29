@@ -82,3 +82,8 @@ Applied rule: each chapter now follows sequential question numbering (`X.1, X.2,
 - No chapter now uses lexicographic ordering artifacts (e.g. 2.10 before 2.2).
 - Overview/study modes follow `registry.js` order directly.
 - Random quiz remains randomized by design.
+## Gap-filling additions in this PR
+- 3.19: EMM Before Pricing (bridge from fundamental theorem to risk-neutral expectation)
+- 4.21: GBM vs Mean-Reverting Rates (bridge across model families)
+- 5.11: Swap Rate as Weighted Forwards (bridge before swaption/LMM intuition)
+
