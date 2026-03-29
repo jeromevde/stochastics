@@ -391,6 +391,42 @@ body {
   text-align: center;
   padding: 1rem;
 }
+
+.chapter-picker-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.chapter-picker-backdrop.open { display: flex; }
+.chapter-picker {
+  width: min(560px, 92vw);
+  max-height: 80vh;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+.chapter-picker h3 { margin-bottom: .75rem; }
+.chapter-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .45rem;
+  margin-bottom: .9rem;
+}
+.chapter-picker-row {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .4rem .45rem;
+  background: var(--surface2);
+  border-radius: 8px;
+}
+.chapter-picker-actions { display:flex; gap:.5rem; justify-content:flex-end; }
 </style>
 </head>
 <body>
@@ -404,7 +440,18 @@ body {
     <div class="chapter-grid" id="chapterGrid"></div>
 
     <div class="cta-row">
-      <button class="btn btn-primary btn-lg" id="startAllBtn">🎲 Start Quiz - ALL Chapters</button>
+      <button class="btn btn-primary btn-lg" id="startAllBtn">🎲 Start Random Quiz</button>
+    </div>
+  </div>
+
+  <div id="chapterPickerBackdrop" class="chapter-picker-backdrop">
+    <div class="chapter-picker">
+      <h3>Select chapters for random quiz</h3>
+      <div id="chapterPickerGrid" class="chapter-picker-grid"></div>
+      <div class="chapter-picker-actions">
+        <button class="btn btn-ghost btn-sm" id="chapterPickerCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="chapterPickerStart">Start Random</button>
+      </div>
     </div>
   </div>
 
@@ -508,20 +555,43 @@ function sendQuestionContextToFrame(frame, qId) {
     grid.appendChild(card);
   });
 
-  // Add event listeners for chapter cards (click to start quiz)
+  // Chapter click = overview mode (all questions, ordered)
   document.querySelectorAll('.chapter-card').forEach(card => {
     card.addEventListener('click', () => {
       const chapterId = card.dataset.chapter;
-      location.href = '?random=' + chapterId + '&n=10';
+      location.href = '?chapter=' + chapterId;
     });
   });
 
-  // Add event listener for ALL button
+  // Random quiz chapter picker
+  const backdrop = document.getElementById('chapterPickerBackdrop');
+  const pickerGrid = document.getElementById('chapterPickerGrid');
+  const cancelBtn = document.getElementById('chapterPickerCancel');
+  const startBtn = document.getElementById('chapterPickerStart');
+  chapters.forEach(ch => {
+    const row = document.createElement('label');
+    row.className = 'chapter-picker-row';
+    row.innerHTML = '<input type="checkbox" value="' + ch.id + '" checked> <span>' + ch.title + '</span>';
+    pickerGrid.appendChild(row);
+  });
+
   const startAllBtn = document.getElementById('startAllBtn');
   if (startAllBtn) {
-    startAllBtn.addEventListener('click', () => {
-      const allChapterIds = chapters.map(ch => ch.id).join(',');
-      location.href = '?random=' + allChapterIds + '&n=10';
+    startAllBtn.addEventListener('click', () => backdrop.classList.add('open'));
+  }
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', () => backdrop.classList.remove('open'));
+  }
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.classList.remove('open');
+    });
+  }
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      const selected = Array.from(pickerGrid.querySelectorAll('input:checked')).map(i => i.value);
+      if (!selected.length) return;
+      location.href = '?random=' + selected.join(',') + '&n=10';
     });
   }
 })();
@@ -707,9 +777,10 @@ function sendQuestionContextToFrame(frame, qId) {
   function init() {
     const params = new URLSearchParams(location.search);
     const randomParam  = params.get('random');
+    const chapterParam = params.get('chapter');
     const studyParam   = params.get('study');
 
-    if (!randomParam) {
+    if (!randomParam && !chapterParam) {
       if (studyParam) return;
       landingView.classList.add('active');
       quizView.classList.remove('active');
@@ -721,18 +792,37 @@ function sendQuestionContextToFrame(frame, qId) {
     quizView.classList.add('active');
     resultsView.classList.remove('active');
 
-    // Random quiz mode
-    isChapterMode = false;
-    const chapIds = randomParam === 'all'
-      ? chapters.map(c => c.id)
-      : randomParam.split(',').map(Number);
-    const pool = chapters
-      .filter(c => chapIds.includes(c.id))
-      .flatMap(c => c.questions);
-    const n = Math.max(1, parseInt(params.get('n') || '10'));
-    questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
-    chapterId = chapIds.length === 1 ? chapIds[0] : 'random';
-    document.title = 'Random Quiz — Stochastic Processes';
+    if (chapterParam) {
+      // Overview mode: full chapter, ordered
+      isChapterMode = true;
+      const cid = parseInt(chapterParam, 10);
+      const chapter = chapters.find(c => c.id === cid);
+      if (!chapter) {
+        location.href = '?';
+        return;
+      }
+      questionIds = [...chapter.questions].sort((a, b) => {
+        const [ac, aq] = a.split('.').map(Number);
+        const [bc, bq] = b.split('.').map(Number);
+        return ac !== bc ? ac - bc : aq - bq;
+      });
+      chapterId = cid;
+      document.title = chapter.title + ' — Overview';
+    } else {
+      // Random quiz mode
+      isChapterMode = false;
+      const chapIds = randomParam === 'all'
+        ? chapters.map(c => c.id)
+        : randomParam.split(',').map(Number);
+      const pool = chapters
+        .filter(c => chapIds.includes(c.id))
+        .flatMap(c => c.questions);
+      const nRaw = params.get('n') || '10';
+      const n = nRaw === 'all' ? pool.length : Math.max(1, parseInt(nRaw, 10));
+      questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
+      chapterId = chapIds.length === 1 ? chapIds[0] : 'random';
+      document.title = 'Random Quiz — Stochastic Processes';
+    }
 
     currentIndex = 0;
     score = 0;
