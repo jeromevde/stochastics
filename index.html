@@ -256,6 +256,9 @@ body {
 .results-actions { margin-top: 1.5rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
 
 /* ───── Responsive ───── */
+.random-mode .quiz-layout { grid-template-columns: 1fr; }
+.random-mode .jump-nav { display: none; }
+
 @media (max-width: 900px) {
   .quiz-layout { grid-template-columns: 1fr; }
   .jump-nav {
@@ -487,7 +490,7 @@ body {
       </div>
       <span class="progress-text" id="progressText">1 / 10</span>
       <span class="score-text" id="scoreText">Score: 0</span>
-      <label style="display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--text-dim);">
+      <label id="showAnswersLabel" style="display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--text-dim);">
         <input id="showAnswersToggle" type="checkbox" checked>
         Show answers
       </label>
@@ -754,6 +757,7 @@ function sendQuestionContextToFrame(frame, qId) {
   const nextBtn     = $('nextBtn');
   const prevBtn     = $('prevBtn');
   const showAnswersToggle = $('showAnswersToggle');
+  const showAnswersLabel = $('showAnswersLabel');
   const jumpNav     = $('jumpNav');
   const retryBtn    = $('retryWrong');
   const backBtn     = $('backToChapters');
@@ -805,6 +809,11 @@ function sendQuestionContextToFrame(frame, qId) {
     if (chapterParam) {
       // Overview mode: full chapter, ordered
       isChapterMode = true;
+      showAnswersMode = true;
+      showAnswersToggle.checked = true;
+      showAnswersLabel.style.display = '';
+      quizView.classList.remove('random-mode');
+
       const cid = parseInt(chapterParam, 10);
       const chapter = chapters.find(c => c.id === cid);
       if (!chapter) {
@@ -821,6 +830,11 @@ function sendQuestionContextToFrame(frame, qId) {
     } else {
       // Random quiz mode
       isChapterMode = false;
+      showAnswersMode = false;
+      showAnswersToggle.checked = false;
+      showAnswersLabel.style.display = 'none';
+      quizView.classList.add('random-mode');
+
       const chapIds = randomParam === 'all'
         ? chapters.map(c => c.id)
         : randomParam.split(',').map(Number);
