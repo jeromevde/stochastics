@@ -101,17 +101,27 @@ body {
 .cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
 
 /* ───── Jump Navigation ───── */
+.quiz-layout {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: .85rem;
+}
+
 .jump-nav {
-  display: flex; flex-wrap: wrap; gap: .35rem;
-  padding: .5rem 0 .25rem; max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+  padding-right: .25rem;
 }
 .jump-btn {
-  min-width: 30px; height: 30px; padding: 0 .35rem;
+  width: 100%; min-height: 30px; padding: .25rem .45rem;
   font-size: .75rem; font-weight: 600;
   border: 1px solid var(--border); border-radius: 6px;
   background: var(--surface2); color: var(--text-dim);
   cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
+  text-align: left;
   transition: all .12s;
 }
 .jump-btn:hover { border-color: var(--primary); color: var(--primary); }
@@ -236,6 +246,16 @@ body {
 .results-actions { margin-top: 1.5rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
 
 /* ───── Responsive ───── */
+@media (max-width: 900px) {
+  .quiz-layout { grid-template-columns: 1fr; }
+  .jump-nav {
+    max-height: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  }
+  .jump-btn { text-align: center; }
+}
+
 @media (max-width: 600px) {
   body { padding: 1rem; }
   .hero h1 { font-size: 1.5rem; }
@@ -410,12 +430,19 @@ body {
       </div>
       <span class="progress-text" id="progressText">1 / 10</span>
       <span class="score-text" id="scoreText">Score: 0</span>
-      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
+      <label style="display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--text-dim);">
+        <input id="showAnswersToggle" type="checkbox" checked>
+        Show answers
+      </label>
+      <button class="btn btn-ghost btn-sm" id="prevBtn">←</button>
+      <button class="btn btn-primary btn-sm" id="nextBtn">→</button>
     </div>
 
-    <div class="frame-wrap">
-      <div id="jumpNav" class="jump-nav hidden"></div>
-      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <div class="quiz-layout">
+      <div id="jumpNav" class="jump-nav"></div>
+      <div class="frame-wrap">
+        <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+      </div>
     </div>
   </div>
 
@@ -472,8 +499,8 @@ function sendQuestionContextToFrame(frame, qId) {
     })();
     const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
 
+    card.dataset.chapter = ch.id;
     card.innerHTML =
-      '<div class="chapter-info-btn" data-chapter="' + ch.id + '" title="Study Mode">i</div>' +
       '<h3>' + ch.title + '</h3>' +
       '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
       '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
@@ -482,20 +509,9 @@ function sendQuestionContextToFrame(frame, qId) {
 
   // Add event listeners for chapter cards (click to start quiz)
   document.querySelectorAll('.chapter-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't trigger if clicking the info button
-      if (e.target.classList.contains('chapter-info-btn')) return;
-      const chapterId = card.querySelector('.chapter-info-btn').dataset.chapter;
+    card.addEventListener('click', () => {
+      const chapterId = card.dataset.chapter;
       location.href = '?random=' + chapterId + '&n=10';
-    });
-  });
-
-  // Add event listeners for info buttons (study mode)
-  document.querySelectorAll('.chapter-info-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent card click
-      const chapterId = e.target.dataset.chapter;
-      location.href = '?study=' + chapterId;
     });
   });
 
@@ -643,6 +659,7 @@ function sendQuestionContextToFrame(frame, qId) {
   let answers = {};   // { [questionId]: boolean }
   let chapterId = null;
   let isChapterMode = false;
+  let showAnswersMode = true;
 
   /* ── DOM ── */
   const $ = id => document.getElementById(id);
@@ -654,6 +671,8 @@ function sendQuestionContextToFrame(frame, qId) {
   const progressTxt = $('progressText');
   const scoreTxt    = $('scoreText');
   const nextBtn     = $('nextBtn');
+  const prevBtn     = $('prevBtn');
+  const showAnswersToggle = $('showAnswersToggle');
   const jumpNav     = $('jumpNav');
   const retryBtn    = $('retryWrong');
   const backBtn     = $('backToChapters');
@@ -663,6 +682,9 @@ function sendQuestionContextToFrame(frame, qId) {
     const id = questionIds[currentIndex];
     if (!id) return;
     sendQuestionContextToFrame(iframe, id);
+    if (showAnswersMode) {
+      iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+    }
   });
 
   /* ── Init ── */
@@ -700,17 +722,26 @@ function sendQuestionContextToFrame(frame, qId) {
     score = 0;
     answers = {};
 
-    nextBtn.addEventListener('click', nextQuestion);
+    nextBtn.addEventListener('click', () => moveQuestion(1));
+    prevBtn.addEventListener('click', () => moveQuestion(-1));
+    showAnswersToggle.addEventListener('change', () => {
+      showAnswersMode = !!showAnswersToggle.checked;
+      if (showAnswersMode) {
+        iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+      } else {
+        iframe.contentWindow?.postMessage({ type: 'study-toggle-answers', show: false }, '*');
+      }
+    });
     retryBtn.addEventListener('click', retryWrong);
     backBtn.addEventListener('click', () => location.href = '?');
     window.addEventListener('message', onMessage);
 
+    buildJumpNav();
     loadQuestion();
   }
 
   /* ── Load current question in iframe ── */
   function loadQuestion() {
-    nextBtn.classList.add('hidden');
     const id = questionIds[currentIndex];
     const filename = id.replace('.', '-') + '.html';
     const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
@@ -722,6 +753,7 @@ function sendQuestionContextToFrame(frame, qId) {
       iframe.src = 'questions/' + filename;
     }
     updateProgress();
+    updateJumpNav();
   }
 
   /* ── Listen for postMessage from question iframe ── */
@@ -732,6 +764,9 @@ function sendQuestionContextToFrame(frame, qId) {
       const id = questionIds[currentIndex];
       if (id && e.source === iframe.contentWindow) {
         sendQuestionContextToFrame(iframe, id);
+        if (showAnswersMode) {
+          iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+        }
       }
       return;
     }
@@ -740,10 +775,8 @@ function sendQuestionContextToFrame(frame, qId) {
       const { id, correct } = e.data;
       answers[id] = correct;
       score = Object.values(answers).filter(Boolean).length;
-
       scoreTxt.textContent = `Score: ${score}`;
-      nextBtn.textContent = currentIndex < questionIds.length - 1 ? 'Next →' : 'See Results';
-      nextBtn.classList.remove('hidden');
+      updateJumpNav();
     }
 
     if (e.data.type === 'resize') {
@@ -756,14 +789,40 @@ function sendQuestionContextToFrame(frame, qId) {
     }
   }
 
-  /* ── Next question ── */
-  function nextQuestion() {
-    currentIndex++;
-    if (currentIndex >= questionIds.length) {
+  function moveQuestion(delta) {
+    const next = currentIndex + delta;
+    if (next < 0) return;
+    if (next >= questionIds.length) {
       showResults();
-    } else {
-      loadQuestion();
+      return;
     }
+    currentIndex = next;
+    loadQuestion();
+  }
+
+  function buildJumpNav() {
+    jumpNav.innerHTML = '';
+    questionIds.forEach((id, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'jump-btn';
+      btn.dataset.id = id;
+      btn.textContent = id + ' — ' + getQuestionTopic(id);
+      btn.addEventListener('click', () => {
+        currentIndex = idx;
+        loadQuestion();
+      });
+      jumpNav.appendChild(btn);
+    });
+  }
+
+  function updateJumpNav() {
+    const currentId = questionIds[currentIndex];
+    jumpNav.querySelectorAll('.jump-btn').forEach(btn => {
+      btn.classList.remove('current', 'answered-correct', 'answered-wrong');
+      if (btn.dataset.id === currentId) btn.classList.add('current');
+      if (answers[btn.dataset.id] === true) btn.classList.add('answered-correct');
+      if (answers[btn.dataset.id] === false) btn.classList.add('answered-wrong');
+    });
   }
 
   /* ── Progress bar ── */
@@ -772,6 +831,8 @@ function sendQuestionContextToFrame(frame, qId) {
     progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
     progressTxt.textContent = `${currentIndex + 1} / ${total}`;
     scoreTxt.textContent = `Score: ${score}`;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.textContent = currentIndex === total - 1 ? 'Finish' : '→';
   }
 
   /* ── Results ── */
@@ -909,6 +970,7 @@ function sendQuestionContextToFrame(frame, qId) {
     isChapterMode = false;
     resultsView.classList.remove('active');
     quizView.classList.add('active');
+    buildJumpNav();
     loadQuestion();
   }
 

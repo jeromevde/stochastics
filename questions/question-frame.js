@@ -57,6 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         renderQuestionTitle();
         reportHeight();
       }
+      return;
+    }
+    if (e.data.type === 'study-force-mode') {
+      if (!answered) {
+        showAnswerInStudyMode();
+      } else {
+        setAnswerVisibility(true);
+      }
     }
   });
 
