@@ -664,13 +664,9 @@ function sendQuestionContextToFrame(frame, qId) {
     }
   }
 
-  const sortedQuestions = [...chapter.questions].sort((a, b) => {
-    const [ac, aq] = a.split('.').map(Number);
-    const [bc, bq] = b.split('.').map(Number);
-    return ac !== bc ? ac - bc : aq - bq;
-  });
+  const orderedQuestions = [...chapter.questions];
 
-  sortedQuestions.forEach(qId => {
+  orderedQuestions.forEach(qId => {
     const card = document.createElement('div');
     card.className = 'study-item';
     card.dataset.answersVisible = 'true';
@@ -820,11 +816,7 @@ function sendQuestionContextToFrame(frame, qId) {
         location.href = '?';
         return;
       }
-      questionIds = [...chapter.questions].sort((a, b) => {
-        const [ac, aq] = a.split('.').map(Number);
-        const [bc, bq] = b.split('.').map(Number);
-        return ac !== bc ? ac - bc : aq - bq;
-      });
+      questionIds = [...chapter.questions];
       chapterId = cid;
       document.title = chapter.title + ' — Overview';
     } else {
