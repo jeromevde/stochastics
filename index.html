@@ -448,7 +448,7 @@ function getQuestionTopic(qId) {
     const normalized = key.replace(/^0+/, '');
     if (window.questionTopics[normalized]) return window.questionTopics[normalized];
   }
-  return 'Core Concept';
+  return '';
 }
 
 function sendQuestionContextToFrame(frame, qId) {
@@ -579,8 +579,9 @@ function sendQuestionContextToFrame(frame, qId) {
     const top = document.createElement('div');
     top.className = 'study-item-top';
     const topic = getQuestionTopic(qId);
+    const titleText = topic ? ('Question ' + qId + ' — ' + topic) : ('Question ' + qId);
     top.innerHTML =
-      '<span class="study-question-number" title="' + topic + '">Question ' + qId + ' — ' + topic + '</span>' +
+      '<span class="study-question-number" title="' + (topic || 'Question ' + qId) + '">' + titleText + '</span>' +
       '<button class="study-answer-toggle" type="button">Hide explanation</button>';
 
     const iframe = document.createElement('iframe');
