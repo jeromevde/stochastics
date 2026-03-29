@@ -445,6 +445,15 @@ function getQuestionTopic(qId) {
   return 'Core Concept';
 }
 
+function sendQuestionContextToFrame(frame, qId) {
+  if (!frame || !frame.contentWindow) return;
+  frame.contentWindow.postMessage({
+    type: 'question-context',
+    id: qId,
+    topic: getQuestionTopic(qId)
+  }, '*');
+}
+
 /* ── Landing Page ── */
 (function initLanding() {
   const grid = document.getElementById('chapterGrid');
@@ -587,6 +596,7 @@ function getQuestionTopic(qId) {
     });
 
     iframe.addEventListener('load', () => {
+      sendQuestionContextToFrame(iframe, qId);
       const showAnswers = card.dataset.answersVisible !== 'false';
       setCardAnswersState(card, showAnswers);
     });
@@ -640,6 +650,12 @@ function getQuestionTopic(qId) {
   const retryBtn    = $('retryWrong');
   const backBtn     = $('backToChapters');
   const quizHeader  = quizView.querySelector('.quiz-header');
+
+  iframe.addEventListener('load', () => {
+    const id = questionIds[currentIndex];
+    if (!id) return;
+    sendQuestionContextToFrame(iframe, id);
+  });
 
   /* ── Init ── */
   function init() {
