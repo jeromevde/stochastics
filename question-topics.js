@@ -1,4 +1,4 @@
-const questionTopics = {
+window.questionTopics = {
   "1.1": "Counterparty Credit Risk Scenarios",
   "1.2": "Fundamental Pricing Theorem",
   "1.3": "Need for Stochastic Processes",
