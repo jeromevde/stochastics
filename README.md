@@ -16,15 +16,6 @@ Interactive quiz website to test your understanding of stochastic processes in f
 | 6 | Heston's Model | 8 |
 | 7 | Lévy Processes | 14 |
 
-## Features
-
-- Multiple choice and numeric answer questions
-- Instant feedback with detailed explanations
-- Score tracking per chapter (saved in browser)
-- Retry wrong answers
-- KaTeX math rendering
-- Dark theme, mobile-friendly
-
 ## Deploy
 
 The site lives in `docs/` and is configured for GitHub Pages (deploy from `docs/` folder on `main` branch).
