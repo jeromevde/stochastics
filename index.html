@@ -101,21 +101,41 @@ body {
 .cta-row { text-align: center; margin-top: 2rem; padding-bottom: 2rem; }
 
 /* ───── Jump Navigation ───── */
+.quiz-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: .85rem;
+}
+
 .jump-nav {
-  display: flex; flex-wrap: wrap; gap: .35rem;
-  padding: .5rem 0 .25rem; max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+  padding-right: .25rem;
+  padding-bottom: .25rem;
 }
 .jump-btn {
-  min-width: 30px; height: 30px; padding: 0 .35rem;
-  font-size: .75rem; font-weight: 600;
+  width: 100%; min-height: 34px; padding: .38rem .6rem;
+  font-size: .88rem; font-weight: 600;
   border: 1px solid var(--border); border-radius: 6px;
   background: var(--surface2); color: var(--text-dim);
   cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
+  text-align: left;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
   transition: all .12s;
 }
 .jump-btn:hover { border-color: var(--primary); color: var(--primary); }
-.jump-btn.current { border-color: var(--primary); background: rgba(108,140,255,.12); color: var(--primary); }
+.jump-btn.current {
+  border-color: var(--primary);
+  background: rgba(108,140,255,.12);
+  color: var(--primary);
+  font-size: .98rem;
+  font-weight: 700;
+}
 .jump-btn.answered-correct { border-color: var(--correct); background: var(--correct-bg); color: #1a7a5a; }
 .jump-btn.answered-wrong { border-color: var(--wrong); background: var(--wrong-bg); color: #b84040; }
 
@@ -236,6 +256,16 @@ body {
 .results-actions { margin-top: 1.5rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
 
 /* ───── Responsive ───── */
+@media (max-width: 900px) {
+  .quiz-layout { grid-template-columns: 1fr; }
+  .jump-nav {
+    max-height: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  }
+  .jump-btn { text-align: center; }
+}
+
 @media (max-width: 600px) {
   body { padding: 1rem; }
   .hero h1 { font-size: 1.5rem; }
@@ -370,6 +400,42 @@ body {
   text-align: center;
   padding: 1rem;
 }
+
+.chapter-picker-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.chapter-picker-backdrop.open { display: flex; }
+.chapter-picker {
+  width: min(560px, 92vw);
+  max-height: 80vh;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+.chapter-picker h3 { margin-bottom: .75rem; }
+.chapter-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .45rem;
+  margin-bottom: .9rem;
+}
+.chapter-picker-row {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .4rem .45rem;
+  background: var(--surface2);
+  border-radius: 8px;
+}
+.chapter-picker-actions { display:flex; gap:.5rem; justify-content:flex-end; }
 </style>
 </head>
 <body>
@@ -383,7 +449,18 @@ body {
     <div class="chapter-grid" id="chapterGrid"></div>
 
     <div class="cta-row">
-      <button class="btn btn-primary btn-lg" id="startAllBtn">🎲 Start Quiz - ALL Chapters</button>
+      <button class="btn btn-primary btn-lg" id="startAllBtn">🎲 Start Random Quiz</button>
+    </div>
+  </div>
+
+  <div id="chapterPickerBackdrop" class="chapter-picker-backdrop">
+    <div class="chapter-picker">
+      <h3>Select chapters for random quiz</h3>
+      <div id="chapterPickerGrid" class="chapter-picker-grid"></div>
+      <div class="chapter-picker-actions">
+        <button class="btn btn-ghost btn-sm" id="chapterPickerCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="chapterPickerStart">Start Random</button>
+      </div>
     </div>
   </div>
 
@@ -410,12 +487,19 @@ body {
       </div>
       <span class="progress-text" id="progressText">1 / 10</span>
       <span class="score-text" id="scoreText">Score: 0</span>
-      <button class="btn btn-primary hidden" id="nextBtn">Next →</button>
+      <label style="display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--text-dim);">
+        <input id="showAnswersToggle" type="checkbox" checked>
+        Show answers
+      </label>
+      <button class="btn btn-ghost btn-sm" id="prevBtn">←</button>
+      <button class="btn btn-primary btn-sm" id="nextBtn">→</button>
     </div>
 
-    <div class="frame-wrap">
-      <div id="jumpNav" class="jump-nav hidden"></div>
-      <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <div class="quiz-layout">
+      <div id="jumpNav" class="jump-nav"></div>
+      <div class="frame-wrap">
+        <iframe id="questionFrame" class="question-iframe" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+      </div>
     </div>
   </div>
 
@@ -438,7 +522,28 @@ body {
   </div>
 
   <script src="registry.js"></script>
+  <script src="question-topics.js"></script>
   <script>
+function getQuestionTopic(qId) {
+  const key = String(qId || '').trim();
+  if (window.questionTopics) {
+    if (window.questionTopics[key]) return window.questionTopics[key];
+    // Defensive fallback for accidental numeric formatting mismatches
+    const normalized = key.replace(/^0+/, '');
+    if (window.questionTopics[normalized]) return window.questionTopics[normalized];
+  }
+  return '';
+}
+
+function sendQuestionContextToFrame(frame, qId) {
+  if (!frame || !frame.contentWindow) return;
+  frame.contentWindow.postMessage({
+    type: 'question-context',
+    id: qId,
+    topic: getQuestionTopic(qId)
+  }, '*');
+}
+
 /* ── Landing Page ── */
 (function initLanding() {
   const grid = document.getElementById('chapterGrid');
@@ -451,39 +556,51 @@ body {
     })();
     const pct = best.best ? Math.round((best.best / best.total) * 100) : 0;
 
+    card.dataset.chapter = ch.id;
     card.innerHTML =
-      '<div class="chapter-info-btn" data-chapter="' + ch.id + '" title="Study Mode">i</div>' +
       '<h3>' + ch.title + '</h3>' +
       '<div class="meta">' + ch.questions.length + ' questions' + (best.best ? ' · Best: ' + best.best + '/' + best.total : '') + '</div>' +
       '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
     grid.appendChild(card);
   });
 
-  // Add event listeners for chapter cards (click to start quiz)
+  // Chapter click = overview mode (all questions, ordered)
   document.querySelectorAll('.chapter-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't trigger if clicking the info button
-      if (e.target.classList.contains('chapter-info-btn')) return;
-      const chapterId = card.querySelector('.chapter-info-btn').dataset.chapter;
-      location.href = '?random=' + chapterId + '&n=10';
+    card.addEventListener('click', () => {
+      const chapterId = card.dataset.chapter;
+      location.href = '?chapter=' + chapterId;
     });
   });
 
-  // Add event listeners for info buttons (study mode)
-  document.querySelectorAll('.chapter-info-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent card click
-      const chapterId = e.target.dataset.chapter;
-      location.href = '?study=' + chapterId;
-    });
+  // Random quiz chapter picker
+  const backdrop = document.getElementById('chapterPickerBackdrop');
+  const pickerGrid = document.getElementById('chapterPickerGrid');
+  const cancelBtn = document.getElementById('chapterPickerCancel');
+  const startBtn = document.getElementById('chapterPickerStart');
+  chapters.forEach(ch => {
+    const row = document.createElement('label');
+    row.className = 'chapter-picker-row';
+    row.innerHTML = '<input type="checkbox" value="' + ch.id + '" checked> <span>' + ch.title + '</span>';
+    pickerGrid.appendChild(row);
   });
 
-  // Add event listener for ALL button
   const startAllBtn = document.getElementById('startAllBtn');
   if (startAllBtn) {
-    startAllBtn.addEventListener('click', () => {
-      const allChapterIds = chapters.map(ch => ch.id).join(',');
-      location.href = '?random=' + allChapterIds + '&n=10';
+    startAllBtn.addEventListener('click', () => backdrop.classList.add('open'));
+  }
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', () => backdrop.classList.remove('open'));
+  }
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.classList.remove('open');
+    });
+  }
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      const selected = Array.from(pickerGrid.querySelectorAll('input:checked')).map(i => i.value);
+      if (!selected.length) return;
+      location.href = '?random=' + selected.join(',') + '&n=10';
     });
   }
 })();
@@ -557,13 +674,15 @@ body {
 
     const top = document.createElement('div');
     top.className = 'study-item-top';
+    const topic = getQuestionTopic(qId);
+    const titleText = topic ? ('Question ' + qId + ' — ' + topic) : ('Question ' + qId);
     top.innerHTML =
-      '<span class="study-question-number">Question ' + qId + '</span>' +
+      '<span class="study-question-number" title="' + (topic || 'Question ' + qId) + '">' + titleText + '</span>' +
       '<button class="study-answer-toggle" type="button">Hide explanation</button>';
 
     const iframe = document.createElement('iframe');
     iframe.className = 'question-iframe';
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox';
+    iframe.sandbox = 'allow-scripts allow-popups allow-popups-to-escape-sandbox';
 
     const filename = qId.replace('.', '-') + '.html';
     const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
@@ -580,6 +699,8 @@ body {
     });
 
     iframe.addEventListener('load', () => {
+      // initial push + frame-ready handshake fallback
+      sendQuestionContextToFrame(iframe, qId);
       const showAnswers = card.dataset.answersVisible !== 'false';
       setCardAnswersState(card, showAnswers);
     });
@@ -618,6 +739,7 @@ body {
   let answers = {};   // { [questionId]: boolean }
   let chapterId = null;
   let isChapterMode = false;
+  let showAnswersMode = true;
 
   /* ── DOM ── */
   const $ = id => document.getElementById(id);
@@ -628,19 +750,47 @@ body {
   const progressBar = $('progressBar');
   const progressTxt = $('progressText');
   const scoreTxt    = $('scoreText');
+  const progressWrap = quizView.querySelector('.progress-wrap');
   const nextBtn     = $('nextBtn');
+  const prevBtn     = $('prevBtn');
+  const showAnswersToggle = $('showAnswersToggle');
   const jumpNav     = $('jumpNav');
   const retryBtn    = $('retryWrong');
   const backBtn     = $('backToChapters');
   const quizHeader  = quizView.querySelector('.quiz-header');
 
+  function onKeyNav(e) {
+    if (!quizView.classList.contains('active')) return;
+    const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+    const isTyping = tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable);
+    if (isTyping) return;
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      moveQuestion(1);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      moveQuestion(-1);
+    }
+  }
+
+  iframe.addEventListener('load', () => {
+    const id = questionIds[currentIndex];
+    if (!id) return;
+    sendQuestionContextToFrame(iframe, id);
+    if (showAnswersMode) {
+      iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+    }
+  });
+
   /* ── Init ── */
   function init() {
     const params = new URLSearchParams(location.search);
     const randomParam  = params.get('random');
+    const chapterParam = params.get('chapter');
     const studyParam   = params.get('study');
 
-    if (!randomParam) {
+    if (!randomParam && !chapterParam) {
       if (studyParam) return;
       landingView.classList.add('active');
       quizView.classList.remove('active');
@@ -652,34 +802,63 @@ body {
     quizView.classList.add('active');
     resultsView.classList.remove('active');
 
-    // Random quiz mode
-    isChapterMode = false;
-    const chapIds = randomParam === 'all'
-      ? chapters.map(c => c.id)
-      : randomParam.split(',').map(Number);
-    const pool = chapters
-      .filter(c => chapIds.includes(c.id))
-      .flatMap(c => c.questions);
-    const n = Math.max(1, parseInt(params.get('n') || '10'));
-    questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
-    chapterId = chapIds.length === 1 ? chapIds[0] : 'random';
-    document.title = 'Random Quiz — Stochastic Processes';
+    if (chapterParam) {
+      // Overview mode: full chapter, ordered
+      isChapterMode = true;
+      const cid = parseInt(chapterParam, 10);
+      const chapter = chapters.find(c => c.id === cid);
+      if (!chapter) {
+        location.href = '?';
+        return;
+      }
+      questionIds = [...chapter.questions].sort((a, b) => {
+        const [ac, aq] = a.split('.').map(Number);
+        const [bc, bq] = b.split('.').map(Number);
+        return ac !== bc ? ac - bc : aq - bq;
+      });
+      chapterId = cid;
+      document.title = chapter.title + ' — Overview';
+    } else {
+      // Random quiz mode
+      isChapterMode = false;
+      const chapIds = randomParam === 'all'
+        ? chapters.map(c => c.id)
+        : randomParam.split(',').map(Number);
+      const pool = chapters
+        .filter(c => chapIds.includes(c.id))
+        .flatMap(c => c.questions);
+      const nRaw = params.get('n') || '10';
+      const n = nRaw === 'all' ? pool.length : Math.max(1, parseInt(nRaw, 10));
+      questionIds = shuffle([...pool]).slice(0, Math.min(n, pool.length));
+      chapterId = chapIds.length === 1 ? chapIds[0] : 'random';
+      document.title = 'Random Quiz — Stochastic Processes';
+    }
 
     currentIndex = 0;
     score = 0;
     answers = {};
 
-    nextBtn.addEventListener('click', nextQuestion);
+    nextBtn.addEventListener('click', () => moveQuestion(1));
+    prevBtn.addEventListener('click', () => moveQuestion(-1));
+    showAnswersToggle.addEventListener('change', () => {
+      showAnswersMode = !!showAnswersToggle.checked;
+      if (showAnswersMode) {
+        iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+      } else {
+        iframe.contentWindow?.postMessage({ type: 'study-toggle-answers', show: false }, '*');
+      }
+    });
     retryBtn.addEventListener('click', retryWrong);
     backBtn.addEventListener('click', () => location.href = '?');
     window.addEventListener('message', onMessage);
+    window.addEventListener('keydown', onKeyNav);
 
+    buildJumpNav();
     loadQuestion();
   }
 
   /* ── Load current question in iframe ── */
   function loadQuestion() {
-    nextBtn.classList.add('hidden');
     const id = questionIds[currentIndex];
     const filename = id.replace('.', '-') + '.html';
     const embedded = window.__embeddedQuestions && window.__embeddedQuestions[filename];
@@ -691,20 +870,30 @@ body {
       iframe.src = 'questions/' + filename;
     }
     updateProgress();
+    updateJumpNav();
   }
 
   /* ── Listen for postMessage from question iframe ── */
   function onMessage(e) {
     if (!e.data || typeof e.data !== 'object') return;
 
+    if (e.data.type === 'question-frame-ready') {
+      const id = questionIds[currentIndex];
+      if (id && e.source === iframe.contentWindow) {
+        sendQuestionContextToFrame(iframe, id);
+        if (showAnswersMode) {
+          iframe.contentWindow?.postMessage({ type: 'study-force-mode' }, '*');
+        }
+      }
+      return;
+    }
+
     if (e.data.type === 'answered') {
       const { id, correct } = e.data;
       answers[id] = correct;
       score = Object.values(answers).filter(Boolean).length;
-
       scoreTxt.textContent = `Score: ${score}`;
-      nextBtn.textContent = currentIndex < questionIds.length - 1 ? 'Next →' : 'See Results';
-      nextBtn.classList.remove('hidden');
+      updateJumpNav();
     }
 
     if (e.data.type === 'resize') {
@@ -717,22 +906,55 @@ body {
     }
   }
 
-  /* ── Next question ── */
-  function nextQuestion() {
-    currentIndex++;
-    if (currentIndex >= questionIds.length) {
+  function moveQuestion(delta) {
+    const next = currentIndex + delta;
+    if (next < 0) return;
+    if (next >= questionIds.length) {
+      if (showAnswersMode || isChapterMode) return;
       showResults();
-    } else {
-      loadQuestion();
+      return;
     }
+    currentIndex = next;
+    loadQuestion();
+  }
+
+  function buildJumpNav() {
+    jumpNav.innerHTML = '';
+    questionIds.forEach((id, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'jump-btn';
+      btn.dataset.id = id;
+      btn.textContent = id + ' — ' + getQuestionTopic(id);
+      btn.addEventListener('click', () => {
+        currentIndex = idx;
+        loadQuestion();
+      });
+      jumpNav.appendChild(btn);
+    });
+  }
+
+  function updateJumpNav() {
+    const currentId = questionIds[currentIndex];
+    jumpNav.querySelectorAll('.jump-btn').forEach(btn => {
+      btn.classList.remove('current', 'answered-correct', 'answered-wrong');
+      if (btn.dataset.id === currentId) btn.classList.add('current');
+      if (answers[btn.dataset.id] === true) btn.classList.add('answered-correct');
+      if (answers[btn.dataset.id] === false) btn.classList.add('answered-wrong');
+    });
   }
 
   /* ── Progress bar ── */
   function updateProgress() {
     const total = questionIds.length;
+    const inStudyLikeMode = showAnswersMode || isChapterMode;
+    progressWrap.style.display = inStudyLikeMode ? 'none' : '';
+    progressTxt.style.display = inStudyLikeMode ? 'none' : '';
+
     progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
     progressTxt.textContent = `${currentIndex + 1} / ${total}`;
     scoreTxt.textContent = `Score: ${score}`;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.textContent = (currentIndex === total - 1 && !showAnswersMode && !isChapterMode) ? 'Finish' : '→';
   }
 
   /* ── Results ── */
@@ -870,6 +1092,7 @@ body {
     isChapterMode = false;
     resultsView.classList.remove('active');
     quizView.classList.add('active');
+    buildJumpNav();
     loadQuestion();
   }
 

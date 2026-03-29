@@ -10,6 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const tolerance  = parseFloat(container.dataset.tolerance || '0.01');
   let answered     = false;
   let answersVisible = true;
+  let currentTopic = '';
+
+  function renderQuestionTitle() {
+    let titleEl = container.querySelector('.q-topic-title');
+    if (!titleEl) {
+      titleEl = document.createElement('div');
+      titleEl.className = 'q-topic-title';
+      const qText = container.querySelector('.q-text');
+      if (qText) container.insertBefore(titleEl, qText);
+    }
+    const suffix = currentTopic ? ` — ${currentTopic}` : '';
+    titleEl.textContent = `Question ${qId}${suffix}`;
+  }
+
+  renderQuestionTitle();
 
   // Check if we're in study mode by checking if parent has study param
   let isStudyMode = false;
@@ -34,8 +49,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!e.data || typeof e.data !== 'object') return;
     if (e.data.type === 'study-toggle-answers') {
       setAnswerVisibility(!!e.data.show);
+      return;
+    }
+    if (e.data.type === 'question-context') {
+      if (typeof e.data.topic === 'string') {
+        currentTopic = e.data.topic;
+        renderQuestionTitle();
+        reportHeight();
+      }
+      return;
+    }
+    if (e.data.type === 'study-force-mode') {
+      if (!answered) {
+        showAnswerInStudyMode();
+      } else {
+        setAnswerVisibility(true);
+      }
     }
   });
+
+  // Handshake: request context from parent when this frame is ready
+  try {
+    window.parent.postMessage({ type: 'question-frame-ready', id: qId }, '*');
+  } catch (_) {}
 
   /* ── KaTeX auto-render (fires once script loads) ── */
   function renderMath() {
