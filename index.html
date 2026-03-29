@@ -744,6 +744,7 @@ function sendQuestionContextToFrame(frame, qId) {
   const progressBar = $('progressBar');
   const progressTxt = $('progressText');
   const scoreTxt    = $('scoreText');
+  const progressWrap = quizView.querySelector('.progress-wrap');
   const nextBtn     = $('nextBtn');
   const prevBtn     = $('prevBtn');
   const showAnswersToggle = $('showAnswersToggle');
@@ -939,6 +940,10 @@ function sendQuestionContextToFrame(frame, qId) {
   /* ── Progress bar ── */
   function updateProgress() {
     const total = questionIds.length;
+    const inStudyLikeMode = showAnswersMode || isChapterMode;
+    progressWrap.style.display = inStudyLikeMode ? 'none' : '';
+    progressTxt.style.display = inStudyLikeMode ? 'none' : '';
+
     progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
     progressTxt.textContent = `${currentIndex + 1} / ${total}`;
     scoreTxt.textContent = `Score: ${score}`;
