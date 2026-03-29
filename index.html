@@ -441,7 +441,13 @@ body {
   <script src="question-topics.js"></script>
   <script>
 function getQuestionTopic(qId) {
-  if (window.questionTopics && window.questionTopics[qId]) return window.questionTopics[qId];
+  const key = String(qId || '').trim();
+  if (window.questionTopics) {
+    if (window.questionTopics[key]) return window.questionTopics[key];
+    // Defensive fallback for accidental numeric formatting mismatches
+    const normalized = key.replace(/^0+/, '');
+    if (window.questionTopics[normalized]) return window.questionTopics[normalized];
+  }
   return 'Core Concept';
 }
 
