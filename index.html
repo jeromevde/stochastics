@@ -900,6 +900,7 @@ function sendQuestionContextToFrame(frame, qId) {
     const next = currentIndex + delta;
     if (next < 0) return;
     if (next >= questionIds.length) {
+      if (showAnswersMode || isChapterMode) return;
       showResults();
       return;
     }
@@ -939,7 +940,7 @@ function sendQuestionContextToFrame(frame, qId) {
     progressTxt.textContent = `${currentIndex + 1} / ${total}`;
     scoreTxt.textContent = `Score: ${score}`;
     prevBtn.disabled = currentIndex === 0;
-    nextBtn.textContent = currentIndex === total - 1 ? 'Finish' : '→';
+    nextBtn.textContent = (currentIndex === total - 1 && !showAnswersMode && !isChapterMode) ? 'Finish' : '→';
   }
 
   /* ── Results ── */
