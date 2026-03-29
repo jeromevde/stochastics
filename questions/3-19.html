@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="question-frame.css">
+</head>
+<body>
+  <div class="q-container" data-id="3.19" data-type="mc" data-answer="1">
+    <div class="q-text">Why do we first construct an equivalent martingale measure before applying discounted expectation pricing?</div>
+    <div class="q-options">
+      <button class="q-option" data-idx="0"><span class="q-letter">A</span><span>Only to simplify notation</span></button>
+      <button class="q-option" data-idx="1"><span class="q-letter">B</span><span>To ensure discounted tradable prices are martingales (no-arbitrage pricing basis)</span></button>
+      <button class="q-option" data-idx="2"><span class="q-letter">C</span><span>To maximize expected returns under the real-world measure</span></button>
+      <button class="q-option" data-idx="3"><span class="q-letter">D</span><span>To force volatility to be constant</span></button>
+    </div>
+    <div class="q-explanation">
+      <strong>Definitions:</strong>
+      An equivalent martingale measure (EMM) is a probability measure equivalent to the physical measure under which discounted asset prices are martingales.
+      <strong>Reasoning:</strong>
+      Pricing by discounted expectation is valid only when the discounted gain process has zero drift under the pricing measure. That is exactly what the EMM enforces. Without this, expected discounted payoffs can violate no-arbitrage.
+      <strong>Answer:</strong>
+      We introduce the EMM to make discounted tradable prices martingales, which is the core no-arbitrage condition behind risk-neutral pricing.
+      <strong>Practical Use Case:</strong>
+      In production pricing libraries, quants calibrate a model under a martingale measure tied to a numeraire, then price all claims via conditional expectation under that measure.
+    </div>
+    <a class="q-issue-btn" target="_blank" rel="noopener">&#9872; Propose improvement</a>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <script src="question-frame.js"></script>
+</body>
+</html>
